@@ -1,0 +1,48 @@
+{
+  "description": "TODO BDD assertions for PHPUnit.",
+  "homepage": "https://github.com/cedx/phpunit-expect",
+  "name": "cedx/phpunit-expect",
+
+  "license": "Apache-2.0",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "type": "library",
+
+  "authors": [{
+    "email": "cedric@belin.io",
+    "name": "Cédric Belin"
+  }],
+  "autoload": {
+    "psr-4": {"phpunit\\expect\\": "lib/"}
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "keywords": [
+    "assert",
+    "bdd",
+    "expect",
+    "phpunit",
+    "test",
+    "unit"
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-pcre": "*",
+    "ext-spl": "*",
+    "phpunit/phpunit": "^6.0.7"
+  },
+  "require-dev": {
+    "cedx/coveralls": "^0.3.0",
+    "phpdocumentor/phpdocumentor": "^2.9.0"
+  },
+  "scripts": {
+    "coverage": "coveralls --file=var/coverage.xml",
+    "test": "phpunit"
+  },
+  "support": {
+    "issues": "https://github.com/cedx/phpunit-expect/issues"
+  }
+}
