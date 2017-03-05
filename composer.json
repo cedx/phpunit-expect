@@ -13,7 +13,8 @@
     "name": "Cédric Belin"
   }],
   "autoload": {
-    "psr-4": {"phpunit\\expect\\": "lib/"}
+    "files": ["lib/functions.php"],
+    "psr-4": {"PHPUnit\\Expect\\": "lib/"}
   },
   "config": {
     "optimize-autoloader": true
