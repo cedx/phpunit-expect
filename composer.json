@@ -1,5 +1,5 @@
 {
-  "description": "TODO BDD assertions for PHPUnit.",
+  "description": "BDD assertion library based on PHPUnit.",
   "homepage": "https://github.com/cedx/phpunit-expect",
   "name": "cedx/phpunit-expect",
 
