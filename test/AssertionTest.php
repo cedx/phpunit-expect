@@ -3,15 +3,15 @@
  * Implementation of the `PHPUnit\Expect\AssertionTest` class.
  */
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\{Assert, TestCase};
+use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \PHPUnit\Expect\Assertion
+ * Tests the features of the `PHPUnit\Expect\Assertion` class.
  */
 class AssertionTest extends TestCase {
 
   /**
-   * @test ::todo
+   * @test Assertion::todo
    */
   public function testTodo() {
     // TODO
