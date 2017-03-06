@@ -3,7 +3,7 @@
  * Implementation of the `PHPUnit\Expect\Assertion` class.
  */
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\{Assert};
 
 /**
  * Represents a test assertion.
