@@ -1,8 +1,8 @@
 <?php
 /**
- * Implementation of the `PHPUnit\Expect\Test\FunctionsTest` class.
+ * Implementation of the `PHPUnit\Expect\FunctionsTest` class.
  */
-namespace PHPUnit\Expect\Test;
+namespace PHPUnit\Expect;
 use PHPUnit\Framework\{Assert, TestCase};
 
 /**

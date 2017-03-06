@@ -1,10 +1,8 @@
 <?php
 /**
- * Implementation of the `PHPUnit\Expect\Test\AssertionTest` class.
+ * Implementation of the `PHPUnit\Expect\AssertionTest` class.
  */
-namespace PHPUnit\Expect\Test;
-
-use PHPUnit\Expect\{Assertion};
+namespace PHPUnit\Expect;
 use PHPUnit\Framework\{Assert, TestCase};
 
 /**
