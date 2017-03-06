@@ -596,16 +596,14 @@ class Assertion {
   public function throw(string $className = ''): self {
     if (!is_callable($this->target)) throw new \BadMethodCallException('The function target is not callable.');
 
-    try {
-      call_user_func($this->target);
-      Assert::fail($this->message);
-    }
+    $thrownException = '';
+    try { call_user_func($this->target); }
+    catch (\Throwable $e) { $thrownException = get_class($e); }
 
-    catch (\Throwable $e) {
-      if (mb_strlen($className) && get_class($e) != $className) Assert::fail($this->message);
-    }
+    if (!mb_strlen($thrownException)) Assert::fail($this->message);
+    else if (mb_strlen($className) && ($className != $thrownException)) Assert::fail($this->message);
+    else Assert::assertTrue(true, $this->message);
 
-    Assert::assertTrue(true, $this->message);
     return $this;
   }
 
