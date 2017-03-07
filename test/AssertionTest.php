@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `PHPUnit\Expect\AssertionTest` class.
- */
 namespace PHPUnit\Expect;
 use PHPUnit\Framework\{TestCase};
 
@@ -15,10 +12,23 @@ class AssertionTest extends TestCase {
    * @test
    */
   public function testLanguageChains() {
-    it('should return the current instance', function() {
-      $assertion = new Assertion(null);
-      expect($assertion)->to->be->identicalTo($assertion);
-    });
+    // It should return the current instance.
+    $assertion = new Assertion(null);
+    static::assertSame($assertion, $assertion->and());
+    static::assertSame($assertion, $assertion->at());
+    static::assertSame($assertion, $assertion->be());
+    static::assertSame($assertion, $assertion->been());
+    static::assertSame($assertion, $assertion->but());
+    static::assertSame($assertion, $assertion->does());
+    static::assertSame($assertion, $assertion->has());
+    static::assertSame($assertion, $assertion->have());
+    static::assertSame($assertion, $assertion->is());
+    static::assertSame($assertion, $assertion->of());
+    static::assertSame($assertion, $assertion->same());
+    static::assertSame($assertion, $assertion->that());
+    static::assertSame($assertion, $assertion->to());
+    static::assertSame($assertion, $assertion->which());
+    static::assertSame($assertion, $assertion->with());
   }
 
   /**
