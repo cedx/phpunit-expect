@@ -11,51 +11,12 @@ $ composer require --dev cedx/phpunit-expect
 ```
 
 ## Usage
+TODO
 
-### Language chains
-The following are provided as chainable getters to improve the readability of your assertions.
-They do not provide testing capabilities.
-
-- `and`
-- `at`
-- `be`
-- `been`
-- `has`
-- `have`
-- `is`
-- `of`
-- `same`
-- `that`
-- `to`
-- `which`
-- `with`
-
-### `->not`
-Negates any of assertions following in the chain:
-
-```php
-expect($foo)->to->not->equal('bar');
-expect($goodFn)->to->not->throw(\Exception::class);
-expect(['foo' => 'baz'])->to->have->property('foo')->and->not->equal('bar');
-```
-
-### `->a(type)` / `->an(type)`
-The `a` and `an` assertions are aliases that can be used either as language chains or to assert a value's type:
-
-```php
-// As `typeof` operator.
-expect(123)->to->be->a('int');
-expect(123.456)->to->be->a('float');
-expect('123.456')->to->be->a('numeric');
-expect('test')->to->be->a('string');
-
-expect(['foo' => 'baz'])->to->be->an('array');
-expect(null)->to->be->a('null');
-expect(new \Exception())->to->be->an('object');
-
-// As language chain.
-expect($foo)->to->be->an->instanceof(\Foo::class);
-```
+- [Functions and trait](doc/functions.md): `it()`, `expect()` functions, and `Expect` trait.
+- [Language chains](doc/chains.md): `->to`, `->be`, ..., `->and`, `->have`, ...
+- [Flags](doc/flags.md): `->not`, ...
+- [Assertions](doc/assertions.md): `->include($value)`, ...
 
 ## See also
 - [Code coverage](https://coveralls.io/github/cedx/phpunit-expect)
