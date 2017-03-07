@@ -3,7 +3,6 @@
  * Implementation of the `PHPUnit\Expect\Expect` trait.
  */
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\{Assert};
 
 /**
  * Provides helper methods for BDD assertions.
@@ -18,14 +17,6 @@ trait Expect {
    */
   public function expect($target, string $message = ''): Assertion {
     return new Assertion($target, $message);
-  }
-
-  /**
-   * Fails a test with the given message.
-   * @param string $message The message explaining the failure.
-   */
-  public function fail(string $message = '') {
-    Assert::fail($message);
   }
 
   /**

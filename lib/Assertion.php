@@ -595,6 +595,7 @@ class Assertion {
    */
   public function throw(string $className = ''): self {
     if (!is_callable($this->target)) throw new \BadMethodCallException('The function target is not callable.');
+    // TODO: if ($this->negate)
 
     $thrownException = '';
     try { call_user_func($this->target); }
