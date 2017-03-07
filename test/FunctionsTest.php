@@ -14,7 +14,7 @@ class FunctionsTest extends TestCase {
    * @test ::expect
    */
   public function testExpect() {
-    // It shoud create new assertions.
+    // It should create new assertions.
     static::assertInstanceOf(Assertion::class, expect('foo', 'bar'));
     static::assertNotSame(expect(null), expect(null));
   }
@@ -32,7 +32,7 @@ class FunctionsTest extends TestCase {
    * @test ::it
    */
   public function testIt() {
-    // It shoud invoke the specified test block.
+    // It should invoke the specified test block.
     $called = false;
     $block = function() use (&$called) { $called = true; };
 

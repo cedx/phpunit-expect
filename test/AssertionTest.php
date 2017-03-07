@@ -11,6 +11,17 @@ use PHPUnit\Framework\{TestCase};
 class AssertionTest extends TestCase {
 
   /**
+   * Tests the language chains.
+   * @test
+   */
+  public function testLanguageChains() {
+    it('should return the current instance', function() {
+      $assertion = new Assertion(null);
+      expect($assertion)->to->be->identicalTo($assertion);
+    });
+  }
+
+  /**
    * @test Assertion::todo
    */
   public function testTodo() {

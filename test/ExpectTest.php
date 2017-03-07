@@ -11,9 +11,25 @@ use PHPUnit\Framework\{TestCase};
 class ExpectTest extends TestCase {
 
   /**
-   * @test Expect::todo
+   * @test Expect::expect
    */
-  public function testTodo() {
-    // TODO
+  public function testExpect() {
+    // It should create new assertions.
+    $test = $this->getMockForTrait(Expect::class);
+    static::assertInstanceOf(Assertion::class, $test->expect('foo', 'bar'));
+    static::assertNotSame($test->expect(null), $test->expect(null));
+  }
+
+  /**
+   * @test Expect::it
+   */
+  public function testIt() {
+    // It should invoke the specified test block.
+    $called = false;
+    $block = function() use (&$called) { $called = true; };
+
+    $test = $this->getMockForTrait(Expect::class);
+    $test->it('foo', $block);
+    static::assertTrue($called);
   }
 }
