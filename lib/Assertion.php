@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `PHPUnit\Expect\Assertion` class.
- */
 namespace PHPUnit\Expect;
 use PHPUnit\Framework\{Assert};
 

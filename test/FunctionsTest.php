@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `PHPUnit\Expect\FunctionsTest` class.
- */
 namespace PHPUnit\Expect;
 use PHPUnit\Framework\{AssertionFailedError, TestCase};
 

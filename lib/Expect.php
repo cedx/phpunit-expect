@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `PHPUnit\Expect\Expect` trait.
- */
 namespace PHPUnit\Expect;
 
 /**

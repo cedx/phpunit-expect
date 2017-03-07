@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `PHPUnit\Expect` functions.
- */
 use PHPUnit\Expect\{Assertion};
 use PHPUnit\Framework\{Assert};
 

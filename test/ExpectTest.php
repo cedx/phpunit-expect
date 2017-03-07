@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `PHPUnit\Expect\ExpectTest` class.
- */
 namespace PHPUnit\Expect;
 use PHPUnit\Framework\{TestCase};
 
