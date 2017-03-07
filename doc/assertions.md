@@ -18,45 +18,32 @@ expect(new \stdClass())->to->be->an('object');
 expect($foo)->to->be->an->instanceof(\Foo::class);
 ```
 
-## `->include(mixed $value)` / `->contain(mixed $value)`
-The `include` and `contain` assertions can be used as either property based language chains or as methods to assert the inclusion of an object in an array or a substring in a string. When used as language chains, they toggle the `contains` flag for the `keys` assertion.
+## `->above(int|float $value)`
+Asserts that the target is greater than the specified value.
 
 ```php
-expect([1,2,3])->to->include(2);
-expect('foobar')->to->contain('foo');
-expect(['foo' => 'bar', 'hello' => 'universe'])->to->include->keys('foo');
+expect(10)->to->be->above(5);
 ```
 
-## `->true`
-Asserts that the target is `true`.
+Can also be used in conjunction with `->length` to assert a minimum length:
 
 ```php
-expect(true)->to->be->true;
-expect(1)->to->not->be->true;
+expect('foo')->to->have->length->above(2);
+expect([1, 2, 3])->to->have->length->above(2);
 ```
 
-## `->false`
-Asserts that the target is `false`.
+## `->below(int|float $value)`
+Asserts that the target is less than the specified value.
 
 ```php
-expect(false)->to->be->false;
-expect(0)->to->not->be->false;
+expect(5)->to->be->below(10);
 ```
 
-## `->null`
-Asserts that the target is `null`.
+Can also be used in conjunction with `->length` to assert a maximum length:
 
 ```php
-expect(null)->to->be->null;
-expect(false)->to->not->be->null;
-```
-
-## `->NaN`
-Asserts that the target is `NAN` (not a number).
-
-```php
-expect('foo')->to->be->NaN;
-expect(4)->to->not->be->NaN;
+expect('foo')->to->have->length->below(4);
+expect([1, 2, 3])->to->have->length->below(4);
 ```
 
 ## `->empty`
@@ -69,10 +56,79 @@ expect(new \stdClass())->to->be->empty;
 ```
 
 ## `->equal(mixed $value)`
-Asserts that the target is equal (`==`) to value. Alternately, if the `deep` flag is set, asserts that the target is deeply equal to the specified value.
+Asserts that the target is equal (`==`) to value.
 
 ```php
 expect('hello')->to->equal('hello');
 expect(42)->to->equal(42);
 expect(1)->to->not->equal(true);
+```
+
+## `->false`
+Asserts that the target is `false`.
+
+```php
+expect(false)->to->be->false;
+expect(0)->to->not->be->false;
+```
+
+## `->include(mixed $value)` / `->contain(mixed $value)`
+The `include` and `contain` assertions can be used as either property based language chains or as methods to assert the inclusion of an object in an array or a substring in a string. When used as language chains, they toggle the `contain` flag for the `keys` assertion.
+
+```php
+expect([1,2,3])->to->include(2);
+expect('foobar')->to->contain('foo');
+expect(['foo' => 'bar', 'hello' => 'universe'])->to->include->keys('foo');
+```
+
+## `->least(int|float $value)`
+Asserts that the target is greater than or equal to the specified value.
+
+```php
+expect(10)->to->be->at->least(10);
+```
+
+Can also be used in conjunction with `->length` to assert a minimum length:
+
+```php
+expect('foo')->to->have->length->of->at->least(3);
+expect([1, 2, 3])->to->have->length->of->at->least(3);
+```
+
+## `->most(int|float $value)`
+Asserts that the target is less than or equal to the specified value.
+
+```php
+expect(5)->to->be->at->most(5);
+```
+
+Can also be used in conjunction with `->length` to assert a maximum length:
+
+```php
+expect('foo')->to->have->length->of->at->most(3);
+expect([1, 2, 3])->to->have->length->of->at->most(3);
+```
+
+## `->NaN`
+Asserts that the target is `NAN` (not a number).
+
+```php
+expect('foo')->to->be->NaN;
+expect(4)->to->not->be->NaN;
+```
+
+## `->null`
+Asserts that the target is `null`.
+
+```php
+expect(null)->to->be->null;
+expect(false)->to->not->be->null;
+```
+
+## `->true`
+Asserts that the target is `true`.
+
+```php
+expect(true)->to->be->true;
+expect(1)->to->not->be->true;
 ```
