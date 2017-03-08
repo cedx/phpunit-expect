@@ -13,8 +13,8 @@ class ExpectTest extends TestCase {
   public function testExpect() {
     // It should create new assertions.
     $test = $this->getMockForTrait(Expect::class);
-    static::assertInstanceOf(Assertion::class, $test->expect('foo', 'bar'));
-    static::assertNotSame($test->expect(null), $test->expect(null));
+    assertThat($test->expect('foo', 'bar'), isInstanceOf(Assertion::class));
+    assertThat($test->expect(null), logicalNot(identicalTo($test->expect(null))));
   }
 
   /**
@@ -27,6 +27,6 @@ class ExpectTest extends TestCase {
 
     $test = $this->getMockForTrait(Expect::class);
     $test->it('foo', $block);
-    static::assertTrue($called);
+    assertThat($called, isTrue());
   }
 }
