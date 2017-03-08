@@ -12,8 +12,8 @@ class FunctionsTest extends TestCase {
    */
   public function testExpect() {
     // It should create new assertions.
-    assertThat(expect('foo', 'bar'), isInstanceOf(Assertion::class));
-    assertThat(expect(null), logicalNot(identicalTo(expect(null))));
+    static::assertThat(expect('foo', 'bar'), static::isInstanceOf(Assertion::class));
+    static::assertThat(expect(null), static::logicalNot(static::identicalTo(expect(null))));
   }
 
   /**
@@ -34,6 +34,6 @@ class FunctionsTest extends TestCase {
     $block = function() use (&$called) { $called = true; };
 
     it('foo', $block);
-    assertThat($called, isTrue());
+    static::assertThat($called, static::isTrue());
   }
 }
