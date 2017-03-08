@@ -1,6 +1,6 @@
 <?php
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\{Assert as a, TestCase};
+use PHPUnit\Framework\{Assert as a, AssertionFailedError, TestCase};
 
 /**
  * Tests the features of the `PHPUnit\Expect\Assertion` class.
@@ -14,27 +14,335 @@ class AssertionTest extends TestCase {
   public function testLanguageChains() {
     // It should return the current instance.
     $assertion = new Assertion(null);
-    a::assertThat($assertion, a::identicalTo($assertion->and()));
-    a::assertThat($assertion, a::identicalTo($assertion->at()));
-    a::assertThat($assertion, a::identicalTo($assertion->be()));
-    a::assertThat($assertion, a::identicalTo($assertion->been()));
-    a::assertThat($assertion, a::identicalTo($assertion->but()));
-    a::assertThat($assertion, a::identicalTo($assertion->does()));
-    a::assertThat($assertion, a::identicalTo($assertion->has()));
-    a::assertThat($assertion, a::identicalTo($assertion->have()));
-    a::assertThat($assertion, a::identicalTo($assertion->is()));
-    a::assertThat($assertion, a::identicalTo($assertion->of()));
-    a::assertThat($assertion, a::identicalTo($assertion->same()));
-    a::assertThat($assertion, a::identicalTo($assertion->that()));
-    a::assertThat($assertion, a::identicalTo($assertion->to()));
-    a::assertThat($assertion, a::identicalTo($assertion->which()));
-    a::assertThat($assertion, a::identicalTo($assertion->with()));
+    a::assertThat($assertion->and(), a::identicalTo($assertion));
+    a::assertThat($assertion->at(), a::identicalTo($assertion));
+    a::assertThat($assertion->be(), a::identicalTo($assertion));
+    a::assertThat($assertion->been(), a::identicalTo($assertion));
+    a::assertThat($assertion->but(), a::identicalTo($assertion));
+    a::assertThat($assertion->does(), a::identicalTo($assertion));
+    a::assertThat($assertion->has(), a::identicalTo($assertion));
+    a::assertThat($assertion->have(), a::identicalTo($assertion));
+    a::assertThat($assertion->is(), a::identicalTo($assertion));
+    a::assertThat($assertion->of(), a::identicalTo($assertion));
+    a::assertThat($assertion->same(), a::identicalTo($assertion));
+    a::assertThat($assertion->that(), a::identicalTo($assertion));
+    a::assertThat($assertion->to(), a::identicalTo($assertion));
+    a::assertThat($assertion->which(), a::identicalTo($assertion));
+    a::assertThat($assertion->with(), a::identicalTo($assertion));
   }
 
   /**
-   * @test Assertion::todo
+   * @test Assertion::a
    */
-  public function testTodo() {
-    // TODO
+  public function testA() {
+    // It should return the current instance.
+    $assertion = new Assertion(null);
+    a::assertThat($assertion->a(), a::identicalTo($assertion));
+    a::assertThat($assertion->an(), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion(null))->a('null');
+    (new Assertion(true))->a('boolean');
+
+    (new Assertion(123))->an('integer');
+    (new Assertion(123.0))->a('float');
+    (new Assertion('123'))->a('numeric');
+
+    (new Assertion([]))->an('array');
+    (new Assertion(new \stdClass()))->an('object');
+    (new Assertion('foo'))->a('string');
+
+    // It should be negatable.
+    (new Assertion(new \stdClass()))->not()->an('array');
+    (new Assertion([]))->not()->an('object');
+    (new Assertion(0xAF))->not()->a('string');
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(null))->an('integer');
+  }
+
+  /**
+   * @test Assertion::above
+   */
+  public function testAbove() {
+    // It should return the current instance.
+    $assertion = new Assertion(456);
+    a::assertThat($assertion->above(123), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion(1))->above(0.0);
+    (new Assertion(456.0))->above(123);
+
+    // It should be negatable.
+    (new Assertion(123))->not()->above(456);
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(123))->above(456);
+  }
+
+  /**
+   * @test Assertion::below
+   */
+  public function testBelow() {
+    // It should return the current instance.
+    $assertion = new Assertion(123);
+    a::assertThat($assertion->below(456), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion(0))->below(1.0);
+    (new Assertion(123.0))->below(456);
+
+    // It should be negatable.
+    (new Assertion(456))->not()->below(123);
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(456))->below(123);
+  }
+
+  /**
+   * @test Assertion::directory
+   */
+  public function testDirectory() {
+    $assertion = new Assertion(null);
+    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+
+    // It should have its `isDirectory` flag disabled before being called.
+    a::assertThat($hasFlag('isDirectory'), a::isFalse());
+
+    // It should return the current instance.
+    a::assertThat($assertion->directory(), a::identicalTo($assertion));
+
+    // It should have its `isDirectory` flag enabled after being called.
+    a::assertThat($hasFlag('isDirectory'), a::isTrue());
+  }
+
+  /**
+   * @test Assertion::empty
+   */
+  public function testEmpty() {
+    // It should return the current instance.
+    $assertion = new Assertion(null);
+    a::assertThat($assertion->empty(), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion(false))->empty();
+    (new Assertion(0))->empty();
+    (new Assertion(0.0))->empty();
+    (new Assertion(''))->empty();
+    (new Assertion([]))->empty();
+    (new Assertion(new \stdClass()))->empty();
+
+    // It should be negatable.
+    (new Assertion(true))->not()->empty();
+    (new Assertion(1))->not()->empty();
+    (new Assertion(123.0))->not()->empty();
+    (new Assertion('0'))->not()->empty();
+    (new Assertion([1, 2, 3]))->not()->empty();
+
+    $object = new \stdClass();
+    $object->foo = 'bar';
+    (new Assertion($object))->not()->empty();
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(true))->empty();
+  }
+
+  /**
+   * @test Assertion::equal
+   */
+  public function testEqual() {
+    // It should return the current instance.
+    $assertion = new Assertion(123);
+    a::assertThat($assertion->equal(123), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion(false))->equal(false)->equal(0)->equal(0.0);
+    (new Assertion(true))->equal(true)->equal(1)->equal(1.0);
+
+    (new Assertion(1))->equal(1.0);
+    (new Assertion('foo'))->equal('foo');
+    (new Assertion([1, 2, 3]))->equal([1, 2, 3]);
+
+    // It should be negatable.
+    (new Assertion(false))->not()->equal(true);
+    (new Assertion(0))->not()->equal(1);
+    (new Assertion(2.0))->not()->equal(2.1);
+    (new Assertion('123'))->not()->equal(' 123 ');
+    (new Assertion([1, 2, 3]))->not()->equal([1, 2]);
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(false))->equal(true);
+  }
+
+  /**
+   * @test Assertion::false
+   */
+  public function testFalse() {
+    // It should return the current instance.
+    $assertion = new Assertion(false);
+    a::assertThat($assertion->false(), a::identicalTo($assertion));
+
+    // It should be negatable.
+    (new Assertion(true))->not()->false();
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(true))->false();
+  }
+
+  /**
+   * @test Assertion::file
+   */
+  public function testFile() {
+    $assertion = new Assertion(null);
+    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+
+    // It should have its `isFile` flag disabled before being called.
+    a::assertThat($hasFlag('isFile'), a::isFalse());
+
+    // It should return the current instance.
+    a::assertThat($assertion->file(), a::identicalTo($assertion));
+
+    // It should have its `isFile` flag enabled after being called.
+    a::assertThat($hasFlag('isFile'), a::isTrue());
+  }
+
+  /**
+   * @test Assertion::include
+   */
+  public function testInclude() {
+    // It should return the current instance.
+    $assertion = new Assertion('foobar');
+    a::assertThat($assertion->contain('foo'), a::identicalTo($assertion));
+    a::assertThat($assertion->include('bar'), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+
+    // It should be negatable.
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+  }
+
+  /**
+   * @test Assertion::least
+   */
+  public function testLeast() {
+    // It should return the current instance.
+    $assertion = new Assertion(456);
+    a::assertThat($assertion->least(123), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+
+    // It should be negatable.
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+  }
+
+  /**
+   * @test Assertion::length
+   */
+  public function testLength() {
+    $assertion = new Assertion(null);
+    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+
+    // It should have its `isLength` flag disabled before being called.
+    a::assertThat($hasFlag('isLength'), a::isFalse());
+
+    // It should return the current instance.
+    a::assertThat($assertion->length(), a::identicalTo($assertion));
+
+    // It should have its `isLength` flag enabled after being called.
+    a::assertThat($hasFlag('isLength'), a::isTrue());
+  }
+
+  /**
+   * @test Assertion::most
+   */
+  public function testMost() {
+    // It should return the current instance.
+    $assertion = new Assertion(123);
+    a::assertThat($assertion->most(456), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+
+    // It should be negatable.
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+  }
+
+  /**
+   * @test Assertion::NaN
+   */
+  public function testNaN() {
+    // It should return the current instance.
+    $assertion = new Assertion(NAN);
+    a::assertThat($assertion->NaN(), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+
+    // It should be negatable.
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+  }
+
+  /**
+   * @test Assertion::not
+   */
+  public function testNot() {
+    $assertion = new Assertion(null);
+    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+
+    // It should have its `negate` flag disabled before being called.
+    a::assertThat($hasFlag('negate'), a::isFalse());
+
+    // It should return the current instance.
+    a::assertThat($assertion->not(), a::identicalTo($assertion));
+
+    // It should have its `negate` flag enabled after being called.
+    a::assertThat($hasFlag('negate'), a::isTrue());
+  }
+
+  /**
+   * @test Assertion::null
+   */
+  public function testNull() {
+    // It should return the current instance.
+    $assertion = new Assertion(null);
+    a::assertThat($assertion->null(), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+
+    // It should be negatable.
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+  }
+
+  /**
+   * @test Assertion::true
+   */
+  public function testTrue() {
+    // It should return the current instance.
+    $assertion = new Assertion(true);
+    a::assertThat($assertion->true(), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion(true))->true();
+
+    // It should be negatable.
+    (new Assertion(true))->not()->true();
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(false))->true();
   }
 }
