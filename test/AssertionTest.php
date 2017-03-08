@@ -1,6 +1,6 @@
 <?php
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\{TestCase};
+use PHPUnit\Framework\{Assert as a, TestCase};
 
 /**
  * Tests the features of the `PHPUnit\Expect\Assertion` class.
@@ -14,21 +14,21 @@ class AssertionTest extends TestCase {
   public function testLanguageChains() {
     // It should return the current instance.
     $assertion = new Assertion(null);
-    static::assertSame($assertion, $assertion->and());
-    static::assertSame($assertion, $assertion->at());
-    static::assertSame($assertion, $assertion->be());
-    static::assertSame($assertion, $assertion->been());
-    static::assertSame($assertion, $assertion->but());
-    static::assertSame($assertion, $assertion->does());
-    static::assertSame($assertion, $assertion->has());
-    static::assertSame($assertion, $assertion->have());
-    static::assertSame($assertion, $assertion->is());
-    static::assertSame($assertion, $assertion->of());
-    static::assertSame($assertion, $assertion->same());
-    static::assertSame($assertion, $assertion->that());
-    static::assertSame($assertion, $assertion->to());
-    static::assertSame($assertion, $assertion->which());
-    static::assertSame($assertion, $assertion->with());
+    a::assertThat($assertion, a::identicalTo($assertion->and()));
+    a::assertThat($assertion, a::identicalTo($assertion->at()));
+    a::assertThat($assertion, a::identicalTo($assertion->be()));
+    a::assertThat($assertion, a::identicalTo($assertion->been()));
+    a::assertThat($assertion, a::identicalTo($assertion->but()));
+    a::assertThat($assertion, a::identicalTo($assertion->does()));
+    a::assertThat($assertion, a::identicalTo($assertion->has()));
+    a::assertThat($assertion, a::identicalTo($assertion->have()));
+    a::assertThat($assertion, a::identicalTo($assertion->is()));
+    a::assertThat($assertion, a::identicalTo($assertion->of()));
+    a::assertThat($assertion, a::identicalTo($assertion->same()));
+    a::assertThat($assertion, a::identicalTo($assertion->that()));
+    a::assertThat($assertion, a::identicalTo($assertion->to()));
+    a::assertThat($assertion, a::identicalTo($assertion->which()));
+    a::assertThat($assertion, a::identicalTo($assertion->with()));
   }
 
   /**

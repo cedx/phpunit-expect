@@ -15,7 +15,7 @@ expect(['foo' => 'baz'])->to->be->an('array');
 expect(new \stdClass())->to->be->an('object');
 
 // As language chain.
-expect($foo)->to->be->an->instanceof(\Foo::class);
+expect($foo)->to->be->an->instanceOf(\Foo::class);
 ```
 
 ## `->above(int|float $value)`

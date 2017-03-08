@@ -1,9 +1,9 @@
 <?php
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\{AssertionFailedError, TestCase};
+use PHPUnit\Framework\{Assert as a, AssertionFailedError, TestCase};
 
 /**
- * Tests the features of the provided functions.
+ * Tests the features of the functions.
  */
 class FunctionsTest extends TestCase {
 
@@ -12,8 +12,8 @@ class FunctionsTest extends TestCase {
    */
   public function testExpect() {
     // It should create new assertions.
-    static::assertThat(expect('foo', 'bar'), static::isInstanceOf(Assertion::class));
-    static::assertThat(expect(null), static::logicalNot(static::identicalTo(expect(null))));
+    a::assertThat(expect('foo', 'bar'), a::isInstanceOf(Assertion::class));
+    a::assertThat(expect(null), a::logicalNot(a::identicalTo(expect(null))));
   }
 
   /**
@@ -34,6 +34,6 @@ class FunctionsTest extends TestCase {
     $block = function() use (&$called) { $called = true; };
 
     it('foo', $block);
-    static::assertThat($called, static::isTrue());
+    a::assertThat($called, a::isTrue());
   }
 }
