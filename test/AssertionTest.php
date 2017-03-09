@@ -222,11 +222,16 @@ class AssertionTest extends TestCase {
     a::assertThat($assertion->include('bar'), a::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
+    (new Assertion([1, 2, 3]))->include(2);
+    (new Assertion(['a', 'b', 'c']))->include('c');
+    (new Assertion(['foo' => 123, 'bar' => 456]))->include(123);
 
     // It should be negatable.
+    (new Assertion('foo'))->not()->contain('bar');
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
+    (new Assertion('foo'))->contain('abc');
   }
 
   /**
@@ -275,11 +280,15 @@ class AssertionTest extends TestCase {
     a::assertThat($assertion->most(456), a::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
+    (new Assertion(123))->most(123);
+    (new Assertion(123))->most(456);
 
     // It should be negatable.
+    (new Assertion(456))->not()->most(123);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
+    (new Assertion(456))->most(123);
   }
 
   /**
@@ -290,12 +299,12 @@ class AssertionTest extends TestCase {
     $assertion = new Assertion(NAN);
     a::assertThat($assertion->NaN(), a::identicalTo($assertion));
 
-    // It should not throw an exception if the assertion succeeded.
-
     // It should be negatable.
+    (new Assertion('123'))->not()->NaN();
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
+    (new Assertion('123'))->NaN();
   }
 
   /**
