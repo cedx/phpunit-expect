@@ -145,10 +145,32 @@ expect(false)->to->not->be->null;
 ```
 
 ## `->property($name)` / `->property($name, $value)`
-Asserts that the target has a property or a key with the specified name, optionally asserting that the value of that property or key is equal to the specified value.
+Asserts that the target has a property or a key with the specified name, optionally asserting that the value of that property or key is equal to the specified value:
 
 ```php
-TODO
+$array = ['foo' => 'bar'];
+expect($array)->to->have->property('foo');
+expect($array)->to->have->property('foo', 'bar');
+
+$object = new \stdClass();
+$object->foo = 'bar';
+expect($object)->to->have->property('foo');
+expect($object)->to->have->property('foo', 'bar');
+```
+
+It also changes the subject of the assertion to be the value of that property from the original object. This permits for further chainable assertions on that property:
+
+```php
+expect($value)->to->have->property('foo')
+  ->that->is->a('string');
+  
+expect($value)->to->have->property('bar')
+  ->that->is->an('array')
+  ->that->equals(['foo' => 'bar']);
+  
+expect($value)->to->have->property('baz')
+  ->that->is->an('object')
+  ->with->property('foo')->that->equals('bar');
 ```
 
 ## `->throw` / `->throw(string $className)`
