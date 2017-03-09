@@ -336,11 +336,63 @@ class AssertionTest extends TestCase {
     a::assertThat($assertion->null(), a::identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion(new \stdClass()))->not()->null();
+    (new Assertion('foo'))->not()->null();
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion(new \stdClass()))->null();
+    (new Assertion('foo'))->null();
+  }
+
+  /**
+   * @test Assertion::property
+   */
+  public function testProperty() {
+    $array = ['foo' => 'bar'];
+
+    $object = new \stdClass();
+    $object->foo = 'bar';
+
+    // It should return the current instance.
+    $assertion = new Assertion($array);
+    a::assertThat($assertion->property('foo'), a::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion($array))->property('foo', 'bar');
+
+    (new Assertion($object))->property('foo');
+    (new Assertion($object))->property('foo', 'bar');
+
+    // It should be negatable.
+    (new Assertion($array))->not()->property('bar');
+    (new Assertion($array))->not()->property('bar', 'bar');
+    (new Assertion($array))->not()->property('foo', 'baz');
+
+    (new Assertion($object))->not()->property('bar');
+    (new Assertion($object))->not()->property('bar', 'bar');
+    (new Assertion($object))->not()->property('foo', 'baz');
+
+    // It should changes the subject of the assertion to be the value of that property.
+    $data = [
+      'foo' => 'bar',
+      'bar' => $array,
+      'baz' => $object
+    ];
+
+    (new Assertion($data))->property('foo')
+      ->that()->is()->a('string')
+      ->that()->equals('bar');
+
+    (new Assertion($data))->property('bar')
+      ->that()->is()->an('array')
+      ->that()->equals('bar');
+
+    (new Assertion($data))->property('baz')
+      ->that()->is()->an('object')
+      ->with()->property('foo')->that()->equals('bar');
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(['foo' => 'bar']))->property('bar');
   }
 
   /**

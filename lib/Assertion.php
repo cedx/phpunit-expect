@@ -513,17 +513,32 @@ class Assertion {
 
   /**
    * Reports an error if the target has not a given property or key.
+   *
    * Optionally asserts that the value of that property or key is equal to the specified value.
+   * Changes the subject of the assertion to be the value of that property from the original object.
+   *
    * @param string $name The property name.
    * @param mixed $value The property value.
    * @return Assertion This instance.
+   * @throws \BadMethodCallException The target is not an array nor an object.
    */
   public function property(string $name, $value = null) {
-    $constraint = is_array($this->target) || $this->target instanceof \ArrayAccess ?  Assert::arrayHasKey($name) : Assert::objectHasAttribute($name);
-    if (func_num_args() > 1) $constraint = Assert::logicalAnd($constraint, Assert::equalTo($value));
+    $isArray = is_array($this->target) || $this->target instanceof \ArrayAccess;
+    if (!$isArray && !is_object($this->target)) throw new \BadMethodCallException('The target is not an array nor an object.');
 
-    // TODO changes the subject of the assertion to be the value of that property from the original object
-    return $this->expect($this->target, $constraint);
+    $hasProperty = $isArray ? array_key_exists($name, $this->target) : property_exists($this->target, $name);
+    $hasPropertyConstraint = $isArray ? Assert::arrayHasKey($name) : Assert::objectHasAttribute($name);
+    $property = $isArray ? ($this->target[$name] ?? null) : ($this->target->$name ?? null);
+
+    $argsCount = func_num_args();
+    if ($argsCount == 1 || !$hasProperty) $this->expect($this->target, $hasPropertyConstraint);
+    else {
+      Assert::assertThat($this->target, $hasPropertyConstraint);
+      $this->expect($property, Assert::equalTo($value));
+    }
+
+    $this->target = $property;
+    return $this;
   }
 
   /**
