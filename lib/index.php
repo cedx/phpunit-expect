@@ -37,3 +37,15 @@ if (!function_exists('it')) {
     call_user_func($block, $specification);
   }
 }
+
+if (!function_exists('skip')) {
+
+  /**
+   * Skips a test block.
+   * @param string $specification A message describing the test specification.
+   * @param callable $block The test block to be invoked.
+   */
+  function skip(string $specification, callable $block) {
+    Assert::markTestSkipped($specification);
+  }
+}
