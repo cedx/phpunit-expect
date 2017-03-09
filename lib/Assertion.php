@@ -482,6 +482,21 @@ class Assertion {
   }
 
   /**
+   * Reports an error if the target has not a given property or key.
+   * Optionally asserts that the value of that property or key is equal to the specified value.
+   * @param string $name The property name.
+   * @param mixed $value The property value.
+   * @return Assertion This instance.
+   */
+  public function property(string $name, $value = null) {
+    $constraint = is_array($this->target) || $this->target instanceof \ArrayAccess ?  Assert::arrayHasKey($name) : Assert::objectHasAttribute($name);
+    if (func_num_args() > 1) $constraint = Assert::logicalAnd($constraint, Assert::equalTo($value));
+
+    // TODO changes the subject of the assertion to be the value of that property from the original object
+    return $this->expect($this->target, $constraint);
+  }
+
+  /**
    * Reports an error if the file or directory specified by the target is not readable.
    * @return Assertion This instance.
    * @throws \BadMethodCallException This assertion is not a file or directory one.

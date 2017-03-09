@@ -144,6 +144,13 @@ expect(null)->to->be->null;
 expect(false)->to->not->be->null;
 ```
 
+## `->property($name)` / `->property($name, $value)`
+Asserts that the target has a property or a key with the specified name, optionally asserting that the value of that property or key is equal to the specified value.
+
+```php
+TODO
+```
+
 ## `->throw` / `->throw(string $className)`
 Asserts that the function target will throw an exception, or a specific type of exception (as determined using `instanceof`).
 
