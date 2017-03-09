@@ -95,6 +95,21 @@ expect('foo')->to->have->length->of->at->least(3);
 expect([1, 2, 3])->to->have->length->of->at->least(3);
 ```
 
+## `->lengthOf(int $value)`
+Asserts that the target's length has the expected value:
+
+```php
+expect([1, 2, 3])->to->have->lengthOf(3);
+expect('foobar')->to->have->lengthOf(6);
+```
+
+## `->match(string $pattern)`
+Asserts that the target matches a regular expression:
+
+```php
+expect('foobar')->to->match('/^foo/');
+```
+
 ## `->most(int|float $value)`
 Asserts that the target is less than or equal to the specified value.
 
@@ -123,6 +138,19 @@ Asserts that the target is `null`.
 ```php
 expect(null)->to->be->null;
 expect(false)->to->not->be->null;
+```
+
+## `->throw` / `->throw(string $className)`
+Asserts that the function target will throw an exception, or a specific type of exception (as determined using `instanceof`).
+
+```php
+$badFn = function() { throw new \RuntimeException('This is a bad function.'); };
+expect($badFn)->to->throw(\RuntimeException::class);
+expect($badFn)->to->throw(\Exception::class);
+expect($badFn)->to->throw;
+
+$goodFn = function() { echo 'Hello World!'; };
+expect($goodFn)->to->not->throw;
 ```
 
 ## `->true`
