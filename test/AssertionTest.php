@@ -158,6 +158,7 @@ class AssertionTest extends TestCase {
     // It should return the current instance.
     $assertion = new Assertion(123);
     a::assertThat($assertion->equal(123), a::identicalTo($assertion));
+    a::assertThat($assertion->equals(123), a::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion(false))->equal(false)->equal(0)->equal(0.0);
@@ -219,7 +220,9 @@ class AssertionTest extends TestCase {
     // It should return the current instance.
     $assertion = new Assertion('foobar');
     a::assertThat($assertion->contain('foo'), a::identicalTo($assertion));
+    a::assertThat($assertion->contains('foo'), a::identicalTo($assertion));
     a::assertThat($assertion->include('bar'), a::identicalTo($assertion));
+    a::assertThat($assertion->includes('bar'), a::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion([1, 2, 3]))->include(2);

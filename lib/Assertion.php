@@ -183,7 +183,17 @@ class Assertion {
    * @return Assertion This instance.
    * @see Assertion::include()
    */
-  public function contain($value): self {
+  public function contain($value = null): self {
+    return $this->include($value);
+  }
+
+  /**
+   * Reports an error if the target does not contain an element or a substring.
+   * @param mixed $value The value to find.
+   * @return Assertion This instance.
+   * @see Assertion::include()
+   */
+  public function contains($value = null): self {
     return $this->include($value);
   }
 
@@ -272,6 +282,16 @@ class Assertion {
   }
 
   /**
+   * Reports an error if the target and the specified value are not equal.
+   * @param mixed $value The value to compare.
+   * @return Assertion This instance.
+   * @see Assertion::equal()
+   */
+  public function equals($value): self {
+    return $this->equal($value);
+  }
+
+  /**
    * Reports an error if the file or directory specified by the target does not exist.
    * @return Assertion This instance.
    * @throws \BadMethodCallException This assertion is not a file or directory one.
@@ -331,13 +351,23 @@ class Assertion {
    * @param mixed $value The value to find.
    * @return Assertion This instance.
    */
-  public function include($value): self {
+  public function include($value = null): self {
     if (!func_num_args()) {
       $this->setFlag('contain');
       return $this;
     }
 
     return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
+  }
+
+  /**
+   * Reports an error if the target does not contain an element or a substring.
+   * @param mixed $value The value to find.
+   * @return Assertion This instance.
+   * @see Assertion::include()
+   */
+  public function includes($value = null): self {
+    return $this->include($value);
   }
 
   /**
