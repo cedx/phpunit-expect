@@ -238,11 +238,15 @@ class AssertionTest extends TestCase {
     a::assertThat($assertion->least(123), a::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
+    (new Assertion(123))->above(456);
+    (new Assertion(123))->above(456);
 
     // It should be negatable.
+    (new Assertion(123))->not()->above(456);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
+    (new Assertion(123))->above(456);
   }
 
   /**

@@ -245,7 +245,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not empty.
-   * For arrays and strings, it checks the length. For objects, it gets the count of accessible properties according to scope.
+   * For arrays, strings, and `Countable` instances, it checks the length. For objects, it gets the count of accessible properties according to scope.
    * @return Assertion This instance.
    */
   public function empty(): self {
@@ -443,16 +443,16 @@ class Assertion {
 
   /**
    * Reports an error if the length of the target is not the expected one.
-   * @param int $expected The expected length.
+   * @param int $value The expected length.
    * @return Assertion This instance.
    */
-  public function lengthOf(int $expected): self {
+  public function lengthOf(int $value): self {
     if (is_string($this->target)) {
-      $constraint = Assert::equalTo($expected);
+      $constraint = Assert::equalTo($value);
       $target = mb_strlen($this->target);
     }
     else {
-      $constraint = Assert::countOf($expected);
+      $constraint = Assert::countOf($value);
       $target = $this->target;
     }
 
@@ -622,16 +622,16 @@ class Assertion {
    */
   public function throw(string $className = ''): self {
     if (!is_callable($this->target)) throw new \BadMethodCallException('The function target is not callable.');
-    // TODO: if ($this->hasFlag('negate'))
 
-    $thrownException = '';
+    $exception = null;
     try { call_user_func($this->target); }
-    catch (\Throwable $e) { $thrownException = get_class($e); }
+    catch (\Throwable $e) { $exception = $e; }
 
-    if (!mb_strlen($thrownException)) Assert::fail($this->message);
-    else if (mb_strlen($className) && ($className != $thrownException)) Assert::fail($this->message);
-    else Assert::assertTrue(true, $this->message);
+    $constraint = Assert::logicalNot(Assert::isNull());
+    if (mb_strlen($className)) $constraint = Assert::logicalAnd($constraint, Assert::isInstanceOf($className));
+    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
 
+    Assert::assertThat($exception, $constraint, $this->message);
     return $this;
   }
 

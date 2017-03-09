@@ -47,7 +47,7 @@ expect([1, 2, 3])->to->have->length->below(4);
 ```
 
 ## `->empty`
-Asserts that the target's length is `0`. For arrays and strings, it checks the length. For objects, it gets the count of accessible properties.
+Asserts that the target's length is `0`. For arrays, strings, and `Countable` instances, it checks the length. For objects, it gets the count of accessible properties.
 
 ```php
 expect([])->to->be->empty;
