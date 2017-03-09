@@ -5,10 +5,14 @@ The `a` and `an` assertions are aliases that can be used either as language chai
 
 ```php
 // As `typeof` operator.
-expect(123)->to->be->an('int');
-expect(123.456)->to->be->a('float');
+expect(false)->to->be->a('bool'); // or "boolean"
+expect(123)->to->be->an('int'); // or "integer"
+expect(123.456)->to->be->a('float'); // or "double", "real"
+
 expect('123.456')->to->be->a('numeric');
-expect('test')->to->be->a('string');
+expect('foo')->to->be->a('scalar');
+expect('bar')->to->be->a('string');
+expect(function() {})->to->be->a('callable');
 
 expect(null)->to->be->a('null');
 expect(['foo' => 'baz'])->to->be->an('array');
@@ -148,6 +152,7 @@ $badFn = function() { throw new \RuntimeException('This is a bad function.'); };
 expect($badFn)->to->throw(\RuntimeException::class);
 expect($badFn)->to->throw(\Exception::class);
 expect($badFn)->to->throw;
+expect($badFn)->to->not->throw(\InvalidArgumentException::class);
 
 $goodFn = function() { echo 'Hello World!'; };
 expect($goodFn)->to->not->throw;
