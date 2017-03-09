@@ -502,11 +502,10 @@ class Assertion {
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   public function readable(): self {
-    $isReadable = Assert::isReadable();
-    if ($this->hasFlag('isDirectory')) $constraint = Assert::logicalAnd(Assert::directoryExists(), $isReadable);
-    else if ($this->hasFlag('isFile')) $constraint = Assert::logicalAnd(Assert::fileExists(), $isReadable);
-    else throw new \BadMethodCallException('This assertion is not a file or directory one.');
+    if (!$this->hasFlag('isDirectory') && !$this->hasFlag('isFile'))
+      throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
+    $constraint = Assert::logicalAnd($this->hasFlag('isFile') ? Assert::fileExists() : Assert::directoryExists(), Assert::isReadable());
     return $this->expect($this->target, $constraint);
   }
 
@@ -610,11 +609,10 @@ class Assertion {
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   public function writable(): self {
-    $isWritable = Assert::isWritable();
-    if ($this->hasFlag('isDirectory')) $constraint = Assert::logicalAnd(Assert::directoryExists(), $isWritable);
-    else if ($this->hasFlag('isFile')) $constraint = Assert::logicalAnd(Assert::fileExists(), $isWritable);
-    else throw new \BadMethodCallException('This assertion is not a file or directory one.');
+    if (!$this->hasFlag('isDirectory') && !$this->hasFlag('isFile'))
+      throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
+    $constraint = Assert::logicalAnd($this->hasFlag('isFile') ? Assert::fileExists() : Assert::directoryExists(), Assert::isWritable());
     return $this->expect($this->target, $constraint);
   }
 
