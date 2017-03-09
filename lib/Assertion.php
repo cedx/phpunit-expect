@@ -1,5 +1,6 @@
 <?php
 namespace PHPUnit\Expect;
+
 use PHPUnit\Framework\{Assert};
 use PHPUnit\Framework\Constraint\{Constraint};
 
@@ -227,12 +228,6 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function empty(): self {
-    if ($this->hasFlag('isFile')) {
-      if ($this->hasFlag('negate')) Assert::assertfil($value, $this->target, $this->message);
-      else Assert::assertFileEquals($value, $this->target, $this->message);
-      return $this;
-    }
-
     if (is_object($this->target) && !($this->target instanceof \Countable)) {
       $constraint = Assert::countOf(0);
       $target = get_object_vars($this->target);
