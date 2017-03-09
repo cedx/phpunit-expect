@@ -238,15 +238,15 @@ class AssertionTest extends TestCase {
     a::assertThat($assertion->least(123), a::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
-    (new Assertion(123))->above(456);
-    (new Assertion(123))->above(456);
+    (new Assertion(123))->least(123);
+    (new Assertion(456))->least(123);
 
     // It should be negatable.
-    (new Assertion(123))->not()->above(456);
+    (new Assertion(123))->not()->least(456);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion(123))->above(456);
+    (new Assertion(123))->least(456);
   }
 
   /**
@@ -323,12 +323,12 @@ class AssertionTest extends TestCase {
     $assertion = new Assertion(null);
     a::assertThat($assertion->null(), a::identicalTo($assertion));
 
-    // It should not throw an exception if the assertion succeeded.
-
     // It should be negatable.
+    (new Assertion(new \stdClass()))->not()->null();
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
+    (new Assertion(new \stdClass()))->null();
   }
 
   /**
@@ -339,11 +339,8 @@ class AssertionTest extends TestCase {
     $assertion = new Assertion(true);
     a::assertThat($assertion->true(), a::identicalTo($assertion));
 
-    // It should not throw an exception if the assertion succeeded.
-    (new Assertion(true))->true();
-
     // It should be negatable.
-    (new Assertion(true))->not()->true();
+    (new Assertion(false))->not()->true();
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);

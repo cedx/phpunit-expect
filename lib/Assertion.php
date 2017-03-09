@@ -1,6 +1,7 @@
 <?php
 namespace PHPUnit\Expect;
 use PHPUnit\Framework\{Assert};
+use PHPUnit\Framework\Constraint\{Constraint};
 
 /**
  * Represents a test assertion.
@@ -91,13 +92,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function a(string $type = ''): self {
-    if (mb_strlen($type)) {
-      $constraint = Assert::isType($type);
-      if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-      Assert::assertThat($this->target, $constraint, $this->message);
-    }
-
-    return $this;
+    return mb_strlen($type) ? $this->expect($this->target, Assert::isType($type)) : $this;
   }
 
   /**
@@ -106,12 +101,8 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function above($value): self {
-    $constraint = Assert::greaterThan($value);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-
     $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
-    Assert::assertThat($target, $constraint, $this->message);
-    return $this;
+    return $this->expect($target, Assert::greaterThan($value));
   }
 
   /**
@@ -163,12 +154,8 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function below($value): self {
-    $constraint = Assert::lessThan($value);
     $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
-
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($target, $constraint, $this->message);
-    return $this;
+    return $this->expect($target, Assert::lessThan($value));
   }
 
   /**
@@ -186,10 +173,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function closeTo($value, float $delta): self {
-    $constraint = Assert::equalTo($value, $delta);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::equalTo($value, $delta));
   }
 
   /**
@@ -208,22 +192,16 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function containOnly(string $type): self {
-    $constraint = Assert::containsOnly($type);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::containsOnly($type));
   }
 
   /**
-   * Reports an error if the target does not contain only instances of a giver class.
+   * Reports an error if the target does not contain only instances of a given class.
    * @param string $className The name of the class to check.
    * @return Assertion This instance.
    */
   public function containOnlyInstancesOf(string $className): self {
-    $constraint = Assert::containsOnlyInstancesOf($className);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::containsOnlyInstancesOf($className));
   }
 
   /**
@@ -249,6 +227,12 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function empty(): self {
+    if ($this->hasFlag('isFile')) {
+      if ($this->hasFlag('negate')) Assert::assertfil($value, $this->target, $this->message);
+      else Assert::assertFileEquals($value, $this->target, $this->message);
+      return $this;
+    }
+
     if (is_object($this->target) && !($this->target instanceof \Countable)) {
       $constraint = Assert::countOf(0);
       $target = get_object_vars($this->target);
@@ -264,9 +248,7 @@ class Assertion {
       $target = $this->target;
     }
 
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($target, $constraint, $this->message);
-    return $this;
+    return $this->expect($target, $constraint);
   }
 
   /**
@@ -275,10 +257,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function endWith(string $value): self {
-    $constraint = Assert::stringEndsWith($value);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::stringEndsWith($value));
   }
 
   /**
@@ -290,15 +269,11 @@ class Assertion {
     if ($this->hasFlag('isFile')) {
       if ($this->hasFlag('negate')) Assert::assertFileNotEquals($value, $this->target, $this->message);
       else Assert::assertFileEquals($value, $this->target, $this->message);
-    }
-    else {
-      $constraint = Assert::equalTo($value);
-      $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
-      if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-      Assert::assertThat($target, $constraint, $this->message);
+      return $this;
     }
 
-    return $this;
+    $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
+    return $this->expect($target, Assert::equalTo($value));
   }
 
   /**
@@ -311,9 +286,7 @@ class Assertion {
     else if ($this->hasFlag('isFile')) $constraint = Assert::fileExists();
     else throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, $constraint);
   }
 
   /**
@@ -321,10 +294,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function false(): self {
-    $constraint = Assert::isFalse();
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::isFalse());
   }
 
   /**
@@ -358,10 +328,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function identicalTo($value): self {
-    $constraint = Assert::identicalTo($value);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::identicalTo($value));
   }
 
   /**
@@ -370,12 +337,12 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function include($value): self {
-    // TODO ? $value = null / if ($value !== null) / func_get_args() == 0 ?
-    if ($this->hasFlag('negate')) Assert::assertNotContains($value, $this->target, $this->message);
-    else Assert::assertContains($value, $this->target, $this->message);
+    if (!func_num_args()) {
+      $this->setFlag('contain');
+      return $this;
+    }
 
-    $this->setFlag('contain');
-    return $this;
+    return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
   }
 
   /**
@@ -383,10 +350,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function infinite(): self {
-    $constraint = Assert::isInfinite();
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::isInfinite());
   }
 
   /**
@@ -395,10 +359,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function instanceOf(string $className): self {
-    $constraint = Assert::isInstanceOf($className);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::isInstanceOf($className));
   }
 
   /**
@@ -424,12 +385,8 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function least($value): self {
-    $constraint = Assert::greaterThanOrEqual($value);
     $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
-
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($target, $constraint, $this->message);
-    return $this;
+    return $this->expect($target, Assert::greaterThanOrEqual($value));
   }
 
   /**
@@ -456,9 +413,7 @@ class Assertion {
       $target = $this->target;
     }
 
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($target, $constraint, $this->message);
-    return $this;
+    return $this->expect($target, $constraint);
   }
 
   /**
@@ -467,10 +422,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function match(string $pattern): self {
-    $constraint = Assert::matchesRegularExpression($pattern);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::matchesRegularExpression($pattern));
   }
 
   /**
@@ -479,10 +431,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function matchFormat(string $format): self {
-    $constraint = Assert::matches($format);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::matches($format));
   }
 
   /**
@@ -491,12 +440,8 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function most($value): self {
-    $constraint = Assert::lessThanOrEqual($value);
     $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
-
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($target, $constraint, $this->message);
-    return $this;
+    return $this->expect($target, Assert::lessThanOrEqual($value));
   }
 
   /**
@@ -504,10 +449,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function NaN(): self {
-    $constraint = Assert::isNan();
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::isNan());
   }
 
   /**
@@ -524,10 +466,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function null(): self {
-    $constraint = Assert::isNull();
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::isNull());
   }
 
   /**
@@ -544,10 +483,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function oneOf($value): self {
-    $constraint = Assert::contains($this->target);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($value, $constraint, $this->message);
-    return $this;
+    return $this->expect($value, Assert::contains($this->target));
   }
 
   /**
@@ -561,9 +497,7 @@ class Assertion {
     else if ($this->hasFlag('isFile')) $constraint = Assert::logicalAnd(Assert::fileExists(), $isReadable);
     else throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, $constraint);
   }
 
   /**
@@ -580,10 +514,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function satisfy(callable $predicate): self {
-    $constraint = Assert::isTrue();
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat(call_user_func($predicate, $this->target), $constraint, $this->message);
-    return $this;
+    return $this->expect(call_user_func($predicate, $this->target), Assert::isTrue());
   }
 
   /**
@@ -592,10 +523,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function startWith(string $value): self {
-    $constraint = Assert::stringStartsWith($value);
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::stringStartsWith($value));
   }
 
   /**
@@ -628,11 +556,7 @@ class Assertion {
     catch (\Throwable $e) { $exception = $e; }
 
     $constraint = Assert::logicalNot(Assert::isNull());
-    if (mb_strlen($className)) $constraint = Assert::logicalAnd($constraint, Assert::isInstanceOf($className));
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-
-    Assert::assertThat($exception, $constraint, $this->message);
-    return $this;
+    return $this->expect($exception, mb_strlen($className) ? Assert::logicalAnd($constraint, Assert::isInstanceOf($className)) : $constraint);
   }
 
   /**
@@ -640,10 +564,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function true(): self {
-    $constraint = Assert::isTrue();
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, Assert::isTrue());
   }
 
   /**
@@ -669,12 +590,8 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function within($start, $finish): self {
-    $constraint = Assert::logicalAnd(Assert::greaterThanOrEqual($start), Assert::lessThanOrEqual($finish));
     $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
-
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($target, $constraint, $this->message);
-    return $this;
+    return $this->expect($target, Assert::logicalAnd(Assert::greaterThanOrEqual($start), Assert::lessThanOrEqual($finish)));
   }
 
   /**
@@ -688,9 +605,7 @@ class Assertion {
     else if ($this->hasFlag('isFile')) $constraint = Assert::logicalAnd(Assert::fileExists(), $isWritable);
     else throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    if ($this->hasFlag('negate')) $constraint = Assert::logicalNot($constraint);
-    Assert::assertThat($this->target, $constraint, $this->message);
-    return $this;
+    return $this->expect($this->target, $constraint);
   }
 
   /**
@@ -699,6 +614,17 @@ class Assertion {
    */
   public function xml(): self {
     $this->setFlag('xml');
+    return $this;
+  }
+
+  /**
+   * Asserts that the specified target matches the specified constraint.
+   * @param mixed $target The target to check.
+   * @param Constraint $constraint The constraint to match.
+   * @return Assertion This instance.
+   */
+  private function expect($target, Constraint $constraint) {
+    Assert::assertThat($target, $this->hasFlag('negate') ? Assert::logicalNot($constraint) : $constraint, $this->message);
     return $this;
   }
 
