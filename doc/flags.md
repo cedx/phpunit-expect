@@ -32,3 +32,11 @@ Negates any of assertions following in the chain:
 expect($foo)->to->not->equal('bar');
 expect($goodFn)->to->not->throw;
 ```
+
+## `->ordered`
+Sets the `ordered` flag, later used by the `members` assertions:
+
+```php
+expect($foo)->to->not->equal('bar');
+expect($goodFn)->to->not->throw;
+```

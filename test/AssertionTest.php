@@ -74,8 +74,15 @@ class AssertionTest extends TestCase {
     (new Assertion(1))->above(0.0);
     (new Assertion(456.0))->above(123);
 
+    // It should handle the length of iterables.
+    (new Assertion('foo'))->to()->have()->length()->above(2);
+    (new Assertion([1, 2, 3]))->to()->have()->length()->above(2);
+
     // It should be negatable.
     (new Assertion(123))->not()->above(456);
+
+    (new Assertion('foo'))->to()->not()->have()->length()->above(3);
+    (new Assertion([1, 2, 3]))->to()->not()->have()->length()->above(3);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -94,8 +101,15 @@ class AssertionTest extends TestCase {
     (new Assertion(0))->below(1.0);
     (new Assertion(123.0))->below(456);
 
+    // It should handle the length of iterables.
+    (new Assertion('foo'))->to()->have()->length()->below(4);
+    (new Assertion([1, 2, 3]))->to()->have()->length()->below(4);
+
     // It should be negatable.
     (new Assertion(456))->not()->below(123);
+
+    (new Assertion('foo'))->to()->not()->have()->length()->below(3);
+    (new Assertion([1, 2, 3]))->to()->not()->have()->length()->below(3);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -109,14 +123,14 @@ class AssertionTest extends TestCase {
     $assertion = new Assertion(null);
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
-    // It should have its `isDirectory` flag disabled before being called.
-    a::assertThat($hasFlag('isDirectory'), a::isFalse());
+    // It should have its `directory` flag disabled before being called.
+    a::assertThat($hasFlag('directory'), a::isFalse());
 
     // It should return the current instance.
     a::assertThat($assertion->directory(), a::identicalTo($assertion));
 
-    // It should have its `isDirectory` flag enabled after being called.
-    a::assertThat($hasFlag('isDirectory'), a::isTrue());
+    // It should have its `directory` flag enabled after being called.
+    a::assertThat($hasFlag('directory'), a::isTrue());
   }
 
   /**
@@ -203,14 +217,14 @@ class AssertionTest extends TestCase {
     $assertion = new Assertion(null);
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
-    // It should have its `isFile` flag disabled before being called.
-    a::assertThat($hasFlag('isFile'), a::isFalse());
+    // It should have its `file` flag disabled before being called.
+    a::assertThat($hasFlag('file'), a::isFalse());
 
     // It should return the current instance.
     a::assertThat($assertion->file(), a::identicalTo($assertion));
 
-    // It should have its `isFile` flag enabled after being called.
-    a::assertThat($hasFlag('isFile'), a::isTrue());
+    // It should have its `file` flag enabled after being called.
+    a::assertThat($hasFlag('file'), a::isTrue());
   }
 
   /**
@@ -249,8 +263,15 @@ class AssertionTest extends TestCase {
     (new Assertion(123))->least(123);
     (new Assertion(456))->least(123);
 
+    // It should handle the length of iterables.
+    (new Assertion('foo'))->to()->have()->length()->of()->at()->least(3);
+    (new Assertion([1, 2, 3]))->to()->have()->length()->of()->at()->least(3);
+
     // It should be negatable.
     (new Assertion(123))->not()->least(456);
+
+    (new Assertion('foo'))->to()->not()->have()->length()->of()->at()->least(4);
+    (new Assertion([1, 2, 3]))->to()->not()->have()->length()->of()->at()->least(4);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -264,14 +285,14 @@ class AssertionTest extends TestCase {
     $assertion = new Assertion(null);
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
-    // It should have its `isLength` flag disabled before being called.
-    a::assertThat($hasFlag('isLength'), a::isFalse());
+    // It should have its `length` flag disabled before being called.
+    a::assertThat($hasFlag('length'), a::isFalse());
 
     // It should return the current instance.
     a::assertThat($assertion->length(), a::identicalTo($assertion));
 
-    // It should have its `isLength` flag enabled after being called.
-    a::assertThat($hasFlag('isLength'), a::isTrue());
+    // It should have its `length` flag enabled after being called.
+    a::assertThat($hasFlag('length'), a::isTrue());
   }
 
   /**
@@ -286,8 +307,15 @@ class AssertionTest extends TestCase {
     (new Assertion(123))->most(123);
     (new Assertion(123))->most(456);
 
+    // It should handle the length of iterables.
+    (new Assertion('foo'))->to()->have()->length()->of()->at()->most(3);
+    (new Assertion([1, 2, 3]))->to()->have()->length()->of()->at()->most(3);
+
     // It should be negatable.
     (new Assertion(456))->not()->most(123);
+
+    (new Assertion('foo'))->to()->not()->have()->length()->of()->at()->most(2);
+    (new Assertion([1, 2, 3]))->to()->not()->have()->length()->of()->at()->most(2);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);

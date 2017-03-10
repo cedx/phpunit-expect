@@ -102,7 +102,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function above($value): self {
-    $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
+    $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::greaterThan($value));
   }
 
@@ -155,7 +155,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function below($value): self {
-    $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
+    $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::lessThan($value));
   }
 
@@ -220,7 +220,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function directory(): self {
-    $this->setFlag('isDirectory');
+    $this->setFlag('directory');
     return $this;
   }
 
@@ -271,13 +271,13 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function equal($value): self {
-    if ($this->hasFlag('isFile')) {
+    if ($this->hasFlag('file')) {
       if ($this->hasFlag('negate')) Assert::assertFileNotEquals($value, $this->target, $this->message);
       else Assert::assertFileEquals($value, $this->target, $this->message);
       return $this;
     }
 
-    $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
+    $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::equalTo($value));
   }
 
@@ -297,8 +297,8 @@ class Assertion {
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   public function exist(): self {
-    if ($this->hasFlag('isDirectory')) $constraint = Assert::directoryExists();
-    else if ($this->hasFlag('isFile')) $constraint = Assert::fileExists();
+    if ($this->hasFlag('directory')) $constraint = Assert::directoryExists();
+    else if ($this->hasFlag('file')) $constraint = Assert::fileExists();
     else throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
     return $this->expect($this->target, $constraint);
@@ -317,7 +317,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function file(): self {
-    $this->setFlag('isFile');
+    $this->setFlag('file');
     return $this;
   }
 
@@ -410,7 +410,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function least($value): self {
-    $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
+    $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::greaterThanOrEqual($value));
   }
 
@@ -419,7 +419,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function length(): self {
-    $this->setFlag('isLength');
+    $this->setFlag('length');
     return $this;
   }
 
@@ -429,6 +429,13 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function lengthOf(int $value): self {
+    /* TODO ???
+    if (!func_num_args()) {
+      $this->setFlag('length');
+      return $this;
+    }
+    */
+
     if (is_string($this->target)) {
       $constraint = Assert::equalTo($value);
       $target = mb_strlen($this->target);
@@ -465,7 +472,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function most($value): self {
-    $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
+    $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::lessThanOrEqual($value));
   }
 
@@ -512,6 +519,15 @@ class Assertion {
   }
 
   /**
+   * Indicates that the assertion following in the chain targets a file.
+   * @return Assertion This instance.
+   */
+  public function ordered(): self {
+    $this->setFlag('ordered');
+    return $this;
+  }
+
+  /**
    * Reports an error if the target has not a given property or key.
    *
    * Optionally asserts that the value of that property or key is equal to the specified value.
@@ -547,10 +563,10 @@ class Assertion {
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   public function readable(): self {
-    if (!$this->hasFlag('isDirectory') && !$this->hasFlag('isFile'))
+    if (!$this->hasFlag('directory') && !$this->hasFlag('file'))
       throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    $constraint = Assert::logicalAnd($this->hasFlag('isFile') ? Assert::fileExists() : Assert::directoryExists(), Assert::isReadable());
+    $constraint = Assert::logicalAnd($this->hasFlag('file') ? Assert::fileExists() : Assert::directoryExists(), Assert::isReadable());
     return $this->expect($this->target, $constraint);
   }
 
@@ -644,7 +660,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function within($start, $finish): self {
-    $target = $this->hasFlag('isLength') ? $this->getLength($this->target) : $this->target;
+    $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::logicalAnd(Assert::greaterThanOrEqual($start), Assert::lessThanOrEqual($finish)));
   }
 
@@ -654,10 +670,10 @@ class Assertion {
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   public function writable(): self {
-    if (!$this->hasFlag('isDirectory') && !$this->hasFlag('isFile'))
+    if (!$this->hasFlag('directory') && !$this->hasFlag('file'))
       throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    $constraint = Assert::logicalAnd($this->hasFlag('isFile') ? Assert::fileExists() : Assert::directoryExists(), Assert::isWritable());
+    $constraint = Assert::logicalAnd($this->hasFlag('file') ? Assert::fileExists() : Assert::directoryExists(), Assert::isWritable());
     return $this->expect($this->target, $constraint);
   }
 
