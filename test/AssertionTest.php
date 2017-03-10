@@ -384,7 +384,7 @@ class AssertionTest extends TestCase {
 
     (new Assertion($data))->property('bar')
       ->that()->is()->an('array')
-      ->that()->equals('bar');
+      ->that()->equals($array);
 
     (new Assertion($data))->property('baz')
       ->that()->is()->an('object')
