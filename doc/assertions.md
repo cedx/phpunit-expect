@@ -1,6 +1,8 @@
 # Assertions
 
-## `->a(string $type)` / `->an(string $type)`
+## `->a(string $type)`
+> Alias: `->an()`
+
 The `a` and `an` assertions are aliases that can be used either as language chains or to assert a value's type:
 
 ```php
@@ -50,6 +52,17 @@ expect('foo')->to->have->length->below(4);
 expect([1, 2, 3])->to->have->length->below(4);
 ```
 
+## `->contain(mixed $value)`
+> Aliases: `->contains()`, `->include()`, `->includes()`
+
+The `contain` and `include` assertions can be used as either property based language chains or as methods to assert the inclusion of an object in an array or a substring in a string. When used as language chains, they toggle the `contain` flag for the `keys` assertion.
+
+```php
+expect([1,2,3])->to->include(2);
+expect('foobar')->to->contain('foo');
+expect(['foo' => 'bar', 'hello' => 'universe'])->to->include->keys('foo');
+```
+
 ## `->empty`
 Asserts that the target's length is `0`. For arrays, strings, and `Countable` instances, it checks the length. For objects, it gets the count of accessible properties.
 
@@ -60,6 +73,8 @@ expect(new \stdClass())->to->be->empty;
 ```
 
 ## `->equal(mixed $value)`
+> Alias: `->equals()`
+
 Asserts that the target is equal (`==`) to value.
 
 ```php
@@ -74,15 +89,6 @@ Asserts that the target is `false`.
 ```php
 expect(false)->to->be->false;
 expect(0)->to->not->be->false;
-```
-
-## `->include(mixed $value)` / `->contain(mixed $value)`
-The `include` and `contain` assertions can be used as either property based language chains or as methods to assert the inclusion of an object in an array or a substring in a string. When used as language chains, they toggle the `contain` flag for the `keys` assertion.
-
-```php
-expect([1,2,3])->to->include(2);
-expect('foobar')->to->contain('foo');
-expect(['foo' => 'bar', 'hello' => 'universe'])->to->include->keys('foo');
 ```
 
 ## `->least(int|float $value)`
@@ -100,6 +106,8 @@ expect([1, 2, 3])->to->have->length->of->at->least(3);
 ```
 
 ## `->lengthOf(int $value)`
+> Alias: `->length()`
+
 Asserts that the target's length has the expected value:
 
 ```php
