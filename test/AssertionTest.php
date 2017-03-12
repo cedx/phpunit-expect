@@ -252,6 +252,23 @@ class AssertionTest extends TestCase {
   }
 
   /**
+   * @test Assertion::json
+   */
+  public function testJson() {
+    $assertion = new Assertion(null);
+    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+
+    // It should have its `json` flag disabled before being called.
+    a::assertThat($hasFlag('json'), a::isFalse());
+
+    // It should return the current instance.
+    a::assertThat($assertion->json(), a::identicalTo($assertion));
+
+    // It should have its `json` flag enabled after being called.
+    a::assertThat($hasFlag('json'), a::isTrue());
+  }
+
+  /**
    * @test Assertion::least
    */
   public function testLeast() {
@@ -437,5 +454,38 @@ class AssertionTest extends TestCase {
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
     (new Assertion(false))->true();
+  }
+
+  /**
+   * @test Assertion::writable
+   */
+  public function testWritable() {
+    // It should return the current instance.
+    $assertion = new Assertion(true);
+    a::assertThat($assertion->writable(), a::identicalTo($assertion));
+
+    // It should be negatable.
+    (new Assertion(false))->not()->writable();
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(false))->writable();
+  }
+
+  /**
+   * @test Assertion::xml
+   */
+  public function testXml() {
+    $assertion = new Assertion(null);
+    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+
+    // It should have its `xml` flag disabled before being called.
+    a::assertThat($hasFlag('xml'), a::isFalse());
+
+    // It should return the current instance.
+    a::assertThat($assertion->xml(), a::identicalTo($assertion));
+
+    // It should have its `xml` flag enabled after being called.
+    a::assertThat($hasFlag('xml'), a::isTrue());
   }
 }
