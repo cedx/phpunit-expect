@@ -36,6 +36,7 @@
   },
   "require-dev": {
     "cedx/coveralls": "^0.3.0",
+    "phing/phing": "^2.16.0",
     "phpdocumentor/phpdocumentor": "^2.9.0"
   },
   "scripts": {

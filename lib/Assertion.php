@@ -181,20 +181,24 @@ class Assertion {
    * Reports an error if the target does not contain an element or a substring.
    * @param mixed $value The value to find.
    * @return Assertion This instance.
-   * @see Assertion::include()
    */
   public function contain($value = null): self {
-    return $this->include($value);
+    return $this->contain($value);
   }
 
   /**
    * Reports an error if the target does not contain an element or a substring.
    * @param mixed $value The value to find.
    * @return Assertion This instance.
-   * @see Assertion::include()
+   * @see Assertion::contain()
    */
   public function contains($value = null): self {
-    return $this->include($value);
+    if (!func_num_args()) {
+      $this->setFlag('contain');
+      return $this;
+    }
+
+    return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
   }
 
   /**
@@ -350,24 +354,20 @@ class Assertion {
    * Reports an error if the target does not contain an element or a substring.
    * @param mixed $value The value to find.
    * @return Assertion This instance.
+   * @see Assertion::contain()
    */
   public function include($value = null): self {
-    if (!func_num_args()) {
-      $this->setFlag('contain');
-      return $this;
-    }
-
-    return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
+    return $this->contain($value);
   }
 
   /**
    * Reports an error if the target does not contain an element or a substring.
    * @param mixed $value The value to find.
    * @return Assertion This instance.
-   * @see Assertion::include()
+   * @see Assertion::contain()
    */
   public function includes($value = null): self {
-    return $this->include($value);
+    return $this->contain($value);
   }
 
   /**
@@ -415,12 +415,13 @@ class Assertion {
   }
 
   /**
-   * Indicates that the assertion following in the chain targets a length.
+   * Reports an error if the length of the target is not the expected one.
+   * @param int $value The expected length.
    * @return Assertion This instance.
+   * @see Assertion::lengthOf()
    */
-  public function length(): self {
-    $this->setFlag('length');
-    return $this;
+  public function length(int $value = null): self {
+    return $this->lengthOf($value);
   }
 
   /**
@@ -428,13 +429,11 @@ class Assertion {
    * @param int $value The expected length.
    * @return Assertion This instance.
    */
-  public function lengthOf(int $value): self {
-    /* TODO ???
+  public function lengthOf(int $value = null): self {
     if (!func_num_args()) {
       $this->setFlag('length');
       return $this;
     }
-    */
 
     if (is_string($this->target)) {
       $constraint = Assert::equalTo($value);
@@ -705,7 +704,7 @@ class Assertion {
    */
   private function getLength($value): int {
     if (is_array($value) || $value instanceof \Countable) return count($value);
-    if (is_iterable($value)) return iterator_count($value);
+    if ($value instanceof \Traversable) return iterator_count($value);
     if (is_string($value)) return mb_strlen($value);
     throw new \InvalidArgumentException("The specified value is not iterable: $value");
   }
