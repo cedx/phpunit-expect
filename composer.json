@@ -32,10 +32,10 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^6.0.8"
+    "phpunit/phpunit": "^6.0.10"
   },
   "require-dev": {
-    "cedx/coveralls": "^0.3.0",
+    "cedx/coveralls": "^0.4.0",
     "phing/phing": "^2.16.0",
     "phpdocumentor/phpdocumentor": "^2.9.0"
   },
