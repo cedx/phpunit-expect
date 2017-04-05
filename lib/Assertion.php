@@ -183,7 +183,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function contain($value = null): self {
-    return $this->contain($value);
+    return $this->contains($value);
   }
 
   /**
