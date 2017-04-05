@@ -8,7 +8,7 @@ use PHPUnit\Framework\{Assert as a, AssertionFailedError, TestCase};
 class FunctionsTest extends TestCase {
 
   /**
-   * @test ::expect
+   * @test expect
    */
   public function testExpect() {
     // It should create new assertions.
@@ -17,7 +17,7 @@ class FunctionsTest extends TestCase {
   }
 
   /**
-   * @test ::fail
+   * @test fail
    */
   public function testFail() {
     // It should throw an assertion error.
@@ -26,7 +26,7 @@ class FunctionsTest extends TestCase {
   }
 
   /**
-   * @test ::it
+   * @test it
    */
   public function testIt() {
     // It should invoke the specified test block.

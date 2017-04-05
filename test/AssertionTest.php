@@ -8,30 +8,6 @@ use PHPUnit\Framework\{Assert as a, AssertionFailedError, TestCase};
 class AssertionTest extends TestCase {
 
   /**
-   * Tests the language chains.
-   * @test
-   */
-  public function testLanguageChains() {
-    // It should return the current instance.
-    $assertion = new Assertion(null);
-    a::assertThat($assertion->and(), a::identicalTo($assertion));
-    a::assertThat($assertion->at(), a::identicalTo($assertion));
-    a::assertThat($assertion->be(), a::identicalTo($assertion));
-    a::assertThat($assertion->been(), a::identicalTo($assertion));
-    a::assertThat($assertion->but(), a::identicalTo($assertion));
-    a::assertThat($assertion->does(), a::identicalTo($assertion));
-    a::assertThat($assertion->has(), a::identicalTo($assertion));
-    a::assertThat($assertion->have(), a::identicalTo($assertion));
-    a::assertThat($assertion->is(), a::identicalTo($assertion));
-    a::assertThat($assertion->of(), a::identicalTo($assertion));
-    a::assertThat($assertion->same(), a::identicalTo($assertion));
-    a::assertThat($assertion->that(), a::identicalTo($assertion));
-    a::assertThat($assertion->to(), a::identicalTo($assertion));
-    a::assertThat($assertion->which(), a::identicalTo($assertion));
-    a::assertThat($assertion->with(), a::identicalTo($assertion));
-  }
-
-  /**
    * @test Assertion::a
    */
   public function testA() {
@@ -53,9 +29,9 @@ class AssertionTest extends TestCase {
     (new Assertion('foo'))->a('string');
 
     // It should be negatable.
-    (new Assertion(new \stdClass()))->not()->an('array');
-    (new Assertion([]))->not()->an('object');
-    (new Assertion(0xAF))->not()->a('string');
+    (new Assertion(new \stdClass()))->not->an('array');
+    (new Assertion([]))->not->an('object');
+    (new Assertion(0xAF))->not->a('string');
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -75,14 +51,14 @@ class AssertionTest extends TestCase {
     (new Assertion(456.0))->above(123);
 
     // It should handle the length of iterables.
-    (new Assertion('foo'))->to()->have()->length()->above(2);
-    (new Assertion([1, 2, 3]))->to()->have()->length()->above(2);
+    (new Assertion('foo'))->to->have->length->above(2);
+    (new Assertion([1, 2, 3]))->to->have->length->above(2);
 
     // It should be negatable.
-    (new Assertion(123))->not()->above(456);
+    (new Assertion(123))->not->above(456);
 
-    (new Assertion('foo'))->to()->not()->have()->length()->above(3);
-    (new Assertion([1, 2, 3]))->to()->not()->have()->length()->above(3);
+    (new Assertion('foo'))->to->not->have->length->above(3);
+    (new Assertion([1, 2, 3]))->to->not->have->length->above(3);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -102,14 +78,14 @@ class AssertionTest extends TestCase {
     (new Assertion(123.0))->below(456);
 
     // It should handle the length of iterables.
-    (new Assertion('foo'))->to()->have()->length()->below(4);
-    (new Assertion([1, 2, 3]))->to()->have()->length()->below(4);
+    (new Assertion('foo'))->to->have->length->below(4);
+    (new Assertion([1, 2, 3]))->to->have->length->below(4);
 
     // It should be negatable.
-    (new Assertion(456))->not()->below(123);
+    (new Assertion(456))->not->below(123);
 
-    (new Assertion('foo'))->to()->not()->have()->length()->below(3);
-    (new Assertion([1, 2, 3]))->to()->not()->have()->length()->below(3);
+    (new Assertion('foo'))->to->not->have->length->below(3);
+    (new Assertion([1, 2, 3]))->to->not->have->length->below(3);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -139,30 +115,30 @@ class AssertionTest extends TestCase {
   public function testEmpty() {
     // It should return the current instance.
     $assertion = new Assertion(null);
-    a::assertThat($assertion->empty(), a::identicalTo($assertion));
+    a::assertThat($assertion->empty, a::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
-    (new Assertion(false))->empty();
-    (new Assertion(0))->empty();
-    (new Assertion(0.0))->empty();
-    (new Assertion(''))->empty();
-    (new Assertion([]))->empty();
-    (new Assertion(new \stdClass()))->empty();
+    (new Assertion(false))->empty;
+    (new Assertion(0))->empty;
+    (new Assertion(0.0))->empty;
+    (new Assertion(''))->empty;
+    (new Assertion([]))->empty;
+    (new Assertion(new \stdClass()))->empty;
 
     // It should be negatable.
-    (new Assertion(true))->not()->empty();
-    (new Assertion(1))->not()->empty();
-    (new Assertion(123.0))->not()->empty();
-    (new Assertion('0'))->not()->empty();
-    (new Assertion([1, 2, 3]))->not()->empty();
+    (new Assertion(true))->not->empty;
+    (new Assertion(1))->not->empty;
+    (new Assertion(123.0))->not->empty;
+    (new Assertion('0'))->not->empty;
+    (new Assertion([1, 2, 3]))->not->empty;
 
     $object = new \stdClass();
     $object->foo = 'bar';
-    (new Assertion($object))->not()->empty();
+    (new Assertion($object))->not->empty;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion(true))->empty();
+    (new Assertion(true))->empty;
   }
 
   /**
@@ -183,11 +159,11 @@ class AssertionTest extends TestCase {
     (new Assertion([1, 2, 3]))->equal([1, 2, 3]);
 
     // It should be negatable.
-    (new Assertion(false))->not()->equal(true);
-    (new Assertion(0))->not()->equal(1);
-    (new Assertion(2.0))->not()->equal(2.1);
-    (new Assertion('123'))->not()->equal(' 123 ');
-    (new Assertion([1, 2, 3]))->not()->equal([1, 2]);
+    (new Assertion(false))->not->equal(true);
+    (new Assertion(0))->not->equal(1);
+    (new Assertion(2.0))->not->equal(2.1);
+    (new Assertion('123'))->not->equal(' 123 ');
+    (new Assertion([1, 2, 3]))->not->equal([1, 2]);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -200,14 +176,14 @@ class AssertionTest extends TestCase {
   public function testFalse() {
     // It should return the current instance.
     $assertion = new Assertion(false);
-    a::assertThat($assertion->false(), a::identicalTo($assertion));
+    a::assertThat($assertion->false, a::identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion(true))->not()->false();
+    (new Assertion(true))->not->false;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion(true))->false();
+    (new Assertion(true))->false;
   }
 
   /**
@@ -244,7 +220,7 @@ class AssertionTest extends TestCase {
     (new Assertion(['foo' => 123, 'bar' => 456]))->include(123);
 
     // It should be negatable.
-    (new Assertion('foo'))->not()->contain('bar');
+    (new Assertion('foo'))->not->contain('bar');
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -269,6 +245,30 @@ class AssertionTest extends TestCase {
   }
 
   /**
+   * Tests the language chains.
+   * @test
+   */
+  public function testLanguageChains() {
+    // It should return the current instance.
+    $assertion = new Assertion(null);
+    a::assertThat($assertion->and, a::identicalTo($assertion));
+    a::assertThat($assertion->at, a::identicalTo($assertion));
+    a::assertThat($assertion->be, a::identicalTo($assertion));
+    a::assertThat($assertion->been, a::identicalTo($assertion));
+    a::assertThat($assertion->but, a::identicalTo($assertion));
+    a::assertThat($assertion->does, a::identicalTo($assertion));
+    a::assertThat($assertion->has, a::identicalTo($assertion));
+    a::assertThat($assertion->have, a::identicalTo($assertion));
+    a::assertThat($assertion->is, a::identicalTo($assertion));
+    a::assertThat($assertion->of, a::identicalTo($assertion));
+    a::assertThat($assertion->same, a::identicalTo($assertion));
+    a::assertThat($assertion->that, a::identicalTo($assertion));
+    a::assertThat($assertion->to, a::identicalTo($assertion));
+    a::assertThat($assertion->which, a::identicalTo($assertion));
+    a::assertThat($assertion->with, a::identicalTo($assertion));
+  }
+
+  /**
    * @test Assertion::least
    */
   public function testLeast() {
@@ -281,14 +281,14 @@ class AssertionTest extends TestCase {
     (new Assertion(456))->least(123);
 
     // It should handle the length of iterables.
-    (new Assertion('foo'))->to()->have()->length()->of()->at()->least(3);
-    (new Assertion([1, 2, 3]))->to()->have()->length()->of()->at()->least(3);
+    (new Assertion('foo'))->to->have->length->of->at->least(3);
+    (new Assertion([1, 2, 3]))->to->have->length->of->at->least(3);
 
     // It should be negatable.
-    (new Assertion(123))->not()->least(456);
+    (new Assertion(123))->not->least(456);
 
-    (new Assertion('foo'))->to()->not()->have()->length()->of()->at()->least(4);
-    (new Assertion([1, 2, 3]))->to()->not()->have()->length()->of()->at()->least(4);
+    (new Assertion('foo'))->to->not->have->length->of->at->least(4);
+    (new Assertion([1, 2, 3]))->to->not->have->length->of->at->least(4);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -306,7 +306,7 @@ class AssertionTest extends TestCase {
     a::assertThat($hasFlag('length'), a::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->length(), a::identicalTo($assertion));
+    a::assertThat($assertion->length, a::identicalTo($assertion));
 
     // It should have its `length` flag enabled after being called.
     a::assertThat($hasFlag('length'), a::isTrue());
@@ -325,14 +325,14 @@ class AssertionTest extends TestCase {
     (new Assertion(123))->most(456);
 
     // It should handle the length of iterables.
-    (new Assertion('foo'))->to()->have()->length()->of()->at()->most(3);
-    (new Assertion([1, 2, 3]))->to()->have()->length()->of()->at()->most(3);
+    (new Assertion('foo'))->to->have->length->of->at->most(3);
+    (new Assertion([1, 2, 3]))->to->have->length->of->at->most(3);
 
     // It should be negatable.
-    (new Assertion(456))->not()->most(123);
+    (new Assertion(456))->not->most(123);
 
-    (new Assertion('foo'))->to()->not()->have()->length()->of()->at()->most(2);
-    (new Assertion([1, 2, 3]))->to()->not()->have()->length()->of()->at()->most(2);
+    (new Assertion('foo'))->to->not->have->length->of->at->most(2);
+    (new Assertion([1, 2, 3]))->to->not->have->length->of->at->most(2);
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -345,14 +345,14 @@ class AssertionTest extends TestCase {
   public function testNaN() {
     // It should return the current instance.
     $assertion = new Assertion(NAN);
-    a::assertThat($assertion->NaN(), a::identicalTo($assertion));
+    a::assertThat($assertion->NaN, a::identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion('123'))->not()->NaN();
+    (new Assertion('123'))->not->NaN;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion('123'))->NaN();
+    (new Assertion('123'))->NaN;
   }
 
   /**
@@ -366,7 +366,7 @@ class AssertionTest extends TestCase {
     a::assertThat($hasFlag('negate'), a::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->not(), a::identicalTo($assertion));
+    a::assertThat($assertion->not, a::identicalTo($assertion));
 
     // It should have its `negate` flag enabled after being called.
     a::assertThat($hasFlag('negate'), a::isTrue());
@@ -378,14 +378,14 @@ class AssertionTest extends TestCase {
   public function testNull() {
     // It should return the current instance.
     $assertion = new Assertion(null);
-    a::assertThat($assertion->null(), a::identicalTo($assertion));
+    a::assertThat($assertion->null, a::identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion('foo'))->not()->null();
+    (new Assertion('foo'))->not->null;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion('foo'))->null();
+    (new Assertion('foo'))->null;
   }
 
   /**
@@ -408,13 +408,13 @@ class AssertionTest extends TestCase {
     (new Assertion($object))->property('foo', 'bar');
 
     // It should be negatable.
-    (new Assertion($array))->not()->property('bar');
-    (new Assertion($array))->not()->property('bar', 'bar');
-    (new Assertion($array))->not()->property('foo', 'baz');
+    (new Assertion($array))->not->property('bar');
+    (new Assertion($array))->not->property('bar', 'bar');
+    (new Assertion($array))->not->property('foo', 'baz');
 
-    (new Assertion($object))->not()->property('bar');
-    (new Assertion($object))->not()->property('bar', 'bar');
-    (new Assertion($object))->not()->property('foo', 'baz');
+    (new Assertion($object))->not->property('bar');
+    (new Assertion($object))->not->property('bar', 'bar');
+    (new Assertion($object))->not->property('foo', 'baz');
 
     // It should changes the subject of the assertion to be the value of that property.
     $data = [
@@ -424,16 +424,16 @@ class AssertionTest extends TestCase {
     ];
 
     (new Assertion($data))->property('foo')
-      ->that()->is()->a('string')
-      ->that()->equals('bar');
+      ->that->is->a('string')
+      ->that->equals('bar');
 
     (new Assertion($data))->property('bar')
-      ->that()->is()->an('array')
-      ->that()->equals($array);
+      ->that->is->an('array')
+      ->that->equals($array);
 
     (new Assertion($data))->property('baz')
-      ->that()->is()->an('object')
-      ->with()->property('foo')->that()->equals('bar');
+      ->that->is->an('object')
+      ->with->property('foo')->that->equals('bar');
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
@@ -446,14 +446,14 @@ class AssertionTest extends TestCase {
   public function testTrue() {
     // It should return the current instance.
     $assertion = new Assertion(true);
-    a::assertThat($assertion->true(), a::identicalTo($assertion));
+    a::assertThat($assertion->true, a::identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion(false))->not()->true();
+    (new Assertion(false))->not->true;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion(false))->true();
+    (new Assertion(false))->true;
   }
 
   /**
@@ -461,15 +461,15 @@ class AssertionTest extends TestCase {
    */
   public function testWritable() {
     // It should return the current instance.
-    $assertion = new Assertion(true);
-    a::assertThat($assertion->writable(), a::identicalTo($assertion));
+    $assertion = (new Assertion(true))->file;
+    a::assertThat($assertion->writable, a::identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion(false))->not()->writable();
+    (new Assertion(false))->not->writable;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion(false))->writable();
+    (new Assertion(false))->writable;
   }
 
   /**
@@ -483,7 +483,7 @@ class AssertionTest extends TestCase {
     a::assertThat($hasFlag('xml'), a::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->xml(), a::identicalTo($assertion));
+    a::assertThat($assertion->xml, a::identicalTo($assertion));
 
     // It should have its `xml` flag enabled after being called.
     a::assertThat($hasFlag('xml'), a::isTrue());
