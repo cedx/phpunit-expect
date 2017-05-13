@@ -18,7 +18,7 @@ expect(function() {})->to->be->a('callable');
 
 expect(null)->to->be->a('null');
 expect(['foo' => 'baz'])->to->be->an('array');
-expect(new \stdClass())->to->be->an('object');
+expect(new \stdClass)->to->be->an('object');
 
 // As language chain.
 expect($foo)->to->be->an->instanceOf(\Foo::class);
@@ -69,7 +69,7 @@ Asserts that the target's length is `0`. For arrays, strings, and `Countable` in
 ```php
 expect([])->to->be->empty;
 expect('')->to->be->empty;
-expect(new \stdClass())->to->be->empty;
+expect(new \stdClass)->to->be->empty;
 ```
 
 ## `->equal(mixed $value)`
@@ -160,7 +160,7 @@ $array = ['foo' => 'bar'];
 expect($array)->to->have->property('foo');
 expect($array)->to->have->property('foo', 'bar');
 
-$object = new \stdClass();
+$object = new \stdClass;
 $object->foo = 'bar';
 expect($object)->to->have->property('foo');
 expect($object)->to->have->property('foo', 'bar');

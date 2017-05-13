@@ -25,11 +25,11 @@ class AssertionTest extends TestCase {
     (new Assertion('123'))->a('numeric');
 
     (new Assertion([]))->an('array');
-    (new Assertion(new \stdClass()))->an('object');
+    (new Assertion(new \stdClass))->an('object');
     (new Assertion('foo'))->a('string');
 
     // It should be negatable.
-    (new Assertion(new \stdClass()))->not->an('array');
+    (new Assertion(new \stdClass))->not->an('array');
     (new Assertion([]))->not->an('object');
     (new Assertion(0xAF))->not->a('string');
 
@@ -123,7 +123,7 @@ class AssertionTest extends TestCase {
     (new Assertion(0.0))->empty;
     (new Assertion(''))->empty;
     (new Assertion([]))->empty;
-    (new Assertion(new \stdClass()))->empty;
+    (new Assertion(new \stdClass))->empty;
 
     // It should be negatable.
     (new Assertion(true))->not->empty;
@@ -132,7 +132,7 @@ class AssertionTest extends TestCase {
     (new Assertion('0'))->not->empty;
     (new Assertion([1, 2, 3]))->not->empty;
 
-    $object = new \stdClass();
+    $object = new \stdClass;
     $object->foo = 'bar';
     (new Assertion($object))->not->empty;
 
@@ -394,7 +394,7 @@ class AssertionTest extends TestCase {
   public function testProperty() {
     $array = ['foo' => 'bar'];
 
-    $object = new \stdClass();
+    $object = new \stdClass;
     $object->foo = 'bar';
 
     // It should return the current instance.
