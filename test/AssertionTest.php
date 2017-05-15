@@ -461,15 +461,15 @@ class AssertionTest extends TestCase {
    */
   public function testWritable() {
     // It should return the current instance.
-    $assertion = (new Assertion(true))->file;
+    $assertion = (new Assertion(__FILE__))->file;
     a::assertThat($assertion->writable, a::identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion(false))->not->writable;
+    (new Assertion(false))->file->not->writable;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion(false))->writable;
+    (new Assertion(false))->file->writable;
   }
 
   /**

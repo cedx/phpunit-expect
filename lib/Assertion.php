@@ -193,7 +193,7 @@ class Assertion {
    * @see Assertion::contain()
    */
   public function contains($value = null): self {
-    if (!func_num_args()) {
+    if ($value === null) {
       $this->setFlag('contain');
       return $this;
     }
@@ -430,7 +430,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function lengthOf(int $value = null): self {
-    if (!func_num_args()) {
+    if ($value === null) {
       $this->setFlag('length');
       return $this;
     }
@@ -545,8 +545,7 @@ class Assertion {
     $hasPropertyConstraint = $isArray ? Assert::arrayHasKey($name) : Assert::objectHasAttribute($name);
     $property = $isArray ? ($this->target[$name] ?? null) : ($this->target->$name ?? null);
 
-    $argsCount = func_num_args();
-    if ($argsCount == 1 || !$hasProperty) $this->expect($this->target, $hasPropertyConstraint);
+    if (!$hasProperty || $value === null) $this->expect($this->target, $hasPropertyConstraint);
     else {
       Assert::assertThat($this->target, $hasPropertyConstraint);
       $this->expect($property, Assert::equalTo($value));
