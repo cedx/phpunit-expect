@@ -30,7 +30,7 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^6.1.3"
+    "phpunit/phpunit": "^6.1.4"
   },
   "require-dev": {
     "cedx/coveralls": "^1.0.0",
