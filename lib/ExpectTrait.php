@@ -5,7 +5,7 @@ use PHPUnit\Framework\{Assert};
 /**
  * Provides helper methods for BDD assertions.
  */
-trait Expect {
+trait ExpectTrait {
 
   /**
    * Creates a new assertion.
