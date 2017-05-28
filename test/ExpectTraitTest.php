@@ -1,6 +1,6 @@
 <?php
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\{Assert as a, TestCase};
+use PHPUnit\Framework\{Assert, TestCase};
 
 /**
  * Tests the features of the `PHPUnit\Expect\ExpectTrait` trait.
@@ -14,8 +14,8 @@ class ExpectTraitTest extends TestCase {
     // It should create new assertions.
     /** @var ExpectTrait $test */
     $test = $this->getMockForTrait(ExpectTrait::class);
-    a::assertThat($test->expect('foo', 'bar'), a::isInstanceOf(Assertion::class));
-    a::assertThat($test->expect(null), a::logicalNot(a::identicalTo($test->expect(null))));
+    Assert::assertThat($test->expect('foo', 'bar'), Assert::isInstanceOf(Assertion::class));
+    Assert::assertThat($test->expect(null), Assert::logicalNot(Assert::identicalTo($test->expect(null))));
   }
 
   /**
@@ -29,6 +29,6 @@ class ExpectTraitTest extends TestCase {
     /** @var ExpectTrait $test */
     $test = $this->getMockForTrait(ExpectTrait::class);
     $test->it('foo', $block);
-    a::assertThat($called, a::isTrue());
+    Assert::assertThat($called, Assert::isTrue());
   }
 }

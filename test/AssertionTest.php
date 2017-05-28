@@ -1,6 +1,6 @@
 <?php
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\{Assert as a, AssertionFailedError, TestCase};
+use PHPUnit\Framework\{Assert, AssertionFailedError, TestCase};
 
 /**
  * Tests the features of the `PHPUnit\Expect\Assertion` class.
@@ -13,8 +13,8 @@ class AssertionTest extends TestCase {
   public function testA() {
     // It should return the current instance.
     $assertion = new Assertion(null);
-    a::assertThat($assertion->a(), a::identicalTo($assertion));
-    a::assertThat($assertion->an(), a::identicalTo($assertion));
+    Assert::assertThat($assertion->a(), Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->an(), Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion(null))->a('null');
@@ -44,7 +44,7 @@ class AssertionTest extends TestCase {
   public function testAbove() {
     // It should return the current instance.
     $assertion = new Assertion(456);
-    a::assertThat($assertion->above(123), a::identicalTo($assertion));
+    Assert::assertThat($assertion->above(123), Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion(1))->above(0.0);
@@ -71,7 +71,7 @@ class AssertionTest extends TestCase {
   public function testBelow() {
     // It should return the current instance.
     $assertion = new Assertion(123);
-    a::assertThat($assertion->below(456), a::identicalTo($assertion));
+    Assert::assertThat($assertion->below(456), Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion(0))->below(1.0);
@@ -100,13 +100,13 @@ class AssertionTest extends TestCase {
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `directory` flag disabled before being called.
-    a::assertThat($hasFlag('directory'), a::isFalse());
+    Assert::assertThat($hasFlag('directory'), Assert::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->directory(), a::identicalTo($assertion));
+    Assert::assertThat($assertion->directory(), Assert::identicalTo($assertion));
 
     // It should have its `directory` flag enabled after being called.
-    a::assertThat($hasFlag('directory'), a::isTrue());
+    Assert::assertThat($hasFlag('directory'), Assert::isTrue());
   }
 
   /**
@@ -115,7 +115,7 @@ class AssertionTest extends TestCase {
   public function testEmpty() {
     // It should return the current instance.
     $assertion = new Assertion(null);
-    a::assertThat($assertion->empty, a::identicalTo($assertion));
+    Assert::assertThat($assertion->empty, Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion(false))->empty;
@@ -147,8 +147,8 @@ class AssertionTest extends TestCase {
   public function testEqual() {
     // It should return the current instance.
     $assertion = new Assertion(123);
-    a::assertThat($assertion->equal(123), a::identicalTo($assertion));
-    a::assertThat($assertion->equals(123), a::identicalTo($assertion));
+    Assert::assertThat($assertion->equal(123), Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->equals(123), Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion(false))->equal(false)->equal(0)->equal(0.0);
@@ -176,7 +176,7 @@ class AssertionTest extends TestCase {
   public function testFalse() {
     // It should return the current instance.
     $assertion = new Assertion(false);
-    a::assertThat($assertion->false, a::identicalTo($assertion));
+    Assert::assertThat($assertion->false, Assert::identicalTo($assertion));
 
     // It should be negatable.
     (new Assertion(true))->not->false;
@@ -194,13 +194,13 @@ class AssertionTest extends TestCase {
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `file` flag disabled before being called.
-    a::assertThat($hasFlag('file'), a::isFalse());
+    Assert::assertThat($hasFlag('file'), Assert::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->file(), a::identicalTo($assertion));
+    Assert::assertThat($assertion->file(), Assert::identicalTo($assertion));
 
     // It should have its `file` flag enabled after being called.
-    a::assertThat($hasFlag('file'), a::isTrue());
+    Assert::assertThat($hasFlag('file'), Assert::isTrue());
   }
 
   /**
@@ -209,10 +209,10 @@ class AssertionTest extends TestCase {
   public function testInclude() {
     // It should return the current instance.
     $assertion = new Assertion('foobar');
-    a::assertThat($assertion->contain('foo'), a::identicalTo($assertion));
-    a::assertThat($assertion->contains('foo'), a::identicalTo($assertion));
-    a::assertThat($assertion->include('bar'), a::identicalTo($assertion));
-    a::assertThat($assertion->includes('bar'), a::identicalTo($assertion));
+    Assert::assertThat($assertion->contain('foo'), Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->contains('foo'), Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->include('bar'), Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->includes('bar'), Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion([1, 2, 3]))->include(2);
@@ -235,13 +235,13 @@ class AssertionTest extends TestCase {
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `json` flag disabled before being called.
-    a::assertThat($hasFlag('json'), a::isFalse());
+    Assert::assertThat($hasFlag('json'), Assert::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->json(), a::identicalTo($assertion));
+    Assert::assertThat($assertion->json(), Assert::identicalTo($assertion));
 
     // It should have its `json` flag enabled after being called.
-    a::assertThat($hasFlag('json'), a::isTrue());
+    Assert::assertThat($hasFlag('json'), Assert::isTrue());
   }
 
   /**
@@ -251,21 +251,21 @@ class AssertionTest extends TestCase {
   public function testLanguageChains() {
     // It should return the current instance.
     $assertion = new Assertion(null);
-    a::assertThat($assertion->and, a::identicalTo($assertion));
-    a::assertThat($assertion->at, a::identicalTo($assertion));
-    a::assertThat($assertion->be, a::identicalTo($assertion));
-    a::assertThat($assertion->been, a::identicalTo($assertion));
-    a::assertThat($assertion->but, a::identicalTo($assertion));
-    a::assertThat($assertion->does, a::identicalTo($assertion));
-    a::assertThat($assertion->has, a::identicalTo($assertion));
-    a::assertThat($assertion->have, a::identicalTo($assertion));
-    a::assertThat($assertion->is, a::identicalTo($assertion));
-    a::assertThat($assertion->of, a::identicalTo($assertion));
-    a::assertThat($assertion->same, a::identicalTo($assertion));
-    a::assertThat($assertion->that, a::identicalTo($assertion));
-    a::assertThat($assertion->to, a::identicalTo($assertion));
-    a::assertThat($assertion->which, a::identicalTo($assertion));
-    a::assertThat($assertion->with, a::identicalTo($assertion));
+    Assert::assertThat($assertion->and, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->at, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->be, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->been, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->but, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->does, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->has, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->have, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->is, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->of, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->same, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->that, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->to, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->which, Assert::identicalTo($assertion));
+    Assert::assertThat($assertion->with, Assert::identicalTo($assertion));
   }
 
   /**
@@ -274,7 +274,7 @@ class AssertionTest extends TestCase {
   public function testLeast() {
     // It should return the current instance.
     $assertion = new Assertion(456);
-    a::assertThat($assertion->least(123), a::identicalTo($assertion));
+    Assert::assertThat($assertion->least(123), Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion(123))->least(123);
@@ -303,13 +303,13 @@ class AssertionTest extends TestCase {
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `length` flag disabled before being called.
-    a::assertThat($hasFlag('length'), a::isFalse());
+    Assert::assertThat($hasFlag('length'), Assert::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->length, a::identicalTo($assertion));
+    Assert::assertThat($assertion->length, Assert::identicalTo($assertion));
 
     // It should have its `length` flag enabled after being called.
-    a::assertThat($hasFlag('length'), a::isTrue());
+    Assert::assertThat($hasFlag('length'), Assert::isTrue());
   }
 
   /**
@@ -318,7 +318,7 @@ class AssertionTest extends TestCase {
   public function testMost() {
     // It should return the current instance.
     $assertion = new Assertion(123);
-    a::assertThat($assertion->most(456), a::identicalTo($assertion));
+    Assert::assertThat($assertion->most(456), Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion(123))->most(123);
@@ -345,7 +345,7 @@ class AssertionTest extends TestCase {
   public function testNaN() {
     // It should return the current instance.
     $assertion = new Assertion(NAN);
-    a::assertThat($assertion->NaN, a::identicalTo($assertion));
+    Assert::assertThat($assertion->NaN, Assert::identicalTo($assertion));
 
     // It should be negatable.
     (new Assertion('123'))->not->NaN;
@@ -363,13 +363,13 @@ class AssertionTest extends TestCase {
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `negate` flag disabled before being called.
-    a::assertThat($hasFlag('negate'), a::isFalse());
+    Assert::assertThat($hasFlag('negate'), Assert::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->not, a::identicalTo($assertion));
+    Assert::assertThat($assertion->not, Assert::identicalTo($assertion));
 
     // It should have its `negate` flag enabled after being called.
-    a::assertThat($hasFlag('negate'), a::isTrue());
+    Assert::assertThat($hasFlag('negate'), Assert::isTrue());
   }
 
   /**
@@ -378,7 +378,7 @@ class AssertionTest extends TestCase {
   public function testNull() {
     // It should return the current instance.
     $assertion = new Assertion(null);
-    a::assertThat($assertion->null, a::identicalTo($assertion));
+    Assert::assertThat($assertion->null, Assert::identicalTo($assertion));
 
     // It should be negatable.
     (new Assertion('foo'))->not->null;
@@ -399,7 +399,7 @@ class AssertionTest extends TestCase {
 
     // It should return the current instance.
     $assertion = new Assertion($array);
-    a::assertThat($assertion->property('foo'), a::identicalTo($assertion));
+    Assert::assertThat($assertion->property('foo'), Assert::identicalTo($assertion));
 
     // It should not throw an exception if the assertion succeeded.
     (new Assertion($array))->property('foo', 'bar');
@@ -446,7 +446,7 @@ class AssertionTest extends TestCase {
   public function testTrue() {
     // It should return the current instance.
     $assertion = new Assertion(true);
-    a::assertThat($assertion->true, a::identicalTo($assertion));
+    Assert::assertThat($assertion->true, Assert::identicalTo($assertion));
 
     // It should be negatable.
     (new Assertion(false))->not->true;
@@ -462,7 +462,7 @@ class AssertionTest extends TestCase {
   public function testWritable() {
     // It should return the current instance.
     $assertion = (new Assertion(__FILE__))->file;
-    a::assertThat($assertion->writable, a::identicalTo($assertion));
+    Assert::assertThat($assertion->writable, Assert::identicalTo($assertion));
 
     // It should be negatable.
     (new Assertion(false))->file->not->writable;
@@ -480,12 +480,12 @@ class AssertionTest extends TestCase {
     $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `xml` flag disabled before being called.
-    a::assertThat($hasFlag('xml'), a::isFalse());
+    Assert::assertThat($hasFlag('xml'), Assert::isFalse());
 
     // It should return the current instance.
-    a::assertThat($assertion->xml, a::identicalTo($assertion));
+    Assert::assertThat($assertion->xml, Assert::identicalTo($assertion));
 
     // It should have its `xml` flag enabled after being called.
-    a::assertThat($hasFlag('xml'), a::isTrue());
+    Assert::assertThat($hasFlag('xml'), Assert::isTrue());
   }
 }
