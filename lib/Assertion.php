@@ -183,7 +183,13 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function contain($value = null): self {
-    return $this->contains($value);
+    if ($value === null) {
+      $this->setFlag('contain');
+      return $this;
+    }
+
+    if ($this->hasFlag('file')) return $this->expect(@file_get_contents($this->target), Assert::stringContains($value));
+    return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
   }
 
   /**
@@ -193,12 +199,7 @@ class Assertion {
    * @see Assertion::contain()
    */
   public function contains($value = null): self {
-    if ($value === null) {
-      $this->setFlag('contain');
-      return $this;
-    }
-
-    return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
+    return $this->contain($value);
   }
 
   /**
@@ -248,8 +249,7 @@ class Assertion {
     }
     else if (is_string($this->target)) {
       $constraint = Assert::equalTo(0);
-      $target = mb_strlen($this->target);
-
+      $target = $this->hasFlag('file') ? @filesize($this->target) : mb_strlen($this->target);
       // TODO file/directory flag handling!
     }
     else {
