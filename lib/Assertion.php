@@ -564,8 +564,7 @@ class Assertion {
     if (!$this->hasFlag('directory') && !$this->hasFlag('file'))
       throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    $constraint = Assert::logicalAnd($this->hasFlag('file') ? Assert::fileExists() : Assert::directoryExists(), Assert::isReadable());
-    return $this->expect($this->target, $constraint);
+    return $this->expect($this->target, Assert::isReadable());
   }
 
   /**
@@ -671,8 +670,7 @@ class Assertion {
     if (!$this->hasFlag('directory') && !$this->hasFlag('file'))
       throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    $constraint = Assert::logicalAnd($this->hasFlag('file') ? Assert::fileExists() : Assert::directoryExists(), Assert::isWritable());
-    return $this->expect($this->target, $constraint);
+    return $this->expect($this->target, Assert::isWritable());
   }
 
   /**
