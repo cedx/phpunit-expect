@@ -31,7 +31,9 @@ class FunctionsTest extends TestCase {
   public function testIt() {
     // It should invoke the specified test block.
     $called = false;
-    $block = function() use (&$called) { $called = true; };
+    $block = function() use (&$called) {
+      $called = true;
+    };
 
     it('foo', $block);
     Assert::assertThat($called, Assert::isTrue());
