@@ -33,12 +33,12 @@
     "phpunit/phpunit": "^6.1.4"
   },
   "require-dev": {
-    "cedx/coveralls": "^1.0.0",
+    "cedx/coveralls": "^2.0.0",
     "phing/phing": "^2.16.0",
     "phpdocumentor/phpdocumentor": "^2.9.0"
   },
   "scripts": {
-    "coverage": "coveralls --file=var/coverage.xml",
+    "coverage": "coveralls var/coverage.xml",
     "test": "phpunit --colors=auto --verbose"
   },
   "support": {
