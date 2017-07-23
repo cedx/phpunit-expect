@@ -1,6 +1,11 @@
 # Changelog
 This file contains highlights of what changes on each version of the [PHPUnit-Expect](https://github.com/cedx/phpunit-expect) package.
 
+## Version 0.3.0
+- Enabled the strict typing.
+- Replaced [phpDocumentor](https://www.phpdoc.org) documentation generator by [ApiGen](https://github.com/ApiGen/ApiGen).
+- Updated the package dependencies.
+
 ## Version 0.2.0
 - Breaking change: moved the functions to the `PHPUnit\Expect` namespace.
 - Breaking change: renamed the trait to `ExpectTrait`.
