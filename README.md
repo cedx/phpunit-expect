@@ -17,6 +17,7 @@ $ composer require --dev cedx/phpunit-expect
 - [Assertions](doc/assertions.md): `->empty`, `->include()`, `->lengthOf()`, `->throw`...
 
 ## See also
+- [API reference](https://cedx.github.io/phpunit-expect)
 - [Code coverage](https://coveralls.io/github/cedx/phpunit-expect)
 - [Continuous integration](https://travis-ci.org/cedx/phpunit-expect)
 

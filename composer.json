@@ -33,9 +33,10 @@
     "phpunit/phpunit": "^6.1.4"
   },
   "require-dev": {
+    "apigen/apigen": "^5.0.0-RC3",
     "cedx/coveralls": "^2.0.0",
     "phing/phing": "^2.16.0",
-    "phpdocumentor/phpdocumentor": "^2.9.0"
+    "roave/better-reflection": "@dev"
   },
   "scripts": {
     "coverage": "coveralls var/coverage.xml",
