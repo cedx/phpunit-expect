@@ -97,7 +97,7 @@ class AssertionTest extends TestCase {
    */
   public function testDirectory() {
     $assertion = new Assertion(null);
-    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+    $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `directory` flag disabled before being called.
     Assert::assertThat($hasFlag('directory'), Assert::isFalse());
@@ -191,7 +191,7 @@ class AssertionTest extends TestCase {
    */
   public function testFile() {
     $assertion = new Assertion(null);
-    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+    $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `file` flag disabled before being called.
     Assert::assertThat($hasFlag('file'), Assert::isFalse());
@@ -232,7 +232,7 @@ class AssertionTest extends TestCase {
    */
   public function testJson() {
     $assertion = new Assertion(null);
-    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+    $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `json` flag disabled before being called.
     Assert::assertThat($hasFlag('json'), Assert::isFalse());
@@ -300,7 +300,7 @@ class AssertionTest extends TestCase {
    */
   public function testLength() {
     $assertion = new Assertion(null);
-    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+    $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `length` flag disabled before being called.
     Assert::assertThat($hasFlag('length'), Assert::isFalse());
@@ -360,7 +360,7 @@ class AssertionTest extends TestCase {
    */
   public function testNot() {
     $assertion = new Assertion(null);
-    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+    $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `negate` flag disabled before being called.
     Assert::assertThat($hasFlag('negate'), Assert::isFalse());
@@ -477,7 +477,7 @@ class AssertionTest extends TestCase {
    */
   public function testXml() {
     $assertion = new Assertion(null);
-    $hasFlag = (function($name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
+    $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
 
     // It should have its `xml` flag disabled before being called.
     Assert::assertThat($hasFlag('xml'), Assert::isFalse());
