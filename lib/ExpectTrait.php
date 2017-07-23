@@ -1,6 +1,5 @@
 <?php
 namespace PHPUnit\Expect;
-use PHPUnit\Framework\{Assert};
 
 /**
  * Provides helper methods for BDD assertions.
@@ -32,6 +31,6 @@ trait ExpectTrait {
    * @param callable $block The test block to be invoked.
    */
   public function skip(string $specification, callable $block) {
-    Assert::markTestSkipped($specification);
+    // The test block is ignored.
   }
 }

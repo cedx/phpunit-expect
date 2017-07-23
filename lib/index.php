@@ -35,5 +35,5 @@ function it(string $specification, callable $block) {
  * @param callable $block The test block to be invoked.
  */
 function skip(string $specification, callable $block) {
-  Assert::markTestSkipped($specification);
+  // The test block is ignored.
 }
