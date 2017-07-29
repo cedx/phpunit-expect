@@ -4,6 +4,7 @@ This file contains highlights of what changes on each version of the [PHPUnit-Ex
 ## Version 0.3.0
 - Enabled the strict typing.
 - Replaced [phpDocumentor](https://www.phpdoc.org) documentation generator by [ApiGen](https://github.com/ApiGen/ApiGen).
+- The `skip` API now really skips its test block.
 - Updated the package dependencies.
 
 ## Version 0.2.0
