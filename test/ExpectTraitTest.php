@@ -31,4 +31,18 @@ class ExpectTraitTest extends TestCase {
     $test->it('foo', $block);
     Assert::assertThat($called, Assert::isTrue());
   }
+
+  /**
+   * @test Expect::skip
+   */
+  public function testSkip() {
+    // It should not run its test block.
+    $called = false;
+    $block = function() use (&$called) { $called = true; };
+
+    /** @var ExpectTrait $test */
+    $test = $this->getMockForTrait(ExpectTrait::class);
+    $test->skip('foo', $block);
+    Assert::assertThat($called, Assert::isFalse());
+  }
 }

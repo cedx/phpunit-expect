@@ -38,4 +38,17 @@ class FunctionsTest extends TestCase {
     it('foo', $block);
     Assert::assertThat($called, Assert::isTrue());
   }
+
+  /**
+   * @test skip
+   */
+  public function testSkip() {
+    // It should not run its test block.
+    $called = false;
+    $block = function() use (&$called) { $called = true; };
+
+    /** @var ExpectTrait $test */
+    skip('foo', $block);
+    Assert::assertThat($called, Assert::isFalse());
+  }
 }
