@@ -2,6 +2,7 @@
 This file contains highlights of what changes on each version of the [PHPUnit-Expect](https://github.com/cedx/phpunit-expect) package.
 
 ## Version 0.3.0
+- Added new test cases.
 - Enabled the strict typing.
 - Replaced [phpDocumentor](https://www.phpdoc.org) documentation generator by [ApiGen](https://github.com/ApiGen/ApiGen).
 - The `skip` API now really skips its test block.

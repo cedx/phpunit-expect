@@ -93,6 +93,26 @@ class AssertionTest extends TestCase {
   }
 
   /**
+   * @test Assertion::closeTo
+   */
+  public function testCloseTo() {
+    // It should return the current instance.
+    $assertion = new Assertion(1);
+    Assert::assertThat($assertion->closeTo(1, 0.1), Assert::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion(0))->closeTo(1.0, 2);
+    (new Assertion(123.0))->closeTo(123.4, 0.5);
+
+    // It should be negatable.
+    (new Assertion(123.0))->not->closeTo(123.4, 0.2);
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion(456))->closeTo(123, 10);
+  }
+
+  /**
    * @test Assertion::directory
    */
   public function testDirectory() {
@@ -139,6 +159,26 @@ class AssertionTest extends TestCase {
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
     (new Assertion(true))->empty;
+  }
+
+  /**
+   * @test Assertion::endWith
+   */
+  public function testEndWith() {
+    // It should return the current instance.
+    $assertion = new Assertion('abc');
+    Assert::assertThat($assertion->endWith('abc'), Assert::identicalTo($assertion));
+
+    // It should not throw an exception if the assertion succeeded.
+    (new Assertion('abc'))->endWith('c');
+    (new Assertion('foo'))->endWith('oo');
+
+    // It should be negatable.
+    (new Assertion('abc'))->not->endWith('xyz');
+
+    // It should throw an exception if the assertion failed.
+    $this->expectException(AssertionFailedError::class);
+    (new Assertion('abc'))->endWith('xyz');
   }
 
   /**
