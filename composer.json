@@ -11,7 +11,7 @@
     "name": "Cédric Belin"
   }],
   "autoload": {
-    "files": ["lib/index.php"],
+    "files": ["lib/functions.php"],
     "psr-4": {"PHPUnit\\Expect\\": "lib/"}
   },
   "config": {
@@ -34,7 +34,7 @@
   },
   "require-dev": {
     "apigen/apigen": "^5.0.0-RC3",
-    "cedx/coveralls": "^2.0.1",
+    "cedx/coveralls": "^3.0.0",
     "phing/phing": "^2.16.0",
     "roave/better-reflection": "@dev"
   },

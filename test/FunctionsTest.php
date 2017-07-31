@@ -49,7 +49,6 @@ class FunctionsTest extends TestCase {
     $called = false;
     $block = function() use (&$called) { $called = true; };
 
-    /** @var ExpectTrait $test */
     skip('foo', $block);
     Assert::assertThat($called, Assert::isFalse());
   }
