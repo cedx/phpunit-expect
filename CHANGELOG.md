@@ -1,6 +1,10 @@
 # Changelog
 This file contains highlights of what changes on each version of the [PHPUnit-Expect](https://github.com/cedx/phpunit-expect) package.
 
+## Version 0.4.0
+- Breaking change: remove the `ExpectTrait` trait.
+- Added the `await()` function allowing to run asynchronous tests based on the [ReactPHP](http://reactphp.org) event loop.
+
 ## Version 0.3.0
 - Added new test cases.
 - Enabled the strict typing.
