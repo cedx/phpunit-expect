@@ -30,14 +30,14 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^6.2.3",
+    "phpunit/phpunit": "^6.3.0",
     "voryx/event-loop": "^2.0.2"
   },
   "require-dev": {
-    "apigen/apigen": "^5.0.0-RC3",
-    "cedx/coveralls": "^3.0.0",
+    "apigen/apigen": "^5.0.0-RC4",
+    "cedx/coveralls": "^4.0.0",
     "phing/phing": "^2.16.0",
-    "roave/better-reflection": "@dev"
+    "roave/better-reflection": "dev-master#a83ef24"
   },
   "scripts": {
     "coverage": "coveralls var/coverage.xml",
