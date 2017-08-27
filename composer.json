@@ -1,11 +1,9 @@
 {
   "description": "BDD assertion library based on PHPUnit.",
   "homepage": "https://github.com/cedx/phpunit-expect",
-  "name": "cedx/phpunit-expect",
-
   "license": "Apache-2.0",
+  "name": "cedx/phpunit-expect",
   "type": "library",
-
   "authors": [{
     "email": "cedric@belin.io",
     "name": "Cédric Belin"
