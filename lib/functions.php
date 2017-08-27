@@ -11,11 +11,9 @@ use PHPUnit\Framework\{Assert};
  * @return \Closure A function invoking an asynchronous test block and waiting for its completion.
  */
 function await(callable $block) {
-  $loop = EventLoop::getLoop();
-  return function() use ($block, $loop) {
-    $loop->stop();
+  return function() use ($block) {
     call_user_func($block);
-    $loop->run();
+    EventLoop::getLoop()->run();
   };
 }
 
