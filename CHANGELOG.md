@@ -4,6 +4,7 @@ This file contains highlights of what changes on each version of the [PHPUnit-Ex
 ## Version 0.4.0
 - Breaking change: remove the `ExpectTrait` trait.
 - Added the `await()` function allowing to run asynchronous tests based on the [ReactPHP](http://reactphp.org) event loop.
+- Changed licensing for the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Version 0.3.0
 - Added new test cases.

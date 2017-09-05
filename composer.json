@@ -1,7 +1,7 @@
 {
   "description": "BDD assertion library based on PHPUnit.",
   "homepage": "https://github.com/cedx/phpunit-expect",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "name": "cedx/phpunit-expect",
   "type": "library",
   "authors": [{
@@ -35,7 +35,7 @@
     "apigen/apigen": "^5.0.0-RC5",
     "cedx/coveralls": "^4.0.0",
     "phing/phing": "^2.16.0",
-    "roave/better-reflection": "dev-master#a402048"
+    "roave/better-reflection": "dev-master#ced147d"
   },
   "scripts": {
     "coverage": "coveralls var/coverage.xml",

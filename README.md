@@ -22,4 +22,4 @@ $ composer require --dev cedx/phpunit-expect
 - [Continuous integration](https://travis-ci.org/cedx/phpunit-expect)
 
 ## License
-[PHPUnit-Expect](https://github.com/cedx/phpunit-expect) is distributed under the Apache License, version 2.0.
+[PHPUnit-Expect](https://github.com/cedx/phpunit-expect) is distributed under the MIT License.
