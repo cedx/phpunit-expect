@@ -1,8 +1,5 @@
 # Functions
 
-## `await(callable $block): \Closure`
-Creates a function that invoke an asynchronous test block and wait until it completes.
-
 ## `expect(mixed $value, string $message = '')`
 Creates a new `PHPUnit\Expect\Assertion`.
 

@@ -2,20 +2,7 @@
 declare(strict_types=1);
 namespace PHPUnit\Expect;
 
-use EventLoop\{EventLoop};
 use PHPUnit\Framework\{Assert};
-
-/**
- * Creates a function that invoke an asynchronous test block and wait until it completes.
- * @param callable $block The asynchronous test block to be invoked.
- * @return \Closure A function invoking an asynchronous test block and waiting for its completion.
- */
-function await(callable $block) {
-  return function() use ($block) {
-    call_user_func($block);
-    EventLoop::getLoop()->run();
-  };
-}
 
 /**
  * Creates a new assertion.
