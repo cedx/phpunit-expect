@@ -104,8 +104,20 @@ Asserts that the target is `false`.
 
 ```php
 <?php
-expect(false)->to->be->false;
-expect(0)->to->not->be->false;
+use function PHPUnit\Expect\{expect, it};
+use PHPUnit\Framework\{TestCase};
+
+class SampleTest extends TestCase {
+  public function testSomeMethod(): void {
+    it('should be false', function() {
+      expect(false)->to->be->false;
+    });
+
+    it('should not be false', function() {
+      expect(true)->to->not->be->false;
+    });
+  }
+}
 ```
 
 ## ->**least**(int | float **$value**)
@@ -166,8 +178,20 @@ Asserts that the target is `NAN` (not a number).
 
 ```php
 <?php
-expect('foo')->to->be->NaN;
-expect(4)->to->not->be->NaN;
+use function PHPUnit\Expect\{expect, it};
+use PHPUnit\Framework\{TestCase};
+
+class SampleTest extends TestCase {
+  public function testSomeMethod(): void {
+    it('should be null', function() {
+      expect('foo')->to->be->NaN;
+    });
+
+    it('should not be null', function() {
+      expect(4)->to->not->be->NaN;
+    });
+  }
+}
 ```
 
 ## ->**null**
@@ -175,8 +199,20 @@ Asserts that the target is `null`.
 
 ```php
 <?php
-expect(null)->to->be->null;
-expect(false)->to->not->be->null;
+use function PHPUnit\Expect\{expect, it};
+use PHPUnit\Framework\{TestCase};
+
+class SampleTest extends TestCase {
+  public function testSomeMethod(): void {
+    it('should be null', function() {
+      expect(null)->to->be->null;
+    });
+
+    it('should not be null', function() {
+      expect('foo')->to->not->be->null;
+    });
+  }
+}
 ```
 
 ## ->**property**(string **$name**) / ->**property**(string **$name**, **$value**)
@@ -248,7 +284,10 @@ class SampleTest extends TestCase {
   public function testSomeMethod(): void {
     it('should be true', function() {
       expect(true)->to->be->true;
-      expect(1)->to->not->be->true;
+    });
+
+    it('should not be true', function() {
+      expect(false)->to->not->be->true;
     });
   }
 }
