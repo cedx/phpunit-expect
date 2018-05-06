@@ -708,7 +708,7 @@ class Assertion {
    * @param bool $value `true` if this assertion has the specified flag, otherwise `false`.
    * @return Assertion This instance.
    */
-  private function setFlag(string $name, bool $value = true): void {
+  private function setFlag(string $name, bool $value = true): self {
     $this->flags[$name] = $value;
     return $this;
   }
