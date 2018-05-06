@@ -1,36 +1,35 @@
 <?xml version="1.0"?>
 <project default="test" name="phpunit-expect">
-  <autoloader autoloaderpath="vendor/autoload.php"/>
-
-  <target name="clean" description="Deletes all generated files and reset any saved state.">
-    <delete>
-      <fileset dir="var" includes="**/*" excludes=".gitkeep"/>
+  <target name="clean" description="Delete the generated files">
+    <delete dir="build" quiet="true"/>
+    <delete dir="doc/api" quiet="true"/>
+    <delete dir="web" quiet="true"/>
+    <delete includeEmptyDirs="true">
+      <fileSet dir="var" includes="**/*" excludes=".gitkeep"/>
     </delete>
   </target>
 
-  <target name="coverage" depends="test" description="Sends the results of the code coverage.">
+  <target name="coverage" description="Upload the code coverage">
     <exec executable="vendor/bin/coveralls" passthru="true">
       <arg file="var/coverage.xml"/>
     </exec>
   </target>
 
-  <target name="doc" description="Builds the documentation.">
-    <delete dir="doc/api" quiet="true"/>
-    <exec executable="vendor/bin/apigen" passthru="true">
-      <arg value="generate"/>
-      <arg value="--destination=doc/api"/>
-      <arg value="lib"/>
+  <target name="doc" description="Build the documentation">
+    <exec executable="vendor/bin/phpdoc" passthru="true"/>
+    <exec executable="mkdocs" passthru="true">
+      <arg value="build"/>
     </exec>
   </target>
 
-  <target name="lint" description="Performs static analysis of source code.">
-    <phplint>
-      <fileset dir="lib" includes="**/*.php"/>
-      <fileset dir="test" includes="**/*.php"/>
-    </phplint>
+  <target name="lint" description="Perform the static analysis">
+    <phpLint>
+      <fileSet dir="lib" includes="**/*.php"/>
+      <fileSet dir="test" includes="**/*.php"/>
+    </phpLint>
   </target>
 
-  <target name="test" description="Runs the unit tests.">
+  <target name="test" description="Run the tests">
     <exec executable="vendor/bin/phpunit" passthru="true">
       <arg value="--colors=auto"/>
       <arg value="--verbose"/>
