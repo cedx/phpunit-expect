@@ -28,11 +28,11 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^6.3.0"
+    "phpunit/phpunit": "^7.1.5"
   },
   "require-dev": {
-    "cedx/coveralls": "^5.0.0",
-    "phing/phing": "^2.16.0"
+    "cedx/coveralls": "^6.0.0",
+    "phing/phing": "^2.16.1"
   },
   "scripts": {
     "coverage": "coveralls var/coverage.xml",
