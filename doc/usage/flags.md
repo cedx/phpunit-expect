@@ -44,8 +44,8 @@ Sets the `json` flag, and indicates that the assertions following in the chain t
 
 ## ->**length**
 
-!!! info
-    Alias: **lengthOf**
+!!! info "Alias"
+    ->**lengthOf**
 
 Sets the `length` flag, and indicates that the assertions following in the chain target a length:
 
