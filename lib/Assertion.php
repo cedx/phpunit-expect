@@ -184,11 +184,6 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function contain($value = null): self {
-    if ($value === null) {
-      $this->setFlag('contain');
-      return $this;
-    }
-
     if ($this->hasFlag('file')) return $this->expect(@file_get_contents($this->target), Assert::stringContains($value));
     return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
   }
@@ -226,8 +221,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function directory(): self {
-    $this->setFlag('directory');
-    return $this;
+    return $this->setFlag('directory');
   }
 
   /**
@@ -322,8 +316,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function file(): self {
-    $this->setFlag('file');
-    return $this;
+    return $this->setFlag('file');
   }
 
   /**
@@ -401,8 +394,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function json(): self {
-    $this->setFlag('json');
-    return $this;
+    return $this->setFlag('json');
   }
 
   /**
@@ -431,10 +423,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function lengthOf(int $value = null): self {
-    if ($value === null) {
-      $this->setFlag('length');
-      return $this;
-    }
+    if ($value === null) return $this->setFlag('length');
 
     if (is_string($this->target)) {
       $constraint = Assert::equalTo($value);
@@ -489,8 +478,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function not(): self {
-    $this->setFlag('negate');
-    return $this;
+    return $this->setFlag('negate');
   }
 
   /**
@@ -523,8 +511,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function ordered(): self {
-    $this->setFlag('ordered');
-    return $this;
+    return $this->setFlag('ordered');
   }
 
   /**
@@ -679,8 +666,7 @@ class Assertion {
    * @return Assertion This instance.
    */
   public function xml(): self {
-    $this->setFlag('xml');
-    return $this;
+    return $this->setFlag('xml');
   }
 
   /**
@@ -720,8 +706,10 @@ class Assertion {
    * Sets a value indicating whether this assertion has the specified flag.
    * @param string $name The flag name.
    * @param bool $value `true` if this assertion has the specified flag, otherwise `false`.
+   * @return Assertion This instance.
    */
   private function setFlag(string $name, bool $value = true): void {
     $this->flags[$name] = $value;
+    return $this;
   }
 }

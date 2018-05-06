@@ -3,7 +3,7 @@ This file contains highlights of what changes on each version of the [PHPUnit-Ex
 
 ## Version [0.5.0](https://github.com/cedx/phpunit-expect/compare/v0.4.0...v0.5.0)
 - Breaking change: raised the required [PHP](https://secure.php.net) version.
-- Breaking change: removed the `await` function.
+- Breaking change: removed the `await()` function.
 - Breaking change: using PHP 7.1 features, like void functions.
 - Added a user guide based on [MkDocs](http://www.mkdocs.org).
 - Added support for [phpDocumentor](https://www.phpdoc.org).

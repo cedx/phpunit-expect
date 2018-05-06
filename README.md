@@ -3,13 +3,6 @@
 
 [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) assertion library based on [PHPUnit](https://phpunit.de).
 
-## Installing via [Composer](https://getcomposer.org)
-From a command prompt, run:
-
-```shell
-$ composer require --dev cedx/phpunit-expect
-```
-
 ## Usage
 - [Functions](doc/functions.md): `it()`, `expect()`, ...
 - [Language chains](doc/chains.md): `->to`, `->be`, ..., `->and`, `->have`, ...
