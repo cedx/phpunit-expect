@@ -12,7 +12,7 @@ class FunctionsTest extends TestCase {
   /**
    * @test expect
    */
-  public function testExpect() {
+  public function testExpect(): void {
     // It should create new assertions.
     Assert::assertThat(expect('foo', 'bar'), Assert::isInstanceOf(Assertion::class));
     Assert::assertThat(expect(null), Assert::logicalNot(Assert::identicalTo(expect(null))));
@@ -21,7 +21,7 @@ class FunctionsTest extends TestCase {
   /**
    * @test fail
    */
-  public function testFail() {
+  public function testFail(): void {
     // It should throw an assertion error.
     $this->expectException(AssertionFailedError::class);
     fail('foo');
@@ -30,7 +30,7 @@ class FunctionsTest extends TestCase {
   /**
    * @test it
    */
-  public function testIt() {
+  public function testIt(): void {
     // It should invoke the specified test block.
     $called = false;
     $block = function() use (&$called) {
@@ -44,7 +44,7 @@ class FunctionsTest extends TestCase {
   /**
    * @test skip
    */
-  public function testSkip() {
+  public function testSkip(): void {
     // It should not run its test block.
     $called = false;
     $block = function() use (&$called) { $called = true; };

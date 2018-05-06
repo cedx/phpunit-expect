@@ -18,7 +18,7 @@ function expect($target, string $message = ''): Assertion {
  * Fails a test with the given message.
  * @param string $message The message explaining the failure.
  */
-function fail(string $message = '') {
+function fail(string $message = ''): void {
   Assert::fail($message);
 }
 
@@ -27,7 +27,7 @@ function fail(string $message = '') {
  * @param string $specification A message describing the test specification.
  * @param callable $block The test block to be invoked.
  */
-function it(string $specification, callable $block) {
+function it(string $specification, callable $block): void {
   call_user_func($block, $specification);
 }
 
@@ -36,6 +36,6 @@ function it(string $specification, callable $block) {
  * @param string $specification A message describing the test specification.
  * @param callable $block The test block to be invoked.
  */
-function skip(string $specification, callable $block) {
+function skip(string $specification, callable $block): void {
   // The test block is ignored.
 }

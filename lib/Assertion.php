@@ -538,7 +538,7 @@ class Assertion {
    * @return Assertion This instance.
    * @throws \BadMethodCallException The target is not an array nor an object.
    */
-  public function property(string $name, $value = null) {
+  public function property(string $name, $value = null): self {
     $isArray = is_array($this->target) || $this->target instanceof \ArrayAccess;
     if (!$isArray && !is_object($this->target)) throw new \BadMethodCallException('The target is not an array nor an object.');
 
@@ -689,7 +689,7 @@ class Assertion {
    * @param Constraint $constraint The constraint to match.
    * @return Assertion This instance.
    */
-  private function expect($target, Constraint $constraint) {
+  private function expect($target, Constraint $constraint): self {
     Assert::assertThat($target, $this->hasFlag('negate') ? Assert::logicalNot($constraint) : $constraint, $this->message);
     return $this;
   }
@@ -721,7 +721,7 @@ class Assertion {
    * @param string $name The flag name.
    * @param bool $value `true` if this assertion has the specified flag, otherwise `false`.
    */
-  private function setFlag(string $name, bool $value = true) {
+  private function setFlag(string $name, bool $value = true): void {
     $this->flags[$name] = $value;
   }
 }
