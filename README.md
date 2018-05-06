@@ -16,10 +16,11 @@ $ composer require --dev cedx/phpunit-expect
 - [Flags](doc/flags.md): `->file`, `--json`, `->length`, `->not`, ...
 - [Assertions](doc/assertions.md): `->empty`, `->include()`, `->lengthOf()`, `->throw`...
 
-## See also
-- [API reference](https://cedx.github.io/phpunit-expect)
-- [Code coverage](https://coveralls.io/github/cedx/phpunit-expect)
-- [Continuous integration](https://travis-ci.org/cedx/phpunit-expect)
+## Resources
+- [Documentation](https://dev.belin.io/phpunit-expect)
+- [API reference](https://dev.belin.io/phpunit-expect/api)
+- [Packagist package](https://packagist.org/packages/cedx/phpunit-expect)
+- [GitHub repository](https://github.com/cedx/phpunit-expect)
 
 ## License
-[PHPUnit-Expect](https://github.com/cedx/phpunit-expect) is distributed under the MIT License.
+[PHPUnit-Expect](https://dev.belin.io/phpunit-expect) is distributed under the MIT License.
