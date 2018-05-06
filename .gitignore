@@ -1,8 +1,9 @@
-/.c9/
-/.idea/
+/.*/
+/build/
 /doc/api/
 /var/
 /vendor/
+/web/
 
 /*.iml
 /**/.DS_Store
