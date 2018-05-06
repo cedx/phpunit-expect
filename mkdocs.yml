@@ -30,7 +30,7 @@ pages:
 - Overview: index.md
 - Installation: installation.md
 - Usage:
-  - Function: usage/function.md
+  - Functions: usage/functions.md
   - Language chains: usage/chains.md
   - Flags: usage/flags.md
   - Assertions: usage/assertions.md
