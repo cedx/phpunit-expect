@@ -27,6 +27,7 @@ use PHPUnit\Framework\Constraint\{Constraint};
  * @property Assertion $is Chainable getter to improve the assertion readability.
  * @property Assertion $json Indicates that the assertion following in the chain targets JSON data.
  * @property Assertion $length Indicates that the assertion following in the chain targets a length.
+ * @property Assertion $lengthOf Indicates that the assertion following in the chain targets a length.
  * @property Assertion $NaN Reports an error if the target is not `NAN`.
  * @property Assertion $not Negates any of assertions following in the chain.
  * @property Assertion $null Reports an error if the target is not `null`.

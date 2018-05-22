@@ -9,22 +9,33 @@ The `a` and `an` assertions are aliases that can be used either as language chai
 
 ```php
 <?php
-// As `typeof` operator.
-expect(false)->to->be->a('bool'); // or "boolean"
-expect(123)->to->be->an('int'); // or "integer"
-expect(123.456)->to->be->a('float'); // or "double", "real"
+use function PHPUnit\Expect\{expect, it};
+use PHPUnit\Framework\{TestCase};
 
-expect('123.456')->to->be->a('numeric');
-expect('foo')->to->be->a('scalar');
-expect('bar')->to->be->a('string');
-expect(function() {})->to->be->a('callable');
-
-expect(null)->to->be->a('null');
-expect(['foo' => 'baz'])->to->be->an('array');
-expect(new \stdClass)->to->be->an('object');
-
-// As language chain.
-expect($foo)->to->be->an->instanceOf(\Foo::class);
+class SampleTest extends TestCase {
+  public function testSomeMethod(): void {
+    it('can be used to check as `typeof` operator', function() {
+      // As `typeof` operator.
+      expect(false)->to->be->a('bool'); // or "boolean"
+      expect(123)->to->be->an('int'); // or "integer"
+      expect(123.456)->to->be->a('float'); // or "double", "real"
+    
+      expect('123.456')->to->be->a('numeric');
+      expect('foo')->to->be->a('scalar');
+      expect('bar')->to->be->a('string');
+      expect(function() {})->to->be->a('callable');
+    
+      expect(null)->to->be->a('null');
+      expect(['foo' => 'baz'])->to->be->an('array');
+      expect(new \stdClass)->to->be->an('object');
+    });
+    
+    it('can be used as language chain', function() {
+      $foo = new \Foo;
+      expect($foo)->to->be->an->instanceOf(\Foo::class);
+    });
+  }
+}
 ```
 
 ## ->**above**(int | float **$value**)

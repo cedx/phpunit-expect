@@ -59,8 +59,8 @@ class SampleTest extends TestCase {
     it('should be writable', function() {
       expect('foo')->to->have->length->above(2);
       expect([1, 2, 3])->to->have->length->below(4);
-      expect('foo')->to->have->length->of->at->least(3);
-      expect([1, 2, 3])->to->have->length->of->at->most(3);
+      expect('foo')->to->have->lengthOf->at->least(3);
+      expect([1, 2, 3])->to->have->lengthOf->at->most(3);
       expect('foo')->to->have->length->within(2, 4);
     });
   }
@@ -84,6 +84,9 @@ class SampleTest extends TestCase {
   }
 }
 ```
+
+!!! tip
+    Just because you can negate any assertion with `->not` doesn't mean you should. It's often best to assert that the one expected output was produced, rather than asserting that one of countless unexpected outputs wasn't produced.
 
 ## ->**ordered**
 Sets the `ordered` flag, later used by the `members` assertions:
