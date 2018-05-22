@@ -1,5 +1,4 @@
 # Changelog
-This file contains highlights of what changes on each version of the [PHPUnit-Expect](https://github.com/cedx/phpunit-expect) package.
 
 ## Version [0.5.0](https://github.com/cedx/phpunit-expect/compare/v0.4.0...v0.5.0)
 - Breaking change: raised the required [PHP](https://secure.php.net) version.
