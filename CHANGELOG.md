@@ -9,7 +9,7 @@
 - Updated the package dependencies.
 
 ## Version [0.4.0](https://github.com/cedx/phpunit-expect/compare/v0.3.0...v0.4.0)
-- Breaking change: remove the `ExpectTrait` trait.
+- Breaking change: removed the `ExpectTrait` trait.
 - Added the `await()` function allowing to run asynchronous tests based on the [ReactPHP](http://reactphp.org) event loop.
 - Changed licensing for the [MIT License](https://opensource.org/licenses/MIT).
 
