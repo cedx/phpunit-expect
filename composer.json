@@ -28,7 +28,7 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^7.1.5"
+    "phpunit/phpunit": "^7.2.2"
   },
   "require-dev": {
     "cedx/coveralls": "^6.0.0",
