@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <project default="test" name="phpunit-expect">
+  <if>
+    <os family="unix"/>
+    <then><property name="composer" value="/usr/local/bin/composer"/></then>
+    <else><property name="composer" value="C:\Program Files\PHP\share\composer.phar"/></else>
+  </if>
+
   <target name="clean" description="Delete the generated files">
     <delete dir="build" quiet="true"/>
     <delete dir="doc/api" quiet="true"/>
@@ -33,6 +39,6 @@
     <exec command="git reset --hard" passthru="true"/>
     <exec command="git fetch --all --prune" passthru="true"/>
     <exec command="git pull --rebase" passthru="true"/>
-    <exec command="composer update" passthru="true"/>
+    <exec command="php ${composer} update" passthru="true"/>
   </target>
 </project>
