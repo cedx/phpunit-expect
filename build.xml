@@ -39,6 +39,6 @@
     <exec command="git reset --hard" passthru="true"/>
     <exec command="git fetch --all --prune" passthru="true"/>
     <exec command="git pull --rebase" passthru="true"/>
-    <exec command="php ${composer} update" passthru="true"/>
+    <composer command="update" composer="${composer}"/>
   </target>
 </project>
