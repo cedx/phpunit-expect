@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <project default="test" name="phpunit-expect">
   <if>
-    <os family="unix"/>
-    <then><property name="composer" value="/usr/local/bin/composer"/></then>
-    <else><property name="composer" value="C:\Program Files\PHP\share\composer.phar"/></else>
+    <os family="windows"/>
+    <then><property name="composer" value="C:\Program Files\PHP\share\composer.phar"/></then>
+    <else><property name="composer" value="/usr/local/bin/composer"/></else>
   </if>
 
   <target name="clean" description="Delete the generated files">
