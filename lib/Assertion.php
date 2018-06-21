@@ -92,7 +92,7 @@ class Assertion {
    * Reports an error if the target is not of the specified type.
    * This method can also be used as language chain.
    * @param string $type The type to check. Specify an empty string to use as language chain.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function a(string $type = ''): self {
     return mb_strlen($type) ? $this->expect($this->target, Assert::isType($type)) : $this;
@@ -101,7 +101,7 @@ class Assertion {
   /**
    * Reports an error if the target is not greater than the specified value.
    * @param int|float $value The value to compare.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function above($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
@@ -112,7 +112,7 @@ class Assertion {
    * Reports an error if the target is not of the specified type.
    * This method can also be used as language chain.
    * @param string $type The type to check. Specify an empty string to use as language chain.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @see Assertion::a()
    */
   public function an(string $type = ''): self {
@@ -121,7 +121,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function and(): self {
     return $this;
@@ -129,7 +129,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function at(): self {
     return $this;
@@ -137,7 +137,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function be(): self {
     return $this;
@@ -145,7 +145,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function been(): self {
     return $this;
@@ -154,7 +154,7 @@ class Assertion {
   /**
    * Reports an error if the target is not less than the specified value.
    * @param int|float $value The value to compare.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function below($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
@@ -163,7 +163,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function but(): self {
     return $this;
@@ -173,7 +173,7 @@ class Assertion {
    * Reports an error if the target is not equal to the specified value, within a given delta range.
    * @param int|float $value The value to compare.
    * @param float $delta The allowed distance between two values to consider them equal.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function closeTo($value, float $delta): self {
     return $this->expect($this->target, Assert::equalTo($value, $delta));
@@ -182,7 +182,7 @@ class Assertion {
   /**
    * Reports an error if the target does not contain an element or a substring.
    * @param mixed $value The value to find.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function contain($value = null): self {
     if ($this->hasFlag('file')) return $this->expect(@file_get_contents($this->target), Assert::stringContains($value));
@@ -192,7 +192,7 @@ class Assertion {
   /**
    * Reports an error if the target does not contain an element or a substring.
    * @param mixed $value The value to find.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @see Assertion::contain()
    */
   public function contains($value = null): self {
@@ -202,7 +202,7 @@ class Assertion {
   /**
    * Reports an error if the target does not contain only variables of a given type.
    * @param string $type The type to check.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function containOnly(string $type): self {
     return $this->expect($this->target, Assert::containsOnly($type));
@@ -211,7 +211,7 @@ class Assertion {
   /**
    * Reports an error if the target does not contain only instances of a given class.
    * @param string $className The name of the class to check.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function containOnlyInstancesOf(string $className): self {
     return $this->expect($this->target, Assert::containsOnlyInstancesOf($className));
@@ -219,7 +219,7 @@ class Assertion {
 
   /**
    * Indicates that the assertion following in the chain targets a directory.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function directory(): self {
     return $this->setFlag('directory');
@@ -227,7 +227,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function does(): self {
     return $this;
@@ -236,7 +236,7 @@ class Assertion {
   /**
    * Reports an error if the target is not empty.
    * For arrays, strings, and `Countable` instances, it checks the length. For objects, it gets the count of accessible properties according to scope.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function empty(): self {
     if (is_object($this->target) && !($this->target instanceof \Countable)) {
@@ -259,7 +259,7 @@ class Assertion {
   /**
    * Reports an error if the target does not end with the specified suffix.
    * @param string $value The suffix to check.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function endWith(string $value): self {
     return $this->expect($this->target, Assert::stringEndsWith($value));
@@ -268,7 +268,7 @@ class Assertion {
   /**
    * Reports an error if the target and the specified value are not equal.
    * @param mixed $value The value to compare.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function equal($value): self {
     if ($this->hasFlag('file')) {
@@ -284,7 +284,7 @@ class Assertion {
   /**
    * Reports an error if the target and the specified value are not equal.
    * @param mixed $value The value to compare.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @see Assertion::equal()
    */
   public function equals($value): self {
@@ -293,7 +293,7 @@ class Assertion {
 
   /**
    * Reports an error if the file or directory specified by the target does not exist.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   public function exist(): self {
@@ -306,7 +306,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is `true`.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function false(): self {
     return $this->expect($this->target, Assert::isFalse());
@@ -314,7 +314,7 @@ class Assertion {
 
   /**
    * Indicates that the assertion following in the chain targets a file.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function file(): self {
     return $this->setFlag('file');
@@ -322,7 +322,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function has(): self {
     return $this;
@@ -330,7 +330,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function have(): self {
     return $this;
@@ -339,7 +339,7 @@ class Assertion {
   /**
    * Reports an error if the target and the specified variable do not have the same type and value.
    * @param mixed $value The variable to compare.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function identicalTo($value): self {
     return $this->expect($this->target, Assert::identicalTo($value));
@@ -348,7 +348,7 @@ class Assertion {
   /**
    * Reports an error if the target does not contain an element or a substring.
    * @param mixed $value The value to find.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @see Assertion::contain()
    */
   public function include($value = null): self {
@@ -358,7 +358,7 @@ class Assertion {
   /**
    * Reports an error if the target does not contain an element or a substring.
    * @param mixed $value The value to find.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @see Assertion::contain()
    */
   public function includes($value = null): self {
@@ -367,7 +367,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not `INF`.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function infinite(): self {
     return $this->expect($this->target, Assert::isInfinite());
@@ -376,7 +376,7 @@ class Assertion {
   /**
    * Reports an error if the target is not an instance of the specified class.
    * @param string $className The name of the class to test.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function instanceOf(string $className): self {
     return $this->expect($this->target, Assert::isInstanceOf($className));
@@ -384,7 +384,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function is(): self {
     return $this;
@@ -392,7 +392,7 @@ class Assertion {
 
   /**
    * Indicates that the assertion following in the chain targets JSON data.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function json(): self {
     return $this->setFlag('json');
@@ -401,7 +401,7 @@ class Assertion {
   /**
    * Reports an error if the target is not greater than or equal to the specified value.
    * @param int|float $value The value to compare.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function least($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
@@ -411,7 +411,7 @@ class Assertion {
   /**
    * Reports an error if the length of the target is not the expected one.
    * @param int $value The expected length.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @see Assertion::lengthOf()
    */
   public function length(int $value = null): self {
@@ -421,7 +421,7 @@ class Assertion {
   /**
    * Reports an error if the length of the target is not the expected one.
    * @param int $value The expected length.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function lengthOf(int $value = null): self {
     if ($value === null) return $this->setFlag('length');
@@ -441,7 +441,7 @@ class Assertion {
   /**
    * Reports an error if the target does not match the specified regular expression.
    * @param string $pattern The regular expression to test.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function match(string $pattern): self {
     return $this->expect($this->target, Assert::matchesRegularExpression($pattern));
@@ -450,7 +450,7 @@ class Assertion {
   /**
    * Reports an error if the target does not match the specified format string.
    * @param string $format The format string to test.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function matchFormat(string $format): self {
     return $this->expect($this->target, Assert::matches($format));
@@ -459,7 +459,7 @@ class Assertion {
   /**
    * Reports an error if the target is not less than or equal to the specified value.
    * @param int|float $value The value to compare.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function most($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
@@ -468,7 +468,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not `NAN`.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function NaN(): self {
     return $this->expect($this->target, Assert::isNan());
@@ -476,7 +476,7 @@ class Assertion {
 
   /**
    * Negates any of assertions following in the chain.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function not(): self {
     return $this->setFlag('negate');
@@ -484,7 +484,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not `null`.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function null(): self {
     return $this->expect($this->target, Assert::isNull());
@@ -492,7 +492,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function of(): self {
     return $this;
@@ -501,7 +501,7 @@ class Assertion {
   /**
    * Reports an error if the target is not contained in the specified list or string.
    * @param array|\Traversable $value The value provider.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function oneOf($value): self {
     return $this->expect($value, Assert::contains($this->target));
@@ -509,7 +509,7 @@ class Assertion {
 
   /**
    * Indicates that the assertion following in the chain targets a file.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function ordered(): self {
     return $this->setFlag('ordered');
@@ -523,7 +523,7 @@ class Assertion {
    *
    * @param string $name The property name.
    * @param mixed $value The property value.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @throws \BadMethodCallException The target is not an array nor an object.
    */
   public function property(string $name, $value = null): self {
@@ -546,7 +546,7 @@ class Assertion {
 
   /**
    * Reports an error if the file or directory specified by the target is not readable.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   public function readable(): self {
@@ -558,7 +558,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function same(): self {
     return $this;
@@ -567,7 +567,7 @@ class Assertion {
   /**
    * Reports an error if the target does not pass a given truth test.
    * @param callable $predicate The predicate to invoke.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function satisfy(callable $predicate): self {
     return $this->expect(call_user_func($predicate, $this->target), Assert::isTrue());
@@ -576,7 +576,7 @@ class Assertion {
   /**
    * Reports an error if the target does not start with the specified prefix.
    * @param string $value The prefix to check.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function startWith(string $value): self {
     return $this->expect($this->target, Assert::stringStartsWith($value));
@@ -584,7 +584,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function that(): self {
     return $this;
@@ -592,7 +592,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function to(): self {
     return $this;
@@ -601,7 +601,7 @@ class Assertion {
   /**
    * Reports an error if the function target does not throw a given exception.
    * @param string $className The class name of the exception.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @throws \BadMethodCallException The function target is not callable.
    */
   public function throw(string $className = ''): self {
@@ -617,7 +617,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is `false`.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function true(): self {
     return $this->expect($this->target, Assert::isTrue());
@@ -625,7 +625,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function which(): self {
     return $this;
@@ -633,7 +633,7 @@ class Assertion {
 
   /**
    * Chainable getter to improve the assertion readability.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function with(): self {
     return $this;
@@ -643,7 +643,7 @@ class Assertion {
    * Reports an error if the target is greater than or less than the specified bounds.
    * @param int|float $start The lowerbound inclusive.
    * @param int|float $finish The upperbound inclusive.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function within($start, $finish): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
@@ -652,7 +652,7 @@ class Assertion {
 
   /**
    * Reports an error if the file or directory specified by the target is not writable.
-   * @return Assertion This instance.
+   * @return self This instance.
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   public function writable(): self {
@@ -664,7 +664,7 @@ class Assertion {
 
   /**
    * Indicates that the assertion following in the chain targets XML data.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   public function xml(): self {
     return $this->setFlag('xml');
@@ -674,7 +674,7 @@ class Assertion {
    * Asserts that the specified target matches the specified constraint.
    * @param mixed $target The target to check.
    * @param Constraint $constraint The constraint to match.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   private function expect($target, Constraint $constraint): self {
     Assert::assertThat($target, $this->hasFlag('negate') ? Assert::logicalNot($constraint) : $constraint, $this->message);
@@ -707,7 +707,7 @@ class Assertion {
    * Sets a value indicating whether this assertion has the specified flag.
    * @param string $name The flag name.
    * @param bool $value `true` if this assertion has the specified flag, otherwise `false`.
-   * @return Assertion This instance.
+   * @return self This instance.
    */
   private function setFlag(string $name, bool $value = true): self {
     $this->flags[$name] = $value;
