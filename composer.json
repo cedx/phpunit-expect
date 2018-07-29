@@ -31,7 +31,7 @@
     "phpunit/phpunit": "^7.2.2"
   },
   "require-dev": {
-    "cedx/coveralls": "^7.0.0",
+    "cedx/coveralls": "^7.1.0",
     "phing/phing": "^2.16.1"
   },
   "scripts": {
