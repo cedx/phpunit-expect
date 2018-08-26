@@ -9,7 +9,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should be a writable directory', function() {
       expect('path/to/directory')->directory->to->be->writable;
     });
@@ -26,7 +26,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should be a readable file', function() {
       expect('path/to/file')->file->to->be->readable;
     });
@@ -55,7 +55,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should be writable', function() {
       expect('foo')->to->have->length->above(2);
       expect([1, 2, 3])->to->have->length->below(4);
@@ -76,7 +76,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should be writable', function() {
       expect('foo')->to->not->equal('bar');
       expect(function() {})->to->not->throw;

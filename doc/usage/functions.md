@@ -9,7 +9,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     echo get_class(expect('fooBar'));
     // PHPUnit\Expect\Assertion
     
@@ -31,7 +31,7 @@ use function PHPUnit\Expect\{fail};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     fail('An error should have been thrown: the test failed');
     // Throws a `PHPUnit\Framework\AssertionFailedError` exception.
   }
@@ -47,7 +47,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should not be empty', function() {
       expect([123])->to->not->be->empty;
       expect('foo')->to->not->be->empty;
@@ -65,7 +65,7 @@ use function PHPUnit\Expect\{it, skip};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     skip('should not be run', function() {
       // This test block will be skipped.
     });

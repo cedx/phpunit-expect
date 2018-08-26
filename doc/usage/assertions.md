@@ -13,7 +13,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('can be used to check as `typeof` operator', function() {
       // As `typeof` operator.
       expect(false)->to->be->a('bool'); // or "boolean"
@@ -119,7 +119,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should be false', function() {
       expect(false)->to->be->false;
     });
@@ -193,7 +193,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should be null', function() {
       expect('foo')->to->be->NaN;
     });
@@ -214,7 +214,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should be null', function() {
       expect(null)->to->be->null;
     });
@@ -266,7 +266,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should throw an exception', function() {
       $badFn = function() { throw new \RuntimeException('This is a bad function.'); };
       expect($badFn)->to->throw(\RuntimeException::class);
@@ -292,7 +292,7 @@ use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
-  public function testSomeMethod(): void {
+  function testSomeMethod(): void {
     it('should be true', function() {
       expect(true)->to->be->true;
     });
