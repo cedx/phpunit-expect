@@ -28,15 +28,16 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^7.2.2"
+    "phpunit/phpunit": "^7.3.2"
   },
   "require-dev": {
-    "cedx/coveralls": "^7.1.0",
-    "phing/phing": "^2.16.1"
+    "cedx/coveralls": "^9.0.1",
+    "phing/phing": "^2.16.1",
+    "phpstan/phpstan": "^0.10.3"
   },
   "scripts": {
-    "coverage": "coveralls var/coverage.xml",
-    "test": "phpunit"
+    "coverage": "phing coverage",
+    "test": "phing test"
   },
   "support": {
     "docs": "https://dev.belin.io/phpunit-expect/api",
