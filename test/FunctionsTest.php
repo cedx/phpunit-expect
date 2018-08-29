@@ -10,7 +10,7 @@ use PHPUnit\Framework\{Assert, AssertionFailedError, TestCase};
 class FunctionsTest extends TestCase {
 
   /**
-   * Tests the `expect
+   * Tests the `expect()` function.
    */
   function testExpect(): void {
     // It should create new assertions.
@@ -19,7 +19,7 @@ class FunctionsTest extends TestCase {
   }
 
   /**
-   * Tests the `fail
+   * Tests the `fail()` function.
    */
   function testFail(): void {
     // It should throw an assertion error.
@@ -28,7 +28,7 @@ class FunctionsTest extends TestCase {
   }
 
   /**
-   * Tests the `it
+   * Tests the `it()` function.
    */
   function testIt(): void {
     // It should invoke the specified test block.
@@ -42,7 +42,7 @@ class FunctionsTest extends TestCase {
   }
 
   /**
-   * Tests the `skip
+   * Tests the `skip()` function.
    */
   function testSkip(): void {
     // It should not run its test block.

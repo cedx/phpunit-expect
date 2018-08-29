@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.6.0](https://github.com/cedx/phpunit-expect/compare/v0.5.0...v0.6.0)
+- Added support for [PHPStan](https://github.com/phpstan/phpstan) static analyzer.
+- Updated the package dependencies.
+
 ## Version [0.5.0](https://github.com/cedx/phpunit-expect/compare/v0.4.0...v0.5.0)
 - Breaking change: raised the required [PHP](https://secure.php.net) version.
 - Breaking change: removed the `await()` function.

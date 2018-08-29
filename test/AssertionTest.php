@@ -10,7 +10,7 @@ use PHPUnit\Framework\{Assert, AssertionFailedError, TestCase};
 class AssertionTest extends TestCase {
 
   /**
-   * Tests the `Assertion::a
+   * Tests the `Assertion::a()` method.
    */
   function testA(): void {
     // It should return the current instance.
@@ -41,7 +41,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::above
+   * Tests the `Assertion::above()` method.
    */
   function testAbove(): void {
     // It should return the current instance.
@@ -68,7 +68,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::below
+   * Tests the `Assertion::below()` method.
    */
   function testBelow(): void {
     // It should return the current instance.
@@ -95,7 +95,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::closeTo
+   * Tests the `Assertion::closeTo()` method.
    */
   function testCloseTo(): void {
     // It should return the current instance.
@@ -115,7 +115,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::directory
+   * Tests the `Assertion::directory()` method.
    */
   function testDirectory(): void {
     $assertion = new Assertion(null);
@@ -132,7 +132,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::empty
+   * Tests the `Assertion::empty()` method.
    */
   function testEmpty(): void {
     // It should return the current instance.
@@ -164,7 +164,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::endWith
+   * Tests the `Assertion::endWith()` method.
    */
   function testEndWith(): void {
     // It should return the current instance.
@@ -184,7 +184,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::equal
+   * Tests the `Assertion::equal()` method.
    */
   function testEqual(): void {
     // It should return the current instance.
@@ -213,7 +213,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::false
+   * Tests the `Assertion::false()` method.
    */
   function testFalse(): void {
     // It should return the current instance.
@@ -229,7 +229,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::file
+   * Tests the `Assertion::file()` method.
    */
   function testFile(): void {
     $assertion = new Assertion(null);
@@ -246,7 +246,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::include
+   * Tests the `Assertion::include()` method.
    */
   function testInclude(): void {
     // It should return the current instance.
@@ -270,7 +270,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::json
+   * Tests the `Assertion::json()` method.
    */
   function testJson(): void {
     $assertion = new Assertion(null);
@@ -288,7 +288,6 @@ class AssertionTest extends TestCase {
 
   /**
    * Tests the language chains.
-   * @test
    */
   function testLanguageChains(): void {
     // It should return the current instance.
@@ -311,7 +310,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::least
+   * Tests the `Assertion::least()` method.
    */
   function testLeast(): void {
     // It should return the current instance.
@@ -338,7 +337,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::length
+   * Tests the `Assertion::length()` method.
    */
   function testLength(): void {
     $assertion = new Assertion(null);
@@ -355,7 +354,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::most
+   * Tests the `Assertion::most()` method.
    */
   function testMost(): void {
     // It should return the current instance.
@@ -382,7 +381,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::NaN
+   * Tests the `Assertion::NaN()` method.
    */
   function testNaN(): void {
     // It should return the current instance.
@@ -398,7 +397,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::not
+   * Tests the `Assertion::not()` method.
    */
   function testNot(): void {
     $assertion = new Assertion(null);
@@ -415,7 +414,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::null
+   * Tests the `Assertion::null()` method.
    */
   function testNull(): void {
     // It should return the current instance.
@@ -431,7 +430,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::property
+   * Tests the `Assertion::property()` method.
    */
   function testProperty(): void {
     $array = ['foo' => 'bar'];
@@ -483,7 +482,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::true
+   * Tests the `Assertion::true()` method.
    */
   function testTrue(): void {
     // It should return the current instance.
@@ -499,7 +498,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::writable
+   * Tests the `Assertion::writable()` method.
    */
   function testWritable(): void {
     // It should return the current instance.
@@ -515,7 +514,7 @@ class AssertionTest extends TestCase {
   }
 
   /**
-   * Tests the `Assertion::xml
+   * Tests the `Assertion::xml()` method.
    */
   function testXml(): void {
     $assertion = new Assertion(null);
