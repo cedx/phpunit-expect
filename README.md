@@ -3,6 +3,9 @@
 
 [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) assertion library based on [PHPUnit](https://phpunit.de).
 
+> This package is **abandoned** and no longer maintained.  
+> Consider using an alternative like [PHPUnit's function wrappers](https://github.com/sebastianbergmann/phpunit/blob/master/src/Framework/Assert/Functions.php).
+
 ## Resources
 - [Documentation](https://dev.belin.io/phpunit-expect)
 - [API reference](https://dev.belin.io/phpunit-expect/api)
