@@ -1,3 +1,4 @@
 parameters:
+  ignoreErrors: ['/Call to an undefined method PHPUnit\\Expect\\AssertionTest::hasFlag/']
   level: max
   paths: [lib, test]

@@ -12,6 +12,10 @@
     "files": ["lib/functions.php"],
     "psr-4": {"PHPUnit\\Expect\\": "lib/"}
   },
+  "autoload-dev": {
+    "files": ["vendor/phpunit/phpunit/src/Framework/Assert/Functions.php"],
+    "psr-4": {"PHPUnit\\Expect\\": "test/"}
+  },
   "config": {
     "optimize-autoloader": true
   },
