@@ -9,11 +9,13 @@
     "name": "Cédric Belin"
   }],
   "autoload": {
-    "files": ["lib/functions.php"],
-    "psr-4": {"PHPUnit\\Expect\\": "lib/"}
+    "psr-4": {"PHPUnit\\Expect\\": "lib/"},
+    "files": [
+      "lib/functions.php",
+      "vendor/phpunit/phpunit/src/Framework/Assert/Functions.php"
+    ]
   },
   "autoload-dev": {
-    "files": ["vendor/phpunit/phpunit/src/Framework/Assert/Functions.php"],
     "psr-4": {"PHPUnit\\Expect\\": "test/"}
   },
   "config": {
