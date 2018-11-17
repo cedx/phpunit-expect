@@ -7,6 +7,9 @@
 /vendor/
 /web/
 
+/*.code-workspace
 /*.iml
 /**/.DS_Store
 /composer.lock
+/doc/about/changelog.md
+/doc/about/license.md
