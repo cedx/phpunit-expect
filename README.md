@@ -6,11 +6,14 @@
 > This package is **abandoned** and no longer maintained.  
 > Consider using an alternative like [PHPUnit's function wrappers](https://github.com/sebastianbergmann/phpunit/blob/master/src/Framework/Assert/Functions.php).
 
-## Resources
-- [Documentation](https://dev.belin.io/phpunit-expect)
+## Documentation
+- [User guide](https://dev.belin.io/phpunit-expect)
 - [API reference](https://dev.belin.io/phpunit-expect/api)
+
+## Development
+- [Git repository](https://git.belin.io/cedx/phpunit-expect)
 - [Packagist package](https://packagist.org/packages/cedx/phpunit-expect)
-- [GitHub repository](https://github.com/cedx/phpunit-expect)
+- [Submit an issue](https://git.belin.io/cedx/phpunit-expect/issues)
 
 ## License
 [PHPUnit-Expect](https://dev.belin.io/phpunit-expect) is distributed under the MIT License.
