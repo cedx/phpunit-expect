@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace PHPUnit\Expect;
 
-use PHPUnit\Framework\{Assert, AssertionFailedError, TestCase};
+use PHPUnit\Framework\{AssertionFailedError, TestCase};
 
 /**
  * Tests the features of the functions.
