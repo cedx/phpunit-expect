@@ -48,6 +48,6 @@
   },
   "support": {
     "docs": "https://dev.belin.io/phpunit-expect/api",
-    "issues": "https://git.belin.io/cedx/phpunit-expect/issues"
+    "issues": "https://github.com/cedx/phpunit-expect/issues"
   }
 }
