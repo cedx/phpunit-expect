@@ -1,13 +1,17 @@
 * text=auto
 
 .* text
+*.http text
 *.json text
 *.md text
 *.neon text
 *.php text diff=php
 *.txt text
 *.xml text
+*.yaml text
 *.yml text
 
 *.ico binary
+*.jpg binary
+*.pdf binary
 *.png binary
