@@ -4,12 +4,9 @@
   "license": "MIT",
   "name": "cedx/phpunit-expect",
   "type": "library",
-  "authors": [{
-    "email": "cedric@belin.io",
-    "name": "Cédric Belin",
-    "homepage": "https://belin.io",
-    "role": "Developer"
-  }],
+  "authors": [
+    {"email": "cedric@belin.io", "name": "Cédric Belin", "homepage": "https://belin.io"}
+  ],
   "autoload": {
     "files": ["lib/functions.php"],
     "psr-4": {"PHPUnit\\Expect\\": "lib/"}
@@ -34,13 +31,12 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^7.5.1"
+    "phpunit/phpunit": "^8.2.4"
   },
   "require-dev": {
-    "cedx/coveralls": "^9.1.2",
-    "consolidation/robo": "^1.4.3",
+    "consolidation/robo": "^1.4.9",
     "henrikbjorn/lurker": "^1.2.0",
-    "phpstan/phpstan": "^0.10.8"
+    "phpstan/phpstan": "^0.11.12"
   },
   "scripts": {
     "coverage": "robo coverage",
