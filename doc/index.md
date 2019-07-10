@@ -3,10 +3,6 @@
 
 ![PHPUnit](img/phpunit.png)
 
-!!! danger
-    This package is **abandoned** and no longer maintained.  
-    Consider using an alternative like [PHPUnit's function wrappers](https://github.com/sebastianbergmann/phpunit/blob/master/src/Framework/Assert/Functions.php).
-
 ## Quick start
 Install the latest version of **PHPUnit-Expect** with [Composer](https://getcomposer.org):
 
