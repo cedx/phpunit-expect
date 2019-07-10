@@ -1,6 +1,8 @@
 # Changelog
 
 ## Version [0.7.0](https://github.com/cedx/phpunit-expect/compare/v0.6.0...v0.7.0)
+- Breaking change: upgraded [PHPUnit](https://phpunit.de) to version 8.
+- Breaking change: moved the language chains to a dedicated trait `ChainTrait`.
 - Updated the package dependencies.
 
 ## Version [0.6.0](https://github.com/cedx/phpunit-expect/compare/v0.5.0...v0.6.0)

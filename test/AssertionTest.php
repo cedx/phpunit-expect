@@ -274,6 +274,7 @@ class AssertionTest extends TestCase {
     assertThat($assertion->is, identicalTo($assertion));
     assertThat($assertion->of, identicalTo($assertion));
     assertThat($assertion->same, identicalTo($assertion));
+    assertThat($assertion->still, identicalTo($assertion));
     assertThat($assertion->that, identicalTo($assertion));
     assertThat($assertion->to, identicalTo($assertion));
     assertThat($assertion->which, identicalTo($assertion));

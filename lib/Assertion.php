@@ -32,6 +32,7 @@ use PHPUnit\Framework\Constraint\{Constraint};
  * @property Assertion $of Chainable getter to improve the assertion readability.
  * @property Assertion $readable Reports an error if the file or directory specified by the target is not readable.
  * @property Assertion $same Chainable getter to improve the assertion readability.
+ * @property Assertion $still Chainable getter to improve the assertion readability.
  * @property Assertion $that Chainable getter to improve the assertion readability.
  * @property Assertion $throw Reports an error if the function target does not throw an exception.
  * @property Assertion $to Chainable getter to improve the assertion readability.
@@ -42,6 +43,7 @@ use PHPUnit\Framework\Constraint\{Constraint};
  * @property Assertion $xml Indicates that the assertion following in the chain targets XML data.
  */
 class Assertion {
+  use ChainTrait;
 
   /** @var array The assertion flags. */
   private $flags = [];
@@ -77,7 +79,7 @@ class Assertion {
       if ($method->isPublic() && !$method->getNumberOfRequiredParameters()) return $this->$name();
     }
 
-    throw new \InvalidArgumentException("The specified method is not found: $name");
+    throw new \InvalidArgumentException("The specified method is not found: $name()");
   }
 
   /**
@@ -112,38 +114,6 @@ class Assertion {
   }
 
   /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function and(): self {
-    return $this;
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function at(): self {
-    return $this;
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function be(): self {
-    return $this;
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function been(): self {
-    return $this;
-  }
-
-  /**
    * Reports an error if the target is not less than the specified value.
    * @param int|float $value The value to compare.
    * @return $this This instance.
@@ -151,14 +121,6 @@ class Assertion {
   function below($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, lessThan($value));
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function but(): self {
-    return $this;
   }
 
   /**
@@ -215,14 +177,6 @@ class Assertion {
    */
   function directory(): self {
     return $this->setFlag('directory');
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function does(): self {
-    return $this;
   }
 
   /**
@@ -313,22 +267,6 @@ class Assertion {
   }
 
   /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function has(): self {
-    return $this;
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function have(): self {
-    return $this;
-  }
-
-  /**
    * Reports an error if the target and the specified variable do not have the same type and value.
    * @param mixed $value The variable to compare.
    * @return $this This instance.
@@ -372,14 +310,6 @@ class Assertion {
    */
   function instanceOf(string $className): self {
     return $this->expect($this->target, isInstanceOf($className));
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function is(): self {
-    return $this;
   }
 
   /**
@@ -483,14 +413,6 @@ class Assertion {
   }
 
   /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function of(): self {
-    return $this;
-  }
-
-  /**
    * Reports an error if the target is not contained in the specified list or string.
    * @param array|\Traversable $value The value provider.
    * @return $this This instance.
@@ -549,14 +471,6 @@ class Assertion {
   }
 
   /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function same(): self {
-    return $this;
-  }
-
-  /**
    * Reports an error if the target does not pass a given truth test.
    * @param callable $predicate The predicate to invoke.
    * @return $this This instance.
@@ -572,22 +486,6 @@ class Assertion {
    */
   function startWith(string $value): self {
     return $this->expect($this->target, stringStartsWith($value));
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function that(): self {
-    return $this;
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function to(): self {
-    return $this;
   }
 
   /**
@@ -613,22 +511,6 @@ class Assertion {
    */
   function true(): self {
     return $this->expect($this->target, isTrue());
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function which(): self {
-    return $this;
-  }
-
-  /**
-   * Chainable getter to improve the assertion readability.
-   * @return $this This instance.
-   */
-  function with(): self {
-    return $this;
   }
 
   /**
