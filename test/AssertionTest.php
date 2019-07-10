@@ -3,14 +3,10 @@ namespace PHPUnit\Expect;
 
 use PHPUnit\Framework\{AssertionFailedError, TestCase};
 
-/**
- * Tests the features of the `PHPUnit\Expect\Assertion` class.
- */
+/** Tests the features of the `PHPUnit\Expect\Assertion` class. */
 class AssertionTest extends TestCase {
 
-  /**
-   * Tests the `Assertion::a()` method.
-   */
+  /** @test Assertion::a() */
   function testA(): void {
     // It should return the current instance.
     $assertion = new Assertion(null);
@@ -39,9 +35,7 @@ class AssertionTest extends TestCase {
     (new Assertion(null))->an('integer');
   }
 
-  /**
-   * Tests the `Assertion::above()` method.
-   */
+  /** @test Assertion::above() */
   function testAbove(): void {
     // It should return the current instance.
     $assertion = new Assertion(456);
@@ -66,9 +60,7 @@ class AssertionTest extends TestCase {
     (new Assertion(123))->above(456);
   }
 
-  /**
-   * Tests the `Assertion::below()` method.
-   */
+  /** @test Assertion::below() */
   function testBelow(): void {
     // It should return the current instance.
     $assertion = new Assertion(123);
@@ -93,9 +85,7 @@ class AssertionTest extends TestCase {
     (new Assertion(456))->below(123);
   }
 
-  /**
-   * Tests the `Assertion::closeTo()` method.
-   */
+  /** @test Assertion::closeTo() */
   function testCloseTo(): void {
     // It should return the current instance.
     $assertion = new Assertion(1);
@@ -113,9 +103,7 @@ class AssertionTest extends TestCase {
     (new Assertion(456))->closeTo(123, 10);
   }
 
-  /**
-   * Tests the `Assertion::directory()` method.
-   */
+  /** @test Assertion::directory() */
   function testDirectory(): void {
     $assertion = new Assertion(null);
     $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
@@ -130,9 +118,7 @@ class AssertionTest extends TestCase {
     assertThat($hasFlag('directory'), isTrue());
   }
 
-  /**
-   * Tests the `Assertion::empty()` method.
-   */
+  /** @test Assertion::empty() */
   function testEmpty(): void {
     // It should return the current instance.
     $assertion = new Assertion(null);
@@ -162,9 +148,7 @@ class AssertionTest extends TestCase {
     (new Assertion(true))->empty;
   }
 
-  /**
-   * Tests the `Assertion::endWith()` method.
-   */
+  /** @test Assertion::endWith() */
   function testEndWith(): void {
     // It should return the current instance.
     $assertion = new Assertion('abc');
@@ -182,9 +166,7 @@ class AssertionTest extends TestCase {
     (new Assertion('abc'))->endWith('xyz');
   }
 
-  /**
-   * Tests the `Assertion::equal()` method.
-   */
+  /** @test Assertion::equal() */
   function testEqual(): void {
     // It should return the current instance.
     $assertion = new Assertion(123);
@@ -211,9 +193,7 @@ class AssertionTest extends TestCase {
     (new Assertion(false))->equal(true);
   }
 
-  /**
-   * Tests the `Assertion::false()` method.
-   */
+  /** @test Assertion::false() */
   function testFalse(): void {
     // It should return the current instance.
     $assertion = new Assertion(false);
@@ -227,9 +207,7 @@ class AssertionTest extends TestCase {
     (new Assertion(true))->false;
   }
 
-  /**
-   * Tests the `Assertion::file()` method.
-   */
+  /** @test Assertion::file() */
   function testFile(): void {
     $assertion = new Assertion(null);
     $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
@@ -244,9 +222,7 @@ class AssertionTest extends TestCase {
     assertThat($hasFlag('file'), isTrue());
   }
 
-  /**
-   * Tests the `Assertion::include()` method.
-   */
+  /** @test Assertion::include() */
   function testInclude(): void {
     // It should return the current instance.
     $assertion = new Assertion('foobar');
@@ -268,9 +244,7 @@ class AssertionTest extends TestCase {
     (new Assertion('foo'))->contain('abc');
   }
 
-  /**
-   * Tests the `Assertion::json()` method.
-   */
+  /** @test Assertion::json() */
   function testJson(): void {
     $assertion = new Assertion(null);
     $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
@@ -285,9 +259,7 @@ class AssertionTest extends TestCase {
     assertThat($hasFlag('json'), isTrue());
   }
 
-  /**
-   * Tests the language chains.
-   */
+  /** Tests the language chains. */
   function testLanguageChains(): void {
     // It should return the current instance.
     $assertion = new Assertion(null);
@@ -308,9 +280,7 @@ class AssertionTest extends TestCase {
     assertThat($assertion->with, identicalTo($assertion));
   }
 
-  /**
-   * Tests the `Assertion::least()` method.
-   */
+  /** @test Assertion::least() */
   function testLeast(): void {
     // It should return the current instance.
     $assertion = new Assertion(456);
@@ -335,9 +305,7 @@ class AssertionTest extends TestCase {
     (new Assertion(123))->least(456);
   }
 
-  /**
-   * Tests the `Assertion::length()` method.
-   */
+  /** @test Assertion::length() */
   function testLength(): void {
     $assertion = new Assertion(null);
     $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
@@ -352,9 +320,7 @@ class AssertionTest extends TestCase {
     assertThat($hasFlag('length'), isTrue());
   }
 
-  /**
-   * Tests the `Assertion::most()` method.
-   */
+  /** @test Assertion::most() */
   function testMost(): void {
     // It should return the current instance.
     $assertion = new Assertion(123);
@@ -379,25 +345,21 @@ class AssertionTest extends TestCase {
     (new Assertion(456))->most(123);
   }
 
-  /**
-   * Tests the `Assertion::NaN()` method.
-   */
+  /** @test Assertion::NaN() */
   function testNaN(): void {
     // It should return the current instance.
     $assertion = new Assertion(NAN);
     assertThat($assertion->NaN, identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion('123'))->not->NaN;
+    (new Assertion(123))->not->NaN;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion('123'))->NaN;
+    (new Assertion(123))->NaN;
   }
 
-  /**
-   * Tests the `Assertion::not()` method.
-   */
+  /** @test Assertion::not() */
   function testNot(): void {
     $assertion = new Assertion(null);
     $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
@@ -412,9 +374,7 @@ class AssertionTest extends TestCase {
     assertThat($hasFlag('negate'), isTrue());
   }
 
-  /**
-   * Tests the `Assertion::null()` method.
-   */
+  /** @test Assertion::null() */
   function testNull(): void {
     // It should return the current instance.
     $assertion = new Assertion(null);
@@ -428,9 +388,7 @@ class AssertionTest extends TestCase {
     (new Assertion('foo'))->null;
   }
 
-  /**
-   * Tests the `Assertion::property()` method.
-   */
+  /** @test Assertion::property() */
   function testProperty(): void {
     $array = ['foo' => 'bar'];
 
@@ -480,9 +438,7 @@ class AssertionTest extends TestCase {
     (new Assertion(['foo' => 'bar']))->property('bar');
   }
 
-  /**
-   * Tests the `Assertion::true()` method.
-   */
+  /** @test Assertion::true() */
   function testTrue(): void {
     // It should return the current instance.
     $assertion = new Assertion(true);
@@ -496,25 +452,21 @@ class AssertionTest extends TestCase {
     (new Assertion(false))->true;
   }
 
-  /**
-   * Tests the `Assertion::writable()` method.
-   */
+  /** @test Assertion::writable() */
   function testWritable(): void {
     // It should return the current instance.
     $assertion = (new Assertion(__FILE__))->file;
     assertThat($assertion->writable, identicalTo($assertion));
 
     // It should be negatable.
-    (new Assertion(false))->file->not->writable;
+    (new Assertion('null'))->file->not->writable;
 
     // It should throw an exception if the assertion failed.
     $this->expectException(AssertionFailedError::class);
-    (new Assertion(false))->file->writable;
+    (new Assertion('null'))->file->writable;
   }
 
-  /**
-   * Tests the `Assertion::xml()` method.
-   */
+  /** @test Assertion::xml() */
   function testXml(): void {
     $assertion = new Assertion(null);
     $hasFlag = (function(string $name) { return $this->hasFlag($name); })->bindTo($assertion, Assertion::class);
