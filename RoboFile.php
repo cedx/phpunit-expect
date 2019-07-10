@@ -1,30 +1,34 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 use Robo\{Result, Tasks};
 
 // Load the dependencies.
 require_once __DIR__.'/vendor/autoload.php';
 
-/**
- * Provides tasks for the build system.
- */
+/** Provides tasks for the build system. */
 class RoboFile extends Tasks {
 
-  /**
-   * Creates a new task runner.
-   */
+  /** @var string The Composer command. */
+  private $composer;
+
+  /** Creates a new task runner. */
   function __construct() {
     $path = (string) getenv('PATH');
     $vendor = (string) realpath('vendor/bin');
     if (strpos($path, $vendor) === false) putenv("PATH=$vendor".PATH_SEPARATOR.$path);
+
+    $this->composer = PHP_OS_FAMILY == 'Windows' ? 'php '.escapeshellarg('C:\Program Files\PHP\share\composer.phar') : 'composer';
+    $this->stopOnFail();
   }
 
   /**
    * Deletes all generated files and reset any saved state.
+   * @return Result The task result.
    */
-  function clean(): void {
-    $this->_cleanDir('var');
-    $this->_deleteDir(['build', 'doc/api', 'web']);
+  function clean(): Result {
+    return $this->collectionBuilder()
+      ->addTask($this->taskCleanDir('var'))
+      ->addTask($this->taskDeleteDir(['build', 'doc/api', 'web']))
+      ->run();
   }
 
   /**
@@ -32,6 +36,9 @@ class RoboFile extends Tasks {
    * @return Result The task result.
    */
   function coverage(): Result {
+    $path = (string) getenv('PATH');
+    $vendor = (string) realpath(trim(`{$this->composer} global config bin-dir --absolute`));
+    if (strpos($path, $vendor) === false) putenv("PATH=$vendor".PATH_SEPARATOR.$path);
     return $this->_exec('coveralls var/coverage.xml');
   }
 
@@ -40,12 +47,14 @@ class RoboFile extends Tasks {
    * @return Result The task result.
    */
   function doc(): Result {
-    $this->taskFilesystemStack()
-      ->copy('CHANGELOG.md', 'doc/about/changelog.md')
-      ->copy('LICENSE.md', 'doc/about/license.md')
+    return $this->collectionBuilder()
+      ->addTask($this->taskFilesystemStack()
+        ->copy('CHANGELOG.md', 'doc/about/changelog.md')
+        ->copy('LICENSE.md', 'doc/about/license.md'))
+      ->addTask($this->taskExec('mkdocs build --config-file=etc/mkdocs.yaml'))
+      ->addTask($this->taskFilesystemStack()
+        ->remove(['doc/about/changelog.md', 'doc/about/license.md']))
       ->run();
-
-    return $this->_exec('mkdocs build');
   }
 
   /**
@@ -53,7 +62,10 @@ class RoboFile extends Tasks {
    * @return Result The task result.
    */
   function lint(): Result {
-    return $this->_exec('phpstan analyse');
+    return $this->taskExecStack()
+      ->exec('php -l example/main.php')
+      ->exec('phpstan analyse --configuration=etc/phpstan.neon')
+      ->run();
   }
 
   /**
@@ -61,7 +73,7 @@ class RoboFile extends Tasks {
    * @return Result The task result.
    */
   function test(): Result {
-    return $this->taskPhpUnit()->run();
+    return $this->_exec('phpunit --configuration=etc/phpunit.xml');
   }
 
   /**
@@ -69,12 +81,11 @@ class RoboFile extends Tasks {
    * @return Result The task result.
    */
   function upgrade(): Result {
-    $composer = escapeshellarg(PHP_OS_FAMILY == 'Windows' ? 'C:\Program Files\PHP\share\composer.phar' : '/usr/local/bin/composer');
-    return $this->taskExecStack()->stopOnFail()
+    return $this->taskExecStack()
       ->exec('git reset --hard')
       ->exec('git fetch --all --prune')
       ->exec('git pull --rebase')
-      ->exec("php $composer update --no-interaction")
+      ->exec("{$this->composer} update --no-interaction")
       ->run();
   }
 
@@ -89,10 +100,9 @@ class RoboFile extends Tasks {
 
   /**
    * Watches for file changes.
+   * @return Result The task result.
    */
-  function watch(): void {
-    $this->taskWatch()
-      ->monitor(['lib', 'test'], function() { $this->test(); })
-      ->run();
+  function watch(): Result {
+    return $this->taskWatch()->monitor('test', function() { $this->test(); })->run();
   }
 }
