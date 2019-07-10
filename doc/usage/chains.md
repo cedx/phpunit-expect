@@ -13,6 +13,7 @@ They do not provide testing capabilities.
 - `->is`
 - `->of`
 - `->same`
+- `->still`
 - `->that`
 - `->to`
 - `->which`
