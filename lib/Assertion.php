@@ -8,42 +8,26 @@ use PHPUnit\Framework\Constraint\{Constraint};
  *
  * @property Assertion $a Chainable getter to improve the assertion readability.
  * @property Assertion $an Chainable getter to improve the assertion readability.
- * @property Assertion $and Chainable getter to improve the assertion readability.
- * @property Assertion $at Chainable getter to improve the assertion readability.
- * @property Assertion $be Chainable getter to improve the assertion readability.
- * @property Assertion $been Chainable getter to improve the assertion readability.
- * @property Assertion $but Chainable getter to improve the assertion readability.
  * @property Assertion $directory Indicates that the assertion following in the chain targets a directory.
- * @property Assertion $does Chainable getter to improve the assertion readability.
  * @property Assertion $empty Reports an error if the target is not empty.
  * @property Assertion $exist Reports an error if the file or directory specified by the target does not exist.
  * @property Assertion $false Reports an error if the target is `true`.
  * @property Assertion $file Indicates that the assertion following in the chain targets a file.
- * @property Assertion $has Chainable getter to improve the assertion readability.
- * @property Assertion $have Chainable getter to improve the assertion readability.
  * @property Assertion $infinite Reports an error if the target is not `INF`.
- * @property Assertion $is Chainable getter to improve the assertion readability.
  * @property Assertion $json Indicates that the assertion following in the chain targets JSON data.
  * @property Assertion $length Indicates that the assertion following in the chain targets a length.
  * @property Assertion $lengthOf Indicates that the assertion following in the chain targets a length.
  * @property Assertion $NaN Reports an error if the target is not `NAN`.
  * @property Assertion $not Negates any of assertions following in the chain.
  * @property Assertion $null Reports an error if the target is not `null`.
- * @property Assertion $of Chainable getter to improve the assertion readability.
  * @property Assertion $readable Reports an error if the file or directory specified by the target is not readable.
- * @property Assertion $same Chainable getter to improve the assertion readability.
- * @property Assertion $still Chainable getter to improve the assertion readability.
- * @property Assertion $that Chainable getter to improve the assertion readability.
  * @property Assertion $throw Reports an error if the function target does not throw an exception.
- * @property Assertion $to Chainable getter to improve the assertion readability.
  * @property Assertion $true Reports an error if the target is `false`.
- * @property Assertion $which Chainable getter to improve the assertion readability.
- * @property Assertion $with Chainable getter to improve the assertion readability.
  * @property Assertion $writable Reports an error if the file or directory specified by the target is not writable.
  * @property Assertion $xml Indicates that the assertion following in the chain targets XML data.
  */
 class Assertion {
-  use ChainTrait;
+  use ChainableTrait;
 
   /** @var array The assertion flags. */
   private $flags = [];
@@ -62,24 +46,6 @@ class Assertion {
   function __construct($target, string $message = '') {
     $this->target = $target;
     $this->message = $message;
-  }
-
-  /**
-   * Invokes the instance method with the specified name.
-   * @param string $name The name of the method to invoke.
-   * @return mixed The return value of the invoked method.
-   * @throws \InvalidArgumentException The specified method is not found.
-   */
-  function __get(string $name) {
-    static $reflection;
-    if (!$reflection) $reflection = new \ReflectionClass(static::class);
-
-    if ($reflection->hasMethod($name)) {
-      $method = $reflection->getMethod($name);
-      if ($method->isPublic() && !$method->getNumberOfRequiredParameters()) return $this->$name();
-    }
-
-    throw new \InvalidArgumentException("The specified method is not found: $name()");
   }
 
   /**

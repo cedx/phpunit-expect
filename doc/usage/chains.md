@@ -1,5 +1,5 @@
 path: blob/master
-source: lib/ChainTrait.php
+source: lib/ChainableTrait.php
 
 # Language chains
 The following are provided as chainable getters to improve the readability of your assertions.
