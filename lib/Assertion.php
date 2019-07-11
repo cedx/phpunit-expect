@@ -98,6 +98,17 @@ class Assertion {
   }
 
   /**
+   * Reports an error if the target is not equal to the specified value, within a given delta range.
+   * @param int|float $value The value to compare.
+   * @param float $delta The allowed distance between two values to consider them equal.
+   * @return $this This instance.
+   * @see Assertion::closeTo()
+   */
+  function approximately($value, float $delta): self {
+    return $this->closeTo($value, $delta);
+  }
+
+  /**
    * Reports an error if the target is not less than the specified value.
    * @param int|float $value The value to compare.
    * @return $this This instance.
