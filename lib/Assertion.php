@@ -6,25 +6,42 @@ use PHPUnit\Framework\Constraint\{Constraint};
 /**
  * Represents a test assertion.
  *
- * @property Assertion $a Chainable getter to improve the assertion readability.
- * @property Assertion $an Chainable getter to improve the assertion readability.
- * @property Assertion $directory Indicates that the assertion following in the chain targets a directory.
- * @property Assertion $empty Reports an error if the target is not empty.
- * @property Assertion $exist Reports an error if the file or directory specified by the target does not exist.
- * @property Assertion $false Reports an error if the target is `true`.
- * @property Assertion $file Indicates that the assertion following in the chain targets a file.
- * @property Assertion $infinite Reports an error if the target is not `INF`.
- * @property Assertion $json Indicates that the assertion following in the chain targets JSON data.
- * @property Assertion $length Indicates that the assertion following in the chain targets a length.
- * @property Assertion $lengthOf Indicates that the assertion following in the chain targets a length.
- * @property Assertion $NaN Reports an error if the target is not `NAN`.
- * @property Assertion $not Negates any of assertions following in the chain.
- * @property Assertion $null Reports an error if the target is not `null`.
- * @property Assertion $readable Reports an error if the file or directory specified by the target is not readable.
- * @property Assertion $throw Reports an error if the function target does not throw an exception.
- * @property Assertion $true Reports an error if the target is `false`.
- * @property Assertion $writable Reports an error if the file or directory specified by the target is not writable.
- * @property Assertion $xml Indicates that the assertion following in the chain targets XML data.
+ * @property $this $and Chainable property to improve the readability of an assertion.
+ * @property $this $at Chainable property to improve the readability of an assertion.
+ * @property $this $be Chainable property to improve the readability of an assertion.
+ * @property $this $been Chainable property to improve the readability of an assertion.
+ * @property $this $but Chainable property to improve the readability of an assertion.
+ * @property $this $does Chainable property to improve the readability of an assertion.
+ * @property $this $has Chainable property to improve the readability of an assertion.
+ * @property $this $have Chainable property to improve the readability of an assertion.
+ * @property $this $is Chainable property to improve the readability of an assertion.
+ * @property $this $of Chainable property to improve the readability of an assertion.
+ * @property $this $same Chainable property to improve the readability of an assertion.
+ * @property $this $still Chainable property to improve the readability of an assertion.
+ * @property $this $that Chainable property to improve the readability of an assertion.
+ * @property $this $to Chainable property to improve the readability of an assertion.
+ * @property $this $which Chainable property to improve the readability of an assertion.
+ * @property $this $with Chainable property to improve the readability of an assertion.
+ *
+ * @property $this $a Chainable property to improve the readability of an assertion.
+ * @property $this $an Chainable property to improve the readability of an assertion.
+ * @property $this $directory Indicates that the assertion following in the chain targets a directory.
+ * @property $this $empty Reports an error if the target is not empty.
+ * @property $this $exist Reports an error if the file or directory specified by the target does not exist.
+ * @property $this $false Reports an error if the target is `true`.
+ * @property $this $file Indicates that the assertion following in the chain targets a file.
+ * @property $this $infinite Reports an error if the target is not `INF`.
+ * @property $this $json Indicates that the assertion following in the chain targets JSON data.
+ * @property $this $length Indicates that the assertion following in the chain targets a length.
+ * @property $this $lengthOf Indicates that the assertion following in the chain targets a length.
+ * @property $this $NaN Reports an error if the target is not `NAN`.
+ * @property $this $not Negates any of assertions following in the chain.
+ * @property $this $null Reports an error if the target is not `null`.
+ * @property $this $readable Reports an error if the file or directory specified by the target is not readable.
+ * @property $this $throw Reports an error if the function target does not throw an exception.
+ * @property $this $true Reports an error if the target is `false`.
+ * @property $this $writable Reports an error if the file or directory specified by the target is not writable.
+ * @property $this $xml Indicates that the assertion following in the chain targets XML data.
  */
 class Assertion {
   use ChainableTrait;

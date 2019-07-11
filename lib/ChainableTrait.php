@@ -1,25 +1,7 @@
 <?php declare(strict_types=1);
 namespace PHPUnit\Expect;
 
-/**
- * Provides chainable methods to improve the readability of assertions.
- * @property $this $and Chainable property to improve the readability of an assertion.
- * @property $this $at Chainable property to improve the readability of an assertion.
- * @property $this $be Chainable property to improve the readability of an assertion.
- * @property $this $been Chainable property to improve the readability of an assertion.
- * @property $this $but Chainable property to improve the readability of an assertion.
- * @property $this $does Chainable property to improve the readability of an assertion.
- * @property $this $has Chainable property to improve the readability of an assertion.
- * @property $this $have Chainable property to improve the readability of an assertion.
- * @property $this $is Chainable property to improve the readability of an assertion.
- * @property $this $of Chainable property to improve the readability of an assertion.
- * @property $this $same Chainable property to improve the readability of an assertion.
- * @property $this $still Chainable property to improve the readability of an assertion.
- * @property $this $that Chainable property to improve the readability of an assertion.
- * @property $this $to Chainable property to improve the readability of an assertion.
- * @property $this $which Chainable property to improve the readability of an assertion.
- * @property $this $with Chainable property to improve the readability of an assertion.
- */
+/** Provides chainable methods to improve the readability of assertions. */
 trait ChainableTrait {
 
   /**
