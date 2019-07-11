@@ -1,5 +1,5 @@
 {
-  "description": "BDD assertion library based on PHPUnit.",
+  "description": "BDD assertion library based on PHPUnit, inspired by Chai.",
   "homepage": "https://dev.belin.io/phpunit-expect",
   "license": "MIT",
   "name": "cedx/phpunit-expect",
