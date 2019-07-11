@@ -34,7 +34,8 @@ function it(string $specification, callable $block): void {
  * Skips a test block.
  * @param string $specification A message describing the test specification.
  * @param callable $block The test block to be invoked.
+ * @param bool $markTestAsSkipped Value indicating whether to mark the surrounding test as skipped.
  */
-function skip(string $specification, callable $block): void {
-  // The test block is ignored.
+function skip(string $specification, callable $block, $markTestAsSkipped = false): void {
+  if ($markTestAsSkipped) Assert::markTestSkipped();
 }
