@@ -2,10 +2,9 @@
 
 ## Version [0.7.0](https://github.com/cedx/phpunit-expect/compare/v0.6.0...v0.7.0)
 - Breaking change: upgraded [PHPUnit](https://phpunit.de) to version 8.
-- Breaking change: moved the language chains to a dedicated trait `ChainableTrait`.
 - Added the `approximately` assertion alias.
 - Added the `still` language chain.
-- Updated the package dependencies.
+- Moved the language chains to a dedicated trait `ChainableTrait`.
 
 ## Version [0.6.0](https://github.com/cedx/phpunit-expect/compare/v0.5.0...v0.6.0)
 - Added support for [PHPStan](https://github.com/phpstan/phpstan) static analyzer.
