@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 namespace PHPUnit\Expect;
 
+use PHPUnit\Framework\{Assert};
 use PHPUnit\Framework\Constraint\{Constraint};
 
 /**
@@ -72,7 +73,7 @@ class Assertion {
    * @return $this This instance.
    */
   function a(string $type = ''): self {
-    return mb_strlen($type) ? $this->expect($this->target, isType($type)) : $this;
+    return mb_strlen($type) ? $this->expect($this->target, Assert::isType($type)) : $this;
   }
 
   /**
@@ -82,7 +83,7 @@ class Assertion {
    */
   function above($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
-    return $this->expect($target, greaterThan($value));
+    return $this->expect($target, Assert::greaterThan($value));
   }
 
   /**
@@ -103,7 +104,7 @@ class Assertion {
    */
   function below($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
-    return $this->expect($target, lessThan($value));
+    return $this->expect($target, Assert::lessThan($value));
   }
 
   /**
@@ -113,7 +114,7 @@ class Assertion {
    * @return $this This instance.
    */
   function closeTo($value, float $delta): self {
-    return $this->expect($this->target, equalTo($value, $delta));
+    return $this->expect($this->target, Assert::equalTo($value, $delta));
   }
 
   /**
@@ -122,8 +123,8 @@ class Assertion {
    * @return $this This instance.
    */
   function contain($value = null): self {
-    if ($this->hasFlag('file')) return $this->expect(@file_get_contents($this->target), stringContains($value));
-    return $this->expect($this->target, is_string($this->target) ? stringContains($value) : contains($value));
+    if ($this->hasFlag('file')) return $this->expect(@file_get_contents($this->target), Assert::stringContains($value));
+    return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
   }
 
   /**
@@ -142,7 +143,7 @@ class Assertion {
    * @return $this This instance.
    */
   function containOnly(string $type): self {
-    return $this->expect($this->target, containsOnly($type));
+    return $this->expect($this->target, Assert::containsOnly($type));
   }
 
   /**
@@ -151,7 +152,7 @@ class Assertion {
    * @return $this This instance.
    */
   function containOnlyInstancesOf(string $className): self {
-    return $this->expect($this->target, containsOnlyInstancesOf($className));
+    return $this->expect($this->target, Assert::containsOnlyInstancesOf($className));
   }
 
   /**
@@ -169,16 +170,16 @@ class Assertion {
    */
   function empty(): self {
     if (is_object($this->target) && !($this->target instanceof \Countable)) {
-      $constraint = countOf(0);
+      $constraint = Assert::countOf(0);
       $target = get_object_vars($this->target);
     }
     else if (is_string($this->target)) {
-      $constraint = equalTo(0);
+      $constraint = Assert::equalTo(0);
       $target = $this->hasFlag('file') ? @filesize($this->target) : mb_strlen($this->target);
       // TODO file/directory flag handling!
     }
     else {
-      $constraint = isEmpty();
+      $constraint = Assert::isEmpty();
       $target = $this->target;
     }
 
@@ -191,7 +192,7 @@ class Assertion {
    * @return $this This instance.
    */
   function endWith(string $value): self {
-    return $this->expect($this->target, stringEndsWith($value));
+    return $this->expect($this->target, Assert::stringEndsWith($value));
   }
 
   /**
@@ -201,13 +202,13 @@ class Assertion {
    */
   function equal($value): self {
     if ($this->hasFlag('file')) {
-      if ($this->hasFlag('negate')) assertFileNotEquals($value, $this->target, $this->message);
-      else assertFileEquals($value, $this->target, $this->message);
+      if ($this->hasFlag('negate')) Assert::assertFileNotEquals($value, $this->target, $this->message);
+      else Assert::assertFileEquals($value, $this->target, $this->message);
       return $this;
     }
 
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
-    return $this->expect($target, equalTo($value));
+    return $this->expect($target, Assert::equalTo($value));
   }
 
   /**
@@ -226,8 +227,8 @@ class Assertion {
    * @throws \BadMethodCallException This assertion is not a file or directory one.
    */
   function exist(): self {
-    if ($this->hasFlag('directory')) $constraint = directoryExists();
-    else if ($this->hasFlag('file')) $constraint = fileExists();
+    if ($this->hasFlag('directory')) $constraint = Assert::directoryExists();
+    else if ($this->hasFlag('file')) $constraint = Assert::fileExists();
     else throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
     return $this->expect($this->target, $constraint);
@@ -238,7 +239,7 @@ class Assertion {
    * @return $this This instance.
    */
   function false(): self {
-    return $this->expect($this->target, isFalse());
+    return $this->expect($this->target, Assert::isFalse());
   }
 
   /**
@@ -255,7 +256,7 @@ class Assertion {
    * @return $this This instance.
    */
   function identicalTo($value): self {
-    return $this->expect($this->target, identicalTo($value));
+    return $this->expect($this->target, Assert::identicalTo($value));
   }
 
   /**
@@ -283,7 +284,7 @@ class Assertion {
    * @return $this This instance.
    */
   function infinite(): self {
-    return $this->expect($this->target, isInfinite());
+    return $this->expect($this->target, Assert::isInfinite());
   }
 
   /**
@@ -292,7 +293,7 @@ class Assertion {
    * @return $this This instance.
    */
   function instanceOf(string $className): self {
-    return $this->expect($this->target, isInstanceOf($className));
+    return $this->expect($this->target, Assert::isInstanceOf($className));
   }
 
   /**
@@ -310,7 +311,7 @@ class Assertion {
    */
   function least($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
-    return $this->expect($target, greaterThanOrEqual($value));
+    return $this->expect($target, Assert::greaterThanOrEqual($value));
   }
 
   /**
@@ -332,11 +333,11 @@ class Assertion {
     if ($value === null) return $this->setFlag('length');
 
     if (is_string($this->target)) {
-      $constraint = equalTo($value);
+      $constraint = Assert::equalTo($value);
       $target = mb_strlen($this->target);
     }
     else {
-      $constraint = countOf($value);
+      $constraint = Assert::countOf($value);
       $target = $this->target;
     }
 
@@ -349,7 +350,7 @@ class Assertion {
    * @return $this This instance.
    */
   function match(string $pattern): self {
-    return $this->expect($this->target, matchesRegularExpression($pattern));
+    return $this->expect($this->target, Assert::matchesRegularExpression($pattern));
   }
 
   /**
@@ -358,7 +359,7 @@ class Assertion {
    * @return $this This instance.
    */
   function matchFormat(string $format): self {
-    return $this->expect($this->target, matches($format));
+    return $this->expect($this->target, Assert::matches($format));
   }
 
   /**
@@ -368,7 +369,7 @@ class Assertion {
    */
   function most($value): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
-    return $this->expect($target, lessThanOrEqual($value));
+    return $this->expect($target, Assert::lessThanOrEqual($value));
   }
 
   /**
@@ -376,7 +377,7 @@ class Assertion {
    * @return $this This instance.
    */
   function NaN(): self {
-    return $this->expect($this->target, isNan());
+    return $this->expect($this->target, Assert::isNan());
   }
 
   /**
@@ -392,7 +393,7 @@ class Assertion {
    * @return $this This instance.
    */
   function null(): self {
-    return $this->expect($this->target, isNull());
+    return $this->expect($this->target, Assert::isNull());
   }
 
   /**
@@ -401,7 +402,7 @@ class Assertion {
    * @return $this This instance.
    */
   function oneOf($value): self {
-    return $this->expect($value, contains($this->target));
+    return $this->expect($value, Assert::contains($this->target));
   }
 
   /**
@@ -428,13 +429,13 @@ class Assertion {
     if (!$isArray && !is_object($this->target)) throw new \BadMethodCallException('The target is not an array nor an object.');
 
     $hasProperty = $isArray ? array_key_exists($name, $this->target) : property_exists($this->target, $name);
-    $hasPropertyConstraint = $isArray ? arrayHasKey($name) : objectHasAttribute($name);
+    $hasPropertyConstraint = $isArray ? Assert::arrayHasKey($name) : Assert::objectHasAttribute($name);
     $property = $isArray ? ($this->target[$name] ?? null) : ($this->target->$name ?? null);
 
     if (!$hasProperty || $value === null) $this->expect($this->target, $hasPropertyConstraint);
     else {
-      assertThat($this->target, $hasPropertyConstraint);
-      $this->expect($property, equalTo($value));
+      Assert::assertThat($this->target, $hasPropertyConstraint);
+      $this->expect($property, Assert::equalTo($value));
     }
 
     $this->target = $property;
@@ -450,7 +451,7 @@ class Assertion {
     if (!$this->hasFlag('directory') && !$this->hasFlag('file'))
       throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    return $this->expect($this->target, isReadable());
+    return $this->expect($this->target, Assert::isReadable());
   }
 
   /**
@@ -459,7 +460,7 @@ class Assertion {
    * @return $this This instance.
    */
   function satisfy(callable $predicate): self {
-    return $this->expect(call_user_func($predicate, $this->target), isTrue());
+    return $this->expect(call_user_func($predicate, $this->target), Assert::isTrue());
   }
 
   /**
@@ -468,7 +469,7 @@ class Assertion {
    * @return $this This instance.
    */
   function startWith(string $value): self {
-    return $this->expect($this->target, stringStartsWith($value));
+    return $this->expect($this->target, Assert::stringStartsWith($value));
   }
 
   /**
@@ -484,8 +485,8 @@ class Assertion {
     try { call_user_func($this->target); }
     catch (\Throwable $e) { $exception = $e; }
 
-    $constraint = logicalNot(isNull());
-    return $this->expect($exception, mb_strlen($className) ? logicalAnd($constraint, isInstanceOf($className)) : $constraint);
+    $constraint = Assert::logicalNot(Assert::isNull());
+    return $this->expect($exception, mb_strlen($className) ? Assert::logicalAnd($constraint, Assert::isInstanceOf($className)) : $constraint);
   }
 
   /**
@@ -493,7 +494,7 @@ class Assertion {
    * @return $this This instance.
    */
   function true(): self {
-    return $this->expect($this->target, isTrue());
+    return $this->expect($this->target, Assert::isTrue());
   }
 
   /**
@@ -504,7 +505,7 @@ class Assertion {
    */
   function within($start, $finish): self {
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
-    return $this->expect($target, logicalAnd(greaterThanOrEqual($start), lessThanOrEqual($finish)));
+    return $this->expect($target, Assert::logicalAnd(Assert::greaterThanOrEqual($start), Assert::lessThanOrEqual($finish)));
   }
 
   /**
@@ -516,7 +517,7 @@ class Assertion {
     if (!$this->hasFlag('directory') && !$this->hasFlag('file'))
       throw new \BadMethodCallException('This assertion is not a file or directory one.');
 
-    return $this->expect($this->target, isWritable());
+    return $this->expect($this->target, Assert::isWritable());
   }
 
   /**
@@ -534,7 +535,7 @@ class Assertion {
    * @return $this This instance.
    */
   private function expect($target, Constraint $constraint): self {
-    assertThat($target, $this->hasFlag('negate') ? logicalNot($constraint) : $constraint, $this->message);
+    Assert::assertThat($target, $this->hasFlag('negate') ? Assert::logicalNot($constraint) : $constraint, $this->message);
     return $this;
   }
 
