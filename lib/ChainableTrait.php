@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace PHPUnit\Expect;
 
-/** Provides chainable methods to improve the readability of assertions. */
+/** Provides chainable methods and properties to improve the readability of assertions. */
 trait ChainableTrait {
 
   /**
@@ -12,14 +12,16 @@ trait ChainableTrait {
    */
   function __get(string $name) {
     static $reflection;
-    if (!$reflection) $reflection = new \ReflectionClass(static::class);
+
+    $class = static::class;
+    if (!$reflection) $reflection = new \ReflectionClass($class);
 
     if ($reflection->hasMethod($name)) {
       $method = $reflection->getMethod($name);
       if ($method->isPublic() && !$method->getNumberOfRequiredParameters()) return $this->$name();
     }
 
-    throw new \InvalidArgumentException("The specified method is not found: $name()");
+    throw new \InvalidArgumentException("The specified method is not found: $class->$name()");
   }
 
   /**
