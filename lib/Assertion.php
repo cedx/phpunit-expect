@@ -130,7 +130,7 @@ class Assertion {
 
   /**
    * Reports an error if the target does not contain an element or a substring.
-   * @param mixed $value The value to find.
+   * @param array|string|\Traversable $value The value to find.
    * @return $this This instance.
    */
   function contain($value = null): self {
