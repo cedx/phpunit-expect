@@ -18,7 +18,8 @@ trait ChainableTrait {
 
     if ($reflection->hasMethod($name)) {
       $method = $reflection->getMethod($name);
-      if ($method->isPublic() && !$method->getNumberOfRequiredParameters()) return $this->$name();
+      $isCallable = $method->isPublic() && !$method->isAbstract() && !$method->isStatic();
+      if ($isCallable && !$method->getNumberOfRequiredParameters()) return $this->$name();
     }
 
     throw new \InvalidArgumentException("The specified method is not found: $class->$name()");
