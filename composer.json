@@ -31,12 +31,12 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^8.3.3"
+    "phpunit/phpunit": "^8.3.4"
   },
   "require-dev": {
     "consolidation/robo": "^1.4.10",
     "henrikbjorn/lurker": "^1.2.0",
-    "phpstan/phpstan": "^0.11.12"
+    "phpstan/phpstan": "^0.11.15"
   },
   "scripts": {
     "coverage": "robo coverage",
