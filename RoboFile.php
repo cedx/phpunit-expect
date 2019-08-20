@@ -14,7 +14,7 @@ class RoboFile extends Tasks {
   function __construct() {
     $path = (string) getenv('PATH');
     $vendor = (string) realpath('vendor/bin');
-    if (strpos($path, $vendor) === false) putenv("PATH=$vendor".PATH_SEPARATOR.$path);
+    if (mb_strpos($path, $vendor) === false) putenv("PATH=$vendor".PATH_SEPARATOR.$path);
 
     $this->composer = PHP_OS_FAMILY == 'Windows' ? 'php '.escapeshellarg('C:\Program Files\PHP\share\composer.phar') : 'composer';
     $this->stopOnFail();
@@ -38,7 +38,7 @@ class RoboFile extends Tasks {
   function coverage(): Result {
     $path = (string) getenv('PATH');
     $vendor = (string) realpath(trim(`{$this->composer} global config bin-dir --absolute`));
-    if (strpos($path, $vendor) === false) putenv("PATH=$vendor".PATH_SEPARATOR.$path);
+    if (mb_strpos($path, $vendor) === false) putenv("PATH=$vendor".PATH_SEPARATOR.$path);
     return $this->_exec('coveralls var/coverage.xml');
   }
 
