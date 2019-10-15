@@ -8,10 +8,10 @@ class SampleAssertion {
   use ChainableTrait;
 }
 
-/** Tests the features of the `PHPUnit\Expect\ChainableTrait` trait. */
+/** @testdox PHPUnit\Expect\ChainableTrait */
 class ChainableTraitTest extends TestCase {
 
-  /** @test ChainableTrait->__get() */
+  /** @testdox ->__get() */
   function testGet(): void {
     $methods = (new \ReflectionClass(SampleAssertion::class))->getMethods(\ReflectionMethod::IS_PUBLIC);
     $filter = function(\ReflectionMethod $method) { return mb_substr($method->getName(), 0, 2) != '__'; };
@@ -30,112 +30,112 @@ class ChainableTraitTest extends TestCase {
     $assertion->__get('foo');
   }
 
-  /** @test ChainableTrait->and() */
+  /** @testdox ->and() */
   function testAnd(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->and(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->at() */
+  /** @testdox ->at() */
   function testAt(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->at(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->be() */
+  /** @testdox ->be() */
   function testBe(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->be(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->been() */
+  /** @testdox ->been() */
   function testBeen(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->been(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->but() */
+  /** @testdox ->but() */
   function testBut(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->but(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->does() */
+  /** @testdox ->does() */
   function testDoes(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->does(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->has() */
+  /** @testdox ->has() */
   function testHas(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->has(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->have() */
+  /** @testdox ->have() */
   function testHave(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->have(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->is() */
+  /** @testdox ->is() */
   function testIs(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->is(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->of() */
+  /** @testdox ->of() */
   function testOf(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->of(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->same() */
+  /** @testdox ->same() */
   function testSame(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->same(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->still() */
+  /** @testdox ->still() */
   function testStill(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->still(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->that() */
+  /** @testdox ->that() */
   function that(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->that(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->to() */
+  /** @testdox ->to() */
   function testTo(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->to(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->which() */
+  /** @testdox ->which() */
   function testWhich(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     assertThat($assertion->which(), identicalTo($assertion));
   }
 
-  /** @test ChainableTrait->with() */
+  /** @testdox ->with() */
   function testWith(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;

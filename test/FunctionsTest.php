@@ -3,24 +3,24 @@ namespace PHPUnit\Expect;
 
 use PHPUnit\Framework\{AssertionFailedError, TestCase};
 
-/** Tests the features of the functions. */
+/** @testdox PHPUnit\Expect\{expect, fail, it, skip} */
 class FunctionsTest extends TestCase {
 
-  /** @test expect() */
+  /** @testdox expect() */
   function testExpect(): void {
     // It should create new assertions.
     assertThat(expect('foo', 'bar'), isInstanceOf(Assertion::class));
     assertThat(expect(null), logicalNot(identicalTo(expect(null))));
   }
 
-  /** @test fail() */
+  /** @testdox fail() */
   function testFail(): void {
     // It should throw an assertion error.
     $this->expectException(AssertionFailedError::class);
     fail('foo');
   }
 
-  /** @test it() */
+  /** @testdox it() */
   function testIt(): void {
     // It should invoke the specified test block.
     $called = false;
@@ -30,7 +30,7 @@ class FunctionsTest extends TestCase {
     assertThat($called, isTrue());
   }
 
-  /** @test skip() */
+  /** @testdox skip() */
   function testSkip(): void {
     // It should not run its test block.
     $called = false;
