@@ -5,7 +5,7 @@ Before installing **PHPUnit-Expect**, you need to make sure you have [PHP](https
 and [Composer](https://getcomposer.org), the PHP package manager, up and running.
 
 !!! warning
-    PHPUnit-Expect requires PHP >= **7.2.0**.
+    PHPUnit-Expect requires PHP >= **7.4.0**.
     
 You can verify if you're already good to go with the following commands:
 

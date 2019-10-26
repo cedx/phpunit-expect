@@ -77,7 +77,7 @@ use PHPUnit\Framework\{TestCase};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
-    it('should be writable', function() {
+    it('should be negatable', function() {
       expect('foo')->to->not->equal('bar');
       expect(function() {})->to->not->throw;
     });
