@@ -14,8 +14,8 @@ class ChainableTraitTest extends TestCase {
   /** @testdox ->__get() */
   function testGet(): void {
     $methods = (new \ReflectionClass(SampleAssertion::class))->getMethods(\ReflectionMethod::IS_PUBLIC);
-    $filter = function(\ReflectionMethod $method) { return mb_substr($method->getName(), 0, 2) != '__'; };
-    $map = function(\ReflectionMethod $method) { return $method->getName(); };
+    $filter = fn(\ReflectionMethod $method) => mb_substr($method->getName(), 0, 2) != '__';
+    $map = fn(\ReflectionMethod $method) => $method->getName();
     $names = array_map($map, array_filter($methods, $filter));
 
     // It should return the current instance.
