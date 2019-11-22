@@ -8,7 +8,7 @@ require_once __DIR__.'/vendor/autoload.php';
 class RoboFile extends Tasks {
 
   /** @var string The Composer command. */
-  private $composer;
+  private string $composer;
 
   /** Creates a new task runner. */
   function __construct() {

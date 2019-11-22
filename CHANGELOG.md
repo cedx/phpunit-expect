@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [0.9.0](https://github.com/cedx/phpunit-expect/compare/v0.8.0...v0.9.0)
+- Breaking change: raised the required [PHP](https://www.php.net) version.
+- Breaking change: using PHP 7.4 features, like arrow functions and typed properties.
+
 ## Version [0.8.0](https://github.com/cedx/phpunit-expect/compare/v0.7.0...v0.8.0)
 - The `skip()` function can mark the surrounding test as skipped.
 - Updated the package dependencies.
