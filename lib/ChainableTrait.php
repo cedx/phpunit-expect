@@ -14,8 +14,7 @@ trait ChainableTrait {
     static $reflection;
 
     $class = static::class;
-    if (!$reflection) $reflection = new \ReflectionClass($class);
-
+    $reflection ??= new \ReflectionClass($class);
     if ($reflection->hasMethod($name)) {
       $method = $reflection->getMethod($name);
       $isCallable = $method->isPublic() && !$method->isAbstract() && !$method->isStatic();
