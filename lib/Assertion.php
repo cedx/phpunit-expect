@@ -409,7 +409,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not contained in the specified list or string.
-   * @param array<mixed>|\Traversable<mixed> $value The value provider.
+   * @param iterable<mixed> $value The value provider.
    * @return $this This instance.
    */
   function oneOf($value): self {
