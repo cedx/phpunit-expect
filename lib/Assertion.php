@@ -412,7 +412,7 @@ class Assertion {
    * @param iterable<mixed> $value The value provider.
    * @return $this This instance.
    */
-  function oneOf($value): self {
+  function oneOf(iterable $value): self {
     return $this->expect($value, Assert::contains($this->target));
   }
 
