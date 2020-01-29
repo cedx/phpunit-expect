@@ -11,10 +11,12 @@ trait ChainableTrait {
    * @throws \InvalidArgumentException The specified method is not found.
    */
   function __get(string $name) {
-    static $reflection;
+    assert(mb_strlen($name) > 0);
 
+    static $reflection;
     $class = static::class;
     $reflection ??= new \ReflectionClass($class);
+
     if ($reflection->hasMethod($name)) {
       $method = $reflection->getMethod($name);
       $isCallable = $method->isPublic() && !$method->isAbstract() && !$method->isStatic();

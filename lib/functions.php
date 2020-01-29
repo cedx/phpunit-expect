@@ -27,6 +27,7 @@ function fail(string $message = ''): void {
  * @param callable $block The test block to be invoked.
  */
 function it(string $specification, callable $block): void {
+  assert(mb_strlen($specification) > 0);
   call_user_func($block, $specification);
 }
 
@@ -37,5 +38,6 @@ function it(string $specification, callable $block): void {
  * @param bool $markTestAsSkipped Value indicating whether to mark the surrounding test as skipped.
  */
 function skip(string $specification, callable $block, $markTestAsSkipped = false): void {
+  assert(mb_strlen($specification) > 0);
   if ($markTestAsSkipped) Assert::markTestSkipped();
 }

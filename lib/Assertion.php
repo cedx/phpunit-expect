@@ -82,6 +82,7 @@ class Assertion {
    * @return $this This instance.
    */
   function above($value): self {
+    assert(is_int($value) || is_float($value));
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::greaterThan($value));
   }
@@ -105,6 +106,7 @@ class Assertion {
    * @see Assertion::closeTo()
    */
   function approximately($value, float $delta): self {
+    assert(is_int($value) || is_float($value));
     return $this->closeTo($value, $delta);
   }
 
@@ -114,6 +116,7 @@ class Assertion {
    * @return $this This instance.
    */
   function below($value): self {
+    assert(is_int($value) || is_float($value));
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::lessThan($value));
   }
@@ -134,8 +137,8 @@ class Assertion {
    * @return $this This instance.
    */
   function contain($value = null): self {
-    if ($this->hasFlag('file')) return $this->expect(@file_get_contents($this->target), Assert::stringContains($value));
-    return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::contains($value));
+    if ($this->hasFlag('file')) return $this->expect((string) @file_get_contents($this->target), Assert::stringContains($value));
+    return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::containsEqual($value));
   }
 
   /**
@@ -154,6 +157,7 @@ class Assertion {
    * @return $this This instance.
    */
   function containOnly(string $type): self {
+    assert(mb_strlen($type) > 0);
     return $this->expect($this->target, Assert::containsOnly($type));
   }
 
@@ -163,6 +167,7 @@ class Assertion {
    * @return $this This instance.
    */
   function containOnlyInstancesOf(string $className): self {
+    assert(mb_strlen($className) > 0);
     return $this->expect($this->target, Assert::containsOnlyInstancesOf($className));
   }
 
@@ -203,6 +208,7 @@ class Assertion {
    * @return $this This instance.
    */
   function endWith(string $value): self {
+    assert(mb_strlen($value) > 0);
     return $this->expect($this->target, Assert::stringEndsWith($value));
   }
 
@@ -304,6 +310,7 @@ class Assertion {
    * @return $this This instance.
    */
   function instanceOf(string $className): self {
+    assert(mb_strlen($className) > 0);
     return $this->expect($this->target, Assert::isInstanceOf($className));
   }
 
@@ -321,6 +328,7 @@ class Assertion {
    * @return $this This instance.
    */
   function least($value): self {
+    assert(is_int($value) || is_float($value));
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::greaterThanOrEqual($value));
   }
@@ -343,6 +351,7 @@ class Assertion {
   function lengthOf(int $value = null): self {
     if ($value === null) return $this->setFlag('length');
 
+    assert($value >= 0);
     if (is_string($this->target)) {
       $constraint = Assert::equalTo($value);
       $target = mb_strlen($this->target);
@@ -361,6 +370,7 @@ class Assertion {
    * @return $this This instance.
    */
   function match(string $pattern): self {
+    assert(mb_strlen($pattern) > 0);
     return $this->expect($this->target, Assert::matchesRegularExpression($pattern));
   }
 
@@ -370,6 +380,7 @@ class Assertion {
    * @return $this This instance.
    */
   function matchFormat(string $format): self {
+    assert(mb_strlen($format) > 0);
     return $this->expect($this->target, Assert::matches($format));
   }
 
@@ -379,6 +390,7 @@ class Assertion {
    * @return $this This instance.
    */
   function most($value): self {
+    assert(is_int($value) || is_float($value));
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::lessThanOrEqual($value));
   }
@@ -413,7 +425,7 @@ class Assertion {
    * @return $this This instance.
    */
   function oneOf(iterable $value): self {
-    return $this->expect($value, Assert::contains($this->target));
+    return $this->expect($value, Assert::containsEqual($this->target));
   }
 
   /**
@@ -433,11 +445,11 @@ class Assertion {
    * @param string $name The property name.
    * @param mixed $value The property value.
    * @return $this This instance.
-   * @throws \BadMethodCallException The target is not an array nor an object.
    */
   function property(string $name, $value = null): self {
     $isArray = is_array($this->target) || $this->target instanceof \ArrayAccess;
-    if (!$isArray && !is_object($this->target)) throw new \BadMethodCallException('The target is not an array nor an object.');
+    assert(mb_strlen($name) > 0);
+    assert($isArray || is_object($this->target));
 
     $hasProperty = $isArray ? array_key_exists($name, $this->target) : property_exists($this->target, $name);
     $hasPropertyConstraint = $isArray ? Assert::arrayHasKey($name) : Assert::objectHasAttribute($name);
@@ -480,6 +492,7 @@ class Assertion {
    * @return $this This instance.
    */
   function startWith(string $value): self {
+    assert(mb_strlen($value) > 0);
     return $this->expect($this->target, Assert::stringStartsWith($value));
   }
 
@@ -515,6 +528,8 @@ class Assertion {
    * @return $this This instance.
    */
   function within($start, $finish): self {
+    assert(is_int($start) || is_float($start));
+    assert(is_int($finish) || is_float($finish));
     $target = $this->hasFlag('length') ? $this->getLength($this->target) : $this->target;
     return $this->expect($target, Assert::logicalAnd(Assert::greaterThanOrEqual($start), Assert::lessThanOrEqual($finish)));
   }
@@ -569,6 +584,7 @@ class Assertion {
    * @return bool `true` if this assertion has the specified flag, otherwise `false`.
    */
   private function hasFlag(string $name): bool {
+    assert(mb_strlen($name) > 0);
     return $this->flags[$name] ?? false;
   }
 
@@ -579,6 +595,7 @@ class Assertion {
    * @return $this This instance.
    */
   private function setFlag(string $name, bool $value = true): self {
+    assert(mb_strlen($name) > 0);
     $this->flags[$name] = $value;
     return $this;
   }
