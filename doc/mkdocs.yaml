@@ -3,7 +3,7 @@ site_description: BDD assertion library based on PHPUnit.
 site_author: Cédric Belin - cedric@belin.io
 site_url: https://dev.belin.io/phpunit-expect
 
-docs_dir: ../doc
+docs_dir: .
 site_dir: ../web
 
 repo_name: GitHub
