@@ -12,7 +12,6 @@
     "psr-4": {"PHPUnit\\Expect\\": "lib/"}
   },
   "autoload-dev": {
-    "files": ["vendor/phpunit/phpunit/src/Framework/Assert/Functions.php"],
     "psr-4": {"PHPUnit\\Expect\\": "test/"}
   },
   "config": {
@@ -31,7 +30,7 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^8.5.2"
+    "phpunit/phpunit": "^9.0.1"
   },
   "require-dev": {
     "consolidation/robo": "^2.0.3",
