@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.10.0](https://github.com/cedx/phpunit-expect/compare/v0.9.0...v0.10.0)
+- Upgraded [PHPUnit](https://phpunit.de) to version 9.
+
 ## Version [0.9.0](https://github.com/cedx/phpunit-expect/compare/v0.8.0...v0.9.0)
 - Breaking change: raised the required [PHP](https://www.php.net) version.
 - Breaking change: using PHP 7.4 features, like arrow functions and typed properties.
@@ -9,10 +12,10 @@
 - Updated the package dependencies.
 
 ## Version [0.7.0](https://github.com/cedx/phpunit-expect/compare/v0.6.0...v0.7.0)
-- Breaking change: upgraded [PHPUnit](https://phpunit.de) to version 8.
 - Added the `approximately` assertion alias.
 - Added the `still` language chain.
 - Moved the language chains to a dedicated trait `ChainableTrait`.
+- Upgraded [PHPUnit](https://phpunit.de) to version 8.
 
 ## Version [0.6.0](https://github.com/cedx/phpunit-expect/compare/v0.5.0...v0.6.0)
 - Added support for [PHPStan](https://github.com/phpstan/phpstan) static analyzer.
