@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace PHPUnit\Expect;
 
-use PHPUnit\Framework\{AssertionFailedError, TestCase};
+use PHPUnit\Framework\{Assert, AssertionFailedError, TestCase};
 
 /** @testdox PHPUnit\Expect\{expect, fail, it, skip} */
 class FunctionsTest extends TestCase {
@@ -9,8 +9,8 @@ class FunctionsTest extends TestCase {
   /** @testdox expect() */
   function testExpect(): void {
     // It should create new assertions.
-    assertThat(expect('foo', 'bar'), isInstanceOf(Assertion::class));
-    assertThat(expect(null), logicalNot(identicalTo(expect(null))));
+    Assert::assertThat(expect('foo', 'bar'), Assert::isInstanceOf(Assertion::class));
+    Assert::assertThat(expect(null), Assert::logicalNot(Assert::identicalTo(expect(null))));
   }
 
   /** @testdox fail() */
@@ -27,7 +27,7 @@ class FunctionsTest extends TestCase {
     $block = function() use (&$called) { $called = true; };
 
     it('foo', $block);
-    assertThat($called, isTrue());
+    Assert::assertThat($called, Assert::isTrue());
   }
 
   /** @testdox skip() */
@@ -37,6 +37,6 @@ class FunctionsTest extends TestCase {
     $block = function() use (&$called) { $called = true; };
 
     skip('foo', $block);
-    assertThat($called, isFalse());
+    Assert::assertThat($called, Assert::isFalse());
   }
 }
