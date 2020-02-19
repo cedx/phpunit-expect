@@ -128,7 +128,7 @@ class Assertion {
    * @return $this This instance.
    */
   function closeTo($value, float $delta): self {
-    return $this->expect($this->target, Assert::equalTo($value, $delta));
+    return $this->expect($this->target, Assert::equalToWithDelta($value, $delta));
   }
 
   /**
