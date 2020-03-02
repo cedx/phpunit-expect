@@ -34,7 +34,7 @@
   },
   "require-dev": {
     "consolidation/robo": "^2.0.3",
-    "phpstan/phpstan": "^0.12.11"
+    "phpstan/phpstan": "^0.12.12"
   },
   "scripts": {
     "coverage": "robo coverage",
