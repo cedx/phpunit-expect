@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 namespace PHPUnit\Expect;
 
-use PHPUnit\Framework\{Assert, TestCase};
+use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Framework\{assertThat, identicalTo};
 
 /** A sample assertion class. */
 class SampleAssertion {
@@ -21,8 +22,8 @@ class ChainableTraitTest extends TestCase {
     // It should return the current instance.
     $assertion = new SampleAssertion;
     foreach ($names as $name) {
-      Assert::assertThat($assertion->__get($name), Assert::identicalTo($assertion));
-      Assert::assertThat($assertion->$name, Assert::identicalTo($assertion));
+      assertThat($assertion->__get($name), identicalTo($assertion));
+      assertThat($assertion->$name, identicalTo($assertion));
     }
 
     // It should throw an exception if there is no method with the given name.
@@ -34,111 +35,111 @@ class ChainableTraitTest extends TestCase {
   function testAnd(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->and(), Assert::identicalTo($assertion));
+    assertThat($assertion->and(), identicalTo($assertion));
   }
 
   /** @testdox ->at() */
   function testAt(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->at(), Assert::identicalTo($assertion));
+    assertThat($assertion->at(), identicalTo($assertion));
   }
 
   /** @testdox ->be() */
   function testBe(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->be(), Assert::identicalTo($assertion));
+    assertThat($assertion->be(), identicalTo($assertion));
   }
 
   /** @testdox ->been() */
   function testBeen(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->been(), Assert::identicalTo($assertion));
+    assertThat($assertion->been(), identicalTo($assertion));
   }
 
   /** @testdox ->but() */
   function testBut(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->but(), Assert::identicalTo($assertion));
+    assertThat($assertion->but(), identicalTo($assertion));
   }
 
   /** @testdox ->does() */
   function testDoes(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->does(), Assert::identicalTo($assertion));
+    assertThat($assertion->does(), identicalTo($assertion));
   }
 
   /** @testdox ->has() */
   function testHas(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->has(), Assert::identicalTo($assertion));
+    assertThat($assertion->has(), identicalTo($assertion));
   }
 
   /** @testdox ->have() */
   function testHave(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->have(), Assert::identicalTo($assertion));
+    assertThat($assertion->have(), identicalTo($assertion));
   }
 
   /** @testdox ->is() */
   function testIs(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->is(), Assert::identicalTo($assertion));
+    assertThat($assertion->is(), identicalTo($assertion));
   }
 
   /** @testdox ->of() */
   function testOf(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->of(), Assert::identicalTo($assertion));
+    assertThat($assertion->of(), identicalTo($assertion));
   }
 
   /** @testdox ->same() */
   function testSame(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->same(), Assert::identicalTo($assertion));
+    assertThat($assertion->same(), identicalTo($assertion));
   }
 
   /** @testdox ->still() */
   function testStill(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->still(), Assert::identicalTo($assertion));
+    assertThat($assertion->still(), identicalTo($assertion));
   }
 
   /** @testdox ->that() */
   function that(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->that(), Assert::identicalTo($assertion));
+    assertThat($assertion->that(), identicalTo($assertion));
   }
 
   /** @testdox ->to() */
   function testTo(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->to(), Assert::identicalTo($assertion));
+    assertThat($assertion->to(), identicalTo($assertion));
   }
 
   /** @testdox ->which() */
   function testWhich(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->which(), Assert::identicalTo($assertion));
+    assertThat($assertion->which(), identicalTo($assertion));
   }
 
   /** @testdox ->with() */
   function testWith(): void {
     // It should return the current instance.
     $assertion = new SampleAssertion;
-    Assert::assertThat($assertion->with(), Assert::identicalTo($assertion));
+    assertThat($assertion->with(), identicalTo($assertion));
   }
 }
