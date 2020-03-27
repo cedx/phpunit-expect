@@ -78,7 +78,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not greater than the specified value.
-   * @param int|float $value The value to compare.
+   * @param number $value The value to compare.
    * @return $this This instance.
    */
   function above($value): self {
@@ -100,7 +100,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not equal to the specified value, within a given delta range.
-   * @param int|float $value The value to compare.
+   * @param number $value The value to compare.
    * @param float $delta The allowed distance between two values to consider them equal.
    * @return $this This instance.
    * @see Assertion::closeTo()
@@ -112,7 +112,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not less than the specified value.
-   * @param int|float $value The value to compare.
+   * @param number $value The value to compare.
    * @return $this This instance.
    */
   function below($value): self {
@@ -123,7 +123,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not equal to the specified value, within a given delta range.
-   * @param int|float $value The value to compare.
+   * @param number $value The value to compare.
    * @param float $delta The allowed distance between two values to consider them equal.
    * @return $this This instance.
    */
@@ -324,7 +324,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not greater than or equal to the specified value.
-   * @param int|float $value The value to compare.
+   * @param number $value The value to compare.
    * @return $this This instance.
    */
   function least($value): self {
@@ -386,7 +386,7 @@ class Assertion {
 
   /**
    * Reports an error if the target is not less than or equal to the specified value.
-   * @param int|float $value The value to compare.
+   * @param number $value The value to compare.
    * @return $this This instance.
    */
   function most($value): self {
@@ -523,8 +523,8 @@ class Assertion {
 
   /**
    * Reports an error if the target is greater than or less than the specified bounds.
-   * @param int|float $start The lowerbound inclusive.
-   * @param int|float $finish The upperbound inclusive.
+   * @param number $start The lowerbound inclusive.
+   * @param number $finish The upperbound inclusive.
    * @return $this This instance.
    */
   function within($start, $finish): self {
