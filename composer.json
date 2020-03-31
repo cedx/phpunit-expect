@@ -33,7 +33,7 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^9.0.1"
+    "phpunit/phpunit": "^9.0.2"
   },
   "require-dev": {
     "consolidation/robo": "^2.0.3",
