@@ -1,4 +1,5 @@
 {
+  "abandoned": "phpunit/phpunit",
   "description": "BDD assertion library based on PHPUnit, inspired by Chai.",
   "homepage": "https://dev.belin.io/phpunit-expect",
   "license": "MIT",
@@ -33,7 +34,7 @@
     "ext-mbstring": "*",
     "ext-reflection": "*",
     "ext-spl": "*",
-    "phpunit/phpunit": "^9.0.2"
+    "phpunit/phpunit": "^9.1.1"
   },
   "require-dev": {
     "consolidation/robo": "^2.0.3",
