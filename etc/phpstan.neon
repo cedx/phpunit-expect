@@ -1,6 +1,6 @@
 parameters:
   level: max
-  paths: [../lib, ../test]
+  paths: [../src, ../test]
   treatPhpDocTypesAsCertain: false
   ignoreErrors:
     - '/Call to an undefined method PHPUnit\\Expect\\AssertionTest::hasFlag/'

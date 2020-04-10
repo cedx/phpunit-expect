@@ -9,8 +9,8 @@
     {"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
   ],
   "autoload": {
-    "files": ["lib/functions.php"],
-    "psr-4": {"PHPUnit\\Expect\\": "lib/"}
+    "files": ["src/functions.php"],
+    "psr-4": {"PHPUnit\\Expect\\": "src/"}
   },
   "autoload-dev": {
     "psr-4": {"PHPUnit\\Expect\\": "test/"}
