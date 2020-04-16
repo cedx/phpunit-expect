@@ -59,7 +59,7 @@ Asserts that the target is less than the specified value.
 
 ```php
 <?php
-xpect(5)->to->be->below(10);
+expect(5)->to->be->below(10);
 ```
 
 Can also be used in conjunction with `->length` to assert a maximum length:

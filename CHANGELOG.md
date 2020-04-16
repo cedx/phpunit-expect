@@ -1,6 +1,7 @@
 # Changelog
 
 ## Version [0.11.0](https://github.com/cedx/phpunit-expect/compare/v0.10.0...v0.11.0)
+- Added an example code.
 - Updated the package dependencies.
 
 ## Version [0.10.0](https://github.com/cedx/phpunit-expect/compare/v0.9.0...v0.10.0)
