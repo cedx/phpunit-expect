@@ -5,8 +5,8 @@ Creates a new `PHPUnit\Expect\Assertion` that let you use a chainable language t
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -27,8 +27,8 @@ Fails a test with a given message:
 
 ```php
 <?php
-use function PHPUnit\Expect\{fail};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{fail};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -43,8 +43,8 @@ Provides the specification of a test block:
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -61,8 +61,8 @@ Skips a test block:
 
 ```php
 <?php
-use function PHPUnit\Expect\{it, skip};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{it, skip};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {

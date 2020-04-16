@@ -7,7 +7,7 @@
 
 !!! danger
     This package is **abandoned** and no longer maintained.  
-    Consider using the [`assertion functions`](https://github.com/sebastianbergmann/phpunit/blob/master/src/Framework/Assert/Functions.php) provided by [`PHPUnit`](https://packagist.org/packages/phpunit/phpunit) as an alternative.
+    Consider using the [assertion functions](https://github.com/sebastianbergmann/phpunit/blob/master/src/Framework/Assert/Functions.php) provided by [PHPUnit](https://packagist.org/packages/phpunit/phpunit) as an alternative.
 
 ## Quick start
 Install the latest version of **PHPUnit-Expect** with [Composer](https://getcomposer.org):

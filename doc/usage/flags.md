@@ -5,8 +5,8 @@ Sets the `directory` flag, and indicates that the assertions following in the ch
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -22,8 +22,8 @@ Sets the `file` flag, and indicates that the assertions following in the chain t
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -51,8 +51,8 @@ Sets the `length` flag, and indicates that the assertions following in the chain
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -72,8 +72,8 @@ Sets the `negate` flag, and negates any of assertions following in the chain:
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {

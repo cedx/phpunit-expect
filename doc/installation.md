@@ -35,6 +35,6 @@ Now in your [PHP](https://www.php.net) code, you can use:
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, fail, it, skip};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, fail, it, skip};
 ```

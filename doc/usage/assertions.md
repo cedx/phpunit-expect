@@ -9,8 +9,8 @@ The `a` and `an` assertions are aliases that can be used either as language chai
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -115,8 +115,8 @@ Asserts that the target is `false`.
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -189,8 +189,8 @@ Asserts that the target is `NAN` (not a number).
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -210,8 +210,8 @@ Asserts that the target is `null`.
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -262,8 +262,8 @@ Asserts that the function target will throw an exception, or a specific type of 
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
@@ -288,8 +288,8 @@ Asserts that the target is `true`:
 
 ```php
 <?php
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Expect\{expect, it};
 
 class SampleTest extends TestCase {
   function testSomeMethod(): void {
