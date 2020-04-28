@@ -137,7 +137,11 @@ class Assertion {
    * @return $this This instance.
    */
   function contain($value = null): self {
-    if ($this->hasFlag('file')) return $this->expect((string) @file_get_contents($this->target), Assert::stringContains($value));
+    if ($this->hasFlag('file')) {
+      $file = new \SplFileObject($this->target);
+      return $this->expect((string) $file->fread($file->getSize()), Assert::stringContains($value));
+    }
+
     return $this->expect($this->target, is_string($this->target) ? Assert::stringContains($value) : Assert::containsEqual($value));
   }
 
