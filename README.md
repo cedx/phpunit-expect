@@ -7,13 +7,13 @@
 > Consider using the [assertion functions](https://github.com/sebastianbergmann/phpunit/blob/master/src/Framework/Assert/Functions.php) provided by [PHPUnit](https://packagist.org/packages/phpunit/phpunit) as an alternative.
 
 ## Documentation
-- [User guide](https://dev.belin.io/phpunit-expect)
-- [API reference](https://dev.belin.io/phpunit-expect/api)
+- [User guide](https://docs.belin.io/phpunit-expect)
+- [API reference](https://api.belin.io/phpunit-expect)
 
 ## Development
-- [Git repository](https://github.com/cedx/phpunit-expect)
+- [Git repository](https://git.belin.io/cedx/phpunit-expect)
 - [Packagist package](https://packagist.org/packages/cedx/phpunit-expect)
-- [Submit an issue](https://github.com/cedx/phpunit-expect/issues)
+- [Submit an issue](https://git.belin.io/cedx/phpunit-expect/issues)
 
 ## License
-[PHPUnit-Expect](https://dev.belin.io/phpunit-expect) is distributed under the MIT License.
+[PHPUnit-Expect](https://docs.belin.io/phpunit-expect) is distributed under the MIT License.
