@@ -1,7 +1,5 @@
 parameters:
+  ignoreErrors: ['/on a separate line does not do anything/']
   level: max
   paths: [../src, ../test]
   treatPhpDocTypesAsCertain: false
-  ignoreErrors:
-    - '/Call to an undefined method PHPUnit\\Expect\\AssertionTest::hasFlag/'
-    - '/on a separate line does not do anything/'
