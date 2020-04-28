@@ -27,7 +27,7 @@ class RoboFile extends Tasks {
   function clean(): Result {
     return $this->collectionBuilder()
       ->addTask($this->taskCleanDir('var'))
-      ->addTask($this->taskDeleteDir(['build', 'doc/api', 'web']))
+      ->addTask($this->taskDeleteDir(['build', 'doc/api', 'www']))
       ->run();
   }
 
@@ -36,10 +36,9 @@ class RoboFile extends Tasks {
    * @return Result The task result.
    */
   function coverage(): Result {
-    $path = (string) getenv('PATH');
-    $vendor = (string) realpath(trim(`{$this->composer} global config bin-dir --absolute`));
-    if (mb_strpos($path, $vendor) === false) putenv("PATH=$vendor".PATH_SEPARATOR.$path);
-    return $this->_exec('coveralls var/coverage.xml');
+    $executable = trim(`{$this->composer} global config bin-dir --absolute`)."/coveralls";
+    $coveralls = escapeshellarg(str_replace('/', DIRECTORY_SEPARATOR, $executable));
+    return $this->_exec("$coveralls var/coverage.xml");
   }
 
   /**
@@ -49,13 +48,8 @@ class RoboFile extends Tasks {
   function doc(): Result {
     $phpdoc = PHP_OS_FAMILY == 'Windows' ? 'php '.escapeshellarg('C:\Program Files\PHP\share\phpDocumentor.phar') : 'phpdoc';
     return $this->collectionBuilder()
-      ->addTask($this->taskFilesystemStack()
-        ->copy('CHANGELOG.md', 'doc/about/changelog.md')
-        ->copy('LICENSE.md', 'doc/about/license.md'))
       ->addTask($this->taskExec("$phpdoc --config=etc/phpdoc.xml"))
-      ->addTask($this->taskExec('mkdocs build --config-file=doc/mkdocs.yaml'))
-      ->addTask($this->taskFilesystemStack()
-        ->remove(['doc/about/changelog.md', 'doc/about/license.md', 'www/mkdocs.yaml']))
+      ->addTask($this->taskExec('mkdocs build --config-file=etc/mkdocs.yaml'))
       ->run();
   }
 
