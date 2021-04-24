@@ -1,7 +1,7 @@
 {
   "abandoned": "phpunit/phpunit",
   "description": "BDD assertion library based on PHPUnit, inspired by Chai.",
-  "homepage": "https://docs.belin.io/phpunit-expect",
+  "homepage": "https://cedx.github.io/phpunit-expect",
   "license": "MIT",
   "name": "cedx/phpunit-expect",
   "type": "library",
@@ -45,7 +45,7 @@
     "test": "robo test"
   },
   "support": {
-    "docs": "https://docs.belin.io/phpunit-expect/api",
-    "issues": "https://git.belin.io/cedx/phpunit-expect/issues"
+    "docs": "https://cedx.github.io/phpunit-expect/api",
+    "issues": "https://github.com/cedx/phpunit-expect/issues"
   }
 }

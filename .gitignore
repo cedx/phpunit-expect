@@ -3,10 +3,8 @@
 !/.vscode/
 
 /build/
-/doc/api/
 /var/
 /vendor/
-/www/
 
 /*.code-workspace
 /*.iml
