@@ -1,9 +1,9 @@
 # See also
 
 ## Development
-- [API reference](https://api.belin.io/phpunit-expect)
+- [API reference](https://cedx.github.io/phpunit-expect/api)
 - [Packagist package](https://packagist.org/packages/cedx/phpunit-expect)
-- [Submit an issue](https://git.belin.io/cedx/phpunit-expect/issues)
+- [Submit an issue](https://github.com/cedx/phpunit-expect/issues)
 
 ## Testing
 - [Continuous integration](https://github.com/cedx/phpunit-expect/actions)
