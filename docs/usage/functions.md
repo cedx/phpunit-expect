@@ -4,7 +4,6 @@
 Creates a new `PHPUnit\Expect\Assertion` that let you use a chainable language to construct assertions:
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{expect, it};
 
@@ -26,7 +25,6 @@ class SampleTest extends TestCase {
 Fails a test with a given message:
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{fail};
 
@@ -42,7 +40,6 @@ class SampleTest extends TestCase {
 Provides the specification of a test block:
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{expect, it};
 
@@ -60,7 +57,6 @@ class SampleTest extends TestCase {
 Skips a test block:
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{it, skip};
 

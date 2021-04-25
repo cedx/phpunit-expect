@@ -3,9 +3,6 @@
 ## Requirements
 Before installing **PHPUnit-Expect**, you need to make sure you have [PHP](https://www.php.net)
 and [Composer](https://getcomposer.org), the PHP package manager, up and running.
-
-!!! warning
-    PHPUnit-Expect requires PHP >= **7.4.0**.
     
 You can verify if you're already good to go with the following commands:
 
@@ -17,9 +14,7 @@ composer --version
 # Composer version 1.10.5 2020-04-10 11:44:22
 ```
 
-!!! info
-    If you plan to play with the package sources, you will also need
-    [Robo](https://robo.li) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material).
+?> If you plan to play with the package sources, you will also need the latest version of [Robo](https://robo.li).
 
 ## Installing with Composer package manager
 

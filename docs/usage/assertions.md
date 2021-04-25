@@ -2,13 +2,11 @@
 
 ## ->**a**(string **$type**)
 
-!!! info "Alias"
-    ->**an**(string **$type**)
+?> **Alias:** ->an(string $type)
 
 The `a` and `an` assertions are aliases that can be used either as language chains or to assert a value's type:
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{expect, it};
 
@@ -42,14 +40,12 @@ class SampleTest extends TestCase {
 Asserts that the target is greater than the specified value.
 
 ```php
-<?php
 expect(10)->to->be->above(5);
 ```
 
 Can also be used in conjunction with `->length` to assert a minimum length:
 
 ```php
-<?php
 expect('foo')->to->have->length->above(2);
 expect([1, 2, 3])->to->have->length->above(2);
 ```
@@ -58,29 +54,26 @@ expect([1, 2, 3])->to->have->length->above(2);
 Asserts that the target is less than the specified value.
 
 ```php
-<?php
 expect(5)->to->be->below(10);
 ```
 
 Can also be used in conjunction with `->length` to assert a maximum length:
 
 ```php
-<?php
 expect('foo')->to->have->length->below(4);
 expect([1, 2, 3])->to->have->length->below(4);
 ```
 
 ## ->**contain**(mixed **$value**)
 
-!!! info "Aliases"
-    ->**contains**(mixed **$value**),
-    ->**include**(mixed **$value**),
-    ->**includes**(mixed **$value**)
+?> **Aliases:**  
+->contains(mixed $value)  
+->include(mixed $value)  
+->includes(mixed $value)
 
 The `contain` and `include` assertions can be used as either property based language chains or as methods to assert the inclusion of an object in an array or a substring in a string. When used as language chains, they toggle the `contain` flag for the `keys` assertion.
 
 ```php
-<?php
 expect([1,2,3])->to->include(2);
 expect('foobar')->to->contain('foo');
 expect(['foo' => 'bar', 'hello' => 'universe'])->to->include->keys('foo');
@@ -90,7 +83,6 @@ expect(['foo' => 'bar', 'hello' => 'universe'])->to->include->keys('foo');
 Asserts that the target's length is `0`. For arrays, strings, and `Countable` instances, it checks the length. For objects, it gets the count of accessible properties.
 
 ```php
-<?php
 expect([])->to->be->empty;
 expect('')->to->be->empty;
 expect(new \stdClass)->to->be->empty;
@@ -98,13 +90,11 @@ expect(new \stdClass)->to->be->empty;
 
 ## ->**equal**(mixed **$value**)
 
-!!! info "Alias"
-    ->**equals**(mixed **$value**)
+?> **Alias:** ->equals(mixed $value)
 
 Asserts that the target is equal (`==`) to value.
 
 ```php
-<?php
 expect('hello')->to->equal('hello');
 expect(42)->to->equal(42);
 expect(1)->to->not->equal(true);
@@ -114,7 +104,6 @@ expect(1)->to->not->equal(true);
 Asserts that the target is `false`.
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{expect, it};
 
@@ -135,27 +124,23 @@ class SampleTest extends TestCase {
 Asserts that the target is greater than or equal to the specified value.
 
 ```php
-<?php
 expect(10)->to->be->at->least(10);
 ```
 
 Can also be used in conjunction with `->length` to assert a minimum length:
 
 ```php
-<?php
 expect('foo')->to->have->length->of->at->least(3);
 expect([1, 2, 3])->to->have->length->of->at->least(3);
 ```
 
 ## ->**lengthOf**(int **$value**)
 
-!!! info "Alias"
-    ->**length**(int **$value**)
+?> **Alias:** ->length(int $value)
 
 Asserts that the target's length has the expected value:
 
 ```php
-<?php
 expect([1, 2, 3])->to->have->lengthOf(3);
 expect('foobar')->to->have->lengthOf(6);
 ```
@@ -164,7 +149,6 @@ expect('foobar')->to->have->lengthOf(6);
 Asserts that the target matches a regular expression:
 
 ```php
-<?php
 expect('foobar')->to->match('/^foo/');
 ```
 
@@ -172,14 +156,12 @@ expect('foobar')->to->match('/^foo/');
 Asserts that the target is less than or equal to the specified value.
 
 ```php
-<?php
 expect(5)->to->be->at->most(5);
 ```
 
 Can also be used in conjunction with `->length` to assert a maximum length:
 
 ```php
-<?php
 expect('foo')->to->have->length->of->at->most(3);
 expect([1, 2, 3])->to->have->length->of->at->most(3);
 ```
@@ -188,7 +170,6 @@ expect([1, 2, 3])->to->have->length->of->at->most(3);
 Asserts that the target is `NAN` (not a number).
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{expect, it};
 
@@ -209,7 +190,6 @@ class SampleTest extends TestCase {
 Asserts that the target is `null`.
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{expect, it};
 
@@ -230,7 +210,6 @@ class SampleTest extends TestCase {
 Asserts that the target has a property or a key with the specified name, optionally asserting that the value of that property or key is equal to the specified value:
 
 ```php
-<?php
 $array = ['foo' => 'bar'];
 expect($array)->to->have->property('foo');
 expect($array)->to->have->property('foo', 'bar');
@@ -244,7 +223,6 @@ expect($object)->to->have->property('foo', 'bar');
 It also changes the subject of the assertion to be the value of that property from the original object. This permits for further chainable assertions on that property:
 
 ```php
-<?php
 expect($value)->to->have->property('foo')
   ->that->is->a('string');
   
@@ -261,7 +239,6 @@ expect($value)->to->have->property('baz')
 Asserts that the function target will throw an exception, or a specific type of exception (as determined using `instanceof`):
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{expect, it};
 
@@ -287,7 +264,6 @@ class SampleTest extends TestCase {
 Asserts that the target is `true`:
 
 ```php
-<?php
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Expect\{expect, it};
 
