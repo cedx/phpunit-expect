@@ -1,7 +1,6 @@
 # Assertions
 
 ## ->**a**(string **$type**)
-
 ?> **Alias:** ->an(string $type)
 
 The `a` and `an` assertions are aliases that can be used either as language chains or to assert a value's type:
@@ -36,7 +35,7 @@ class SampleTest extends TestCase {
 }
 ```
 
-## ->**above**(int | float **$value**)
+## ->**above**(int|float **$value**)
 Asserts that the target is greater than the specified value.
 
 ```php
@@ -50,7 +49,7 @@ expect('foo')->to->have->length->above(2);
 expect([1, 2, 3])->to->have->length->above(2);
 ```
 
-## ->**below**(int | float **$value**)
+## ->**below**(int|float **$value**)
 Asserts that the target is less than the specified value.
 
 ```php
@@ -65,7 +64,6 @@ expect([1, 2, 3])->to->have->length->below(4);
 ```
 
 ## ->**contain**(mixed **$value**)
-
 ?> **Aliases:**  
 ->contains(mixed $value)  
 ->include(mixed $value)  
@@ -89,7 +87,6 @@ expect(new \stdClass)->to->be->empty;
 ```
 
 ## ->**equal**(mixed **$value**)
-
 ?> **Alias:** ->equals(mixed $value)
 
 Asserts that the target is equal (`==`) to value.
@@ -120,7 +117,7 @@ class SampleTest extends TestCase {
 }
 ```
 
-## ->**least**(int | float **$value**)
+## ->**least**(int|float **$value**)
 Asserts that the target is greater than or equal to the specified value.
 
 ```php
@@ -135,7 +132,6 @@ expect([1, 2, 3])->to->have->length->of->at->least(3);
 ```
 
 ## ->**lengthOf**(int **$value**)
-
 ?> **Alias:** ->length(int $value)
 
 Asserts that the target's length has the expected value:
@@ -152,7 +148,7 @@ Asserts that the target matches a regular expression:
 expect('foobar')->to->match('/^foo/');
 ```
 
-## ->**most**(int | float **$value**)
+## ->**most**(int|float **$value**)
 Asserts that the target is less than or equal to the specified value.
 
 ```php
